@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "firstName": "Lisa",
+      "lastName": "Simpson",
+      "email": "lisa@simpson.com",
+      "password": "secret",
+      "_id": "37756dd1-2e59-4f34-b32c-4cdf646e91ce"
+    },
+    {
+      "firstName": "Lisa",
+      "lastName": "Simpson",
+      "email": "lisa@simpson.com",
+      "password": "secret",
+      "_id": "17cb7575-7b89-455f-9b9a-0f279320193b"
+    },
+    {
+      "firstName": "Lisa",
+      "lastName": "Simpson",
+      "email": "lisa@simpson.com",
+      "password": "secret",
+      "_id": "8124d129-6ed0-4634-adc1-bac268c7af85"
+    },
+    {
+      "firstName": "Lisa",
+      "lastName": "Simpson",
+      "email": "lisa@simpson.com",
+      "password": "secret",
+      "_id": "e78d2ee8-30ed-44fc-a8c9-1a8b05ba98e8"
+    },
+    {
+      "firstName": "robert",
+      "lastName": "ferguson",
+      "email": "robert@test.com",
+      "password": "secret123",
+      "_id": "fcc0c5d4-c81b-46c6-84cb-a963ad64f591"
+    }
+  ]
+}

@@ -1,29 +1,39 @@
 {
-  "name": "enviro-buddy",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "playtime",
+  "version": "0.6.0",
+  "description": "A Playlist application for the HDip in Computing, WIT",
+  "main": "src/server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "lint": "eslint . --ext .js",
+    "test": "./node_modules/mocha/bin/_mocha --ui tdd test/**/*.js -exit"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@hapi/boom": "^10.0.1",
-    "@hapi/cookie": "^12.0.1",
-    "@hapi/hapi": "^21.3.3",
-    "@hapi/inert": "^7.1.0",
-    "@hapi/vision": "^7.0.3",
-    "dotenv": "^16.4.4",
-    "handlebars": "^4.7.8",
-    "hapi-auth-jwt2": "^10.5.1",
-    "hapi-swagger": "^17.2.1",
-    "joi": "^17.12.1",
-    "jsonwebtoken": "^9.0.2",
-    "lowdb": "^7.0.1",
-    "mais-mongoose-seeder": "^1.0.7",
-    "mongoose": "^8.1.2",
-    "uuid": "^9.0.1"
-  }
+    "@hapi/boom": "^10.0.0",
+    "@hapi/cookie": "^12.0.0",
+    "@hapi/hapi": "^21.2.0",
+    "@hapi/vision": "^7.0.0",
+    "dotenv": "^16.0.3",
+    "handlebars": "^4.7.7",
+    "joi": "^17.7.0",
+    "lowdb": "^5.0.5",
+    "mongoose": "^6.8.4",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "axios": "^1.2.3",
+    "chai": "^4.3.7",
+    "eslint": "^8.32.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.5",
+    "mocha": "^10.2.0",
+    "prettier": "^2.8.3"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC"
 }
