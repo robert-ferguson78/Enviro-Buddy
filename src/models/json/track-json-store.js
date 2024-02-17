@@ -1,9 +1,5 @@
 import { v4 } from "uuid";
-import { Low } from "lowdb";
-import { JSONFile } from "lowdb/node";
-
-const db = new Low(new JSONFile("./src/models/json/tracks.json"));
-db.data = { tracks: [] };
+import { db } from "./store-utils.js";
 
 export const trackJsonStore = {
   async getAllTracks() {

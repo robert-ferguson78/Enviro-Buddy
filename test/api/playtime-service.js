@@ -1,5 +1,4 @@
 import axios from "axios";
-
 import { serviceUrl } from "../fixtures.js";
 
 export const playtimeService = {

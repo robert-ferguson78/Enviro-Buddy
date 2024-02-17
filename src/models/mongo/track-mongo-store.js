@@ -40,9 +40,10 @@ export const trackMongoStore = {
   },
 
   async updateTrack(track, updatedTrack) {
-    track.title = updatedTrack.title;
-    track.artist = updatedTrack.artist;
-    track.duration = updatedTrack.duration;
-    await track.save();
+    const trackDoc = await Track.findOne({ _id: track._id });
+    trackDoc.title = updatedTrack.title;
+    trackDoc.artist = updatedTrack.artist;
+    trackDoc.duration = updatedTrack.duration;
+    await trackDoc.save();
   },
 };

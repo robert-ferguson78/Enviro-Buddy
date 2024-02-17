@@ -1,9 +1,5 @@
 import { v4 } from "uuid";
-import { Low } from "lowdb";
-import { JSONFile } from "lowdb/node";
-
-const db = new Low(new JSONFile("./src/models/json/users.json"));
-db.data = { users: [] };
+import { db } from "./store-utils.js";
 
 export const userJsonStore = {
   async getAllUsers() {
