@@ -24,53 +24,53 @@ export const playtimeService = {
     return res.data;
   },
 
-  async createPlaylist(playlist) {
-    const res = await axios.post(`${this.playtimeUrl}/api/playlists`, playlist);
+  async createCounty(county) {
+    const res = await axios.post(`${this.playtimeUrl}/api/countys`, county);
     return res.data;
   },
 
-  async deleteAllPlaylists() {
-    const response = await axios.delete(`${this.playtimeUrl}/api/playlists`);
+  async deleteAllCountys() {
+    const response = await axios.delete(`${this.playtimeUrl}/api/countys`);
     return response.data;
   },
 
-  async deletePlaylist(id) {
-    const response = await axios.delete(`${this.playtimeUrl}/api/playlists/${id}`);
+  async deleteCounty(id) {
+    const response = await axios.delete(`${this.playtimeUrl}/api/countys/${id}`);
     return response;
   },
 
-  async getAllPlaylists() {
-    const res = await axios.get(`${this.playtimeUrl}/api/playlists`);
+  async getAllCountys() {
+    const res = await axios.get(`${this.playtimeUrl}/api/countys`);
     return res.data;
   },
 
-  async getPlaylist(id) {
-    const res = await axios.get(`${this.playtimeUrl}/api/playlists/${id}`);
+  async getCounty(id) {
+    const res = await axios.get(`${this.playtimeUrl}/api/countys/${id}`);
     return res.data;
   },
 
-  async getAllTracks() {
-    const res = await axios.get(`${this.playtimeUrl}/api/tracks`);
+  async getAllDealers() {
+    const res = await axios.get(`${this.playtimeUrl}/api/dealers`);
     return res.data;
   },
 
-  async createTrack(id, track) {
-    const res = await axios.post(`${this.playtimeUrl}/api/playlists/${id}/tracks`, track);
+  async createDealer(id, dealer) {
+    const res = await axios.post(`${this.playtimeUrl}/api/countys/${id}/dealers`, dealer);
     return res.data;
   },
 
-  async deleteAllTracks() {
-    const res = await axios.delete(`${this.playtimeUrl}/api/tracks`);
+  async deleteAllDealers() {
+    const res = await axios.delete(`${this.playtimeUrl}/api/dealers`);
     return res.data;
   },
 
-  async getTrack(id) {
-    const res = await axios.get(`${this.playtimeUrl}/api/tracks/${id}`);
+  async getDealer(id) {
+    const res = await axios.get(`${this.playtimeUrl}/api/dealers/${id}`);
     return res.data;
   },
 
-  async deleteTrack(id) {
-    const res = await axios.delete(`${this.playtimeUrl}/api/tracks/${id}`);
+  async deleteDealer(id) {
+    const res = await axios.delete(`${this.playtimeUrl}/api/dealers/${id}`);
     return res.data;
   },
 };

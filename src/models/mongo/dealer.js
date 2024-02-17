@@ -6,10 +6,10 @@ const trackSchema = new Schema({
   title: String,
   artist: String,
   duration: Number,
-  playlistid: {
+  countyid: {
     type: Schema.Types.ObjectId,
-    ref: "Playlist",
+    ref: "County",
   },
 });
 
-export const Track = Mongoose.model("Track", trackSchema);
+export const Dealer = Mongoose.model("Dealer", trackSchema);

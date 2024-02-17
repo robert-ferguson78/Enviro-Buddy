@@ -1,13 +1,4 @@
 {
-  "users": [
-    {
-      "firstName": "robert",
-      "lastName": "ferguson",
-      "email": "robert@test.com",
-      "password": "secret123",
-      "_id": "53978343-0f86-4e39-8175-da29ed5fd186"
-    }
-  ],
-  "playlists": [],
-  "tracks": []
+  "users": [],
+  "countys": []
 }

@@ -1,36 +1,36 @@
 import { userMemStore } from "./mem/user-mem-store.js";
-import { playlistMemStore } from "./mem/playlist-mem-store.js";
-import { trackMemStore } from "./mem/track-mem-store.js";
+import { countyMemStore } from "./mem/county-mem-store.js";
+import { dealerMemStore } from "./mem/dealer-mem-store.js";
 import { userJsonStore } from "./json/user-json-store.js";
-import { playlistJsonStore } from "./json/playlist-json-store.js";
-import { trackJsonStore } from "./json/track-json-store.js";
+import { countyJsonStore } from "./json/county-json-store.js";
+import { dealerJsonStore } from "./json/dealer-json-store.js";
 import { userMongoStore } from "./mongo/user-mongo-store.js";
-import { playlistMongoStore } from "./mongo/playlist-mongo-store.js";
-import { trackMongoStore } from "./mongo/track-mongo-store.js";
+import { countyMongoStore } from "./mongo/county-mongo-store.js";
+import { dealerMongoStore } from "./mongo/dealer-mongo-store.js";
 import { connectMongo } from "./mongo/connect.js";
 
 export const db = {
   userStore: null,
-  playlistStore: null,
-  trackStore: null,
+  countyStore: null,
+  dealerStore: null,
 
   init(storeType) {
     switch (storeType) {
       case "json" :
         this.userStore = userJsonStore;
-        this.playlistStore = playlistJsonStore;
-        this.trackStore = trackJsonStore;
+        this.countyStore = countyJsonStore;
+        this.dealerStore = dealerJsonStore;
         break;
       case "mongo" :
         this.userStore = userMongoStore;
-        this.playlistStore = playlistMongoStore;
-        this.trackStore = trackMongoStore;
+        this.countyStore = countyMongoStore;
+        this.dealerStore = dealerMongoStore;
         connectMongo();
         break;
       default :
         this.userStore = userMemStore;
-        this.playlistStore = playlistMemStore;
-        this.trackStore = trackMemStore;
+        this.countyStore = countyMemStore;
+        this.dealerStore = dealerMemStore;
     }
   }
 };

@@ -1,14 +1,14 @@
 <table class="table is-fullwidth">
   <thead>
     <tr>
-      <th>Track</th>
+      <th>Dealer</th>
       <th>Artist</th>
       <th>Duration</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    {{#each playlist.tracks}}
+    {{#each county.dealers}}
       <tr>
         <td>
           {{title}}
@@ -20,7 +20,7 @@
           {{duration}}
         </td>
         <td>
-          <a href="/playlist/{{../playlist._id}}/deletetrack/{{_id}}" class="ui icon button">
+          <a href="/county/{{../county._id}}/deletedealer/{{_id}}" class="ui icon button">
             <i class="fas fa-trash"></i>
           </a>
         </td>
