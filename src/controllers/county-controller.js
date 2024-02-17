@@ -4,9 +4,11 @@ import { db } from "../models/db.js";
 export const countyController = {
   index: {
     handler: async function (request, h) {
+      console.log("info here2");
       const county = await db.countyStore.getCountyById(request.params.id);
+      console.log(county);
       const viewData = {
-        title: "County",
+        title: "county",
         county: county,
       };
       return h.view("county-view", viewData);

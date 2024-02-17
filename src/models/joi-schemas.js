@@ -19,5 +19,5 @@ export const DealerSpec = {
 };
 
 export const CountySpec = {
-  title: Joi.string().required(),
+  county: Joi.string().required(),
 };

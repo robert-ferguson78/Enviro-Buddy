@@ -25,19 +25,22 @@ export const dashboardController = {
     },
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const newPlayList = {
+      const newCounty = {
         userid: loggedInUser._id,
-        title: request.payload.title,
+        county: request.payload.county,
       };
-      await db.countyStore.addCounty(newPlayList);
+      await db.countyStore.addCounty(newCounty);
       return h.redirect("/dashboard");
     },
   },
 
   deleteCounty: {
     handler: async function (request, h) {
+      console.log("delete" + request.params.id);
       const county = await db.countyStore.getCountyById(request.params.id);
+      console.log("delete2");
       await db.countyStore.deleteCountyById(county._id);
+      console.log("delete3");
       return h.redirect("/dashboard");
     },
   },

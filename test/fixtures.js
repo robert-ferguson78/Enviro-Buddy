@@ -28,8 +28,8 @@ export const testUsers = [
   }
 ];
 
-export const mozart = {
-  title: "Mozart Favourites"
+export const sligo = {
+  conty: "sligo"
 };
 
 export const concerto = {
@@ -40,18 +40,18 @@ export const concerto = {
 
 
 export const beethoven = {
-  title: "Mozart Favourites"
+  county: "sligo"
 };
 
 export const testCountys = [
   {
-    title: "Beethoven Sonatas"
+    county: "mayo"
   },
   {
-    title: "Beethoven Concertos"
+    county: "meath"
   },
   {
-    title: "Beethoven Symphonies"
+    county: "louth"
   }
 ];
 

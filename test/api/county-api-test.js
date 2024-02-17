@@ -3,7 +3,7 @@ import { assert } from "chai";
 import { playtimeService } from "./playtime-service.js";
 import { assertSubset } from "../test-utils.js";
 
-import { maggie, mozart, testCountys } from "../fixtures.js";
+import { maggie, sligo, testCountys } from "../fixtures.js";
 
 EventEmitter.setMaxListeners(25);
 
@@ -14,19 +14,19 @@ suite("County API tests", () => {
     await playtimeService.deleteAllCountys();
     await playtimeService.deleteAllUsers();
     user = await playtimeService.createUser(maggie);
-    mozart.userid = user._id;
+    sligo.userid = user._id;
   });
 
   teardown(async () => {});
 
   test("create county", async () => {
-    const returnedCounty = await playtimeService.createCounty(mozart);
+    const returnedCounty = await playtimeService.createCounty(sligo);
     assert.isNotNull(returnedCounty);
-    assertSubset(mozart, returnedCounty);
+    assertSubset(sligo, returnedCounty);
   });
 
   test("delete a county", async () => {
-    const county = await playtimeService.createCounty(mozart);
+    const county = await playtimeService.createCounty(sligo);
     const response = await playtimeService.deleteCounty(county._id);
     assert.equal(response.status, 204);
     try {

@@ -1,12 +1,12 @@
 import { assert } from "chai";
 import { db } from "../../src/models/db.js";
-import { testCountys, mozart } from "../fixtures.js";
+import { testCountys, sligo } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
 suite("County Model tests", () => {
 
   setup(async () => {
-    db.init("mongo");
+    db.init("json");
     await db.countyStore.deleteAllCountys();
     for (let i = 0; i < testCountys.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
@@ -15,8 +15,8 @@ suite("County Model tests", () => {
   });
 
   test("create a county", async () => {
-    const county = await db.countyStore.addCounty(mozart);
-    assertSubset(mozart, county);
+    const county = await db.countyStore.addCounty(sligo);
+    assertSubset(sligo, county);
     assert.isDefined(county._id);
   });
 
@@ -29,12 +29,15 @@ suite("County Model tests", () => {
   });
 
   test("get a county - success", async () => {
-    const county = await db.countyStore.addCounty(mozart);
+    const county = await db.countyStore.addCounty(sligo);
+    console.log("info here");
+    console.log(county);
     const returnedCounty = await db.countyStore.getCountyById(county._id);
-    assertSubset(mozart, county);
+    console.log(returnedCounty);
+    assertSubset(sligo, county);
   });
 
-  test("delete One Playist - success", async () => {
+  test("delete One County - success", async () => {
     const id = testCountys[0]._id;
     await db.countyStore.deleteCountyById(id);
     const returnedCountys = await db.countyStore.getAllCountys();

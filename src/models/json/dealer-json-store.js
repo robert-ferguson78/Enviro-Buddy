@@ -16,7 +16,7 @@ export const dealerJsonStore = {
     return dealer;
   },
 
-  async getDealerByCountyId(id) {
+  async getDealersByCountyId(id) {
     await db.read();
     return db.data.dealers.filter((dealer) => dealer.countyId === id);
   },

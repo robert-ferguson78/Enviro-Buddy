@@ -19,9 +19,9 @@ export const webRoutes = [
   { method: "GET", path: "/dashboard/deletecounty/{id}", config: dashboardController.deleteCounty },
 
   { method: "GET", path: "/county/{id}", config: countyController.index },
-  { method: "POST", path: "/county/{id}/addtrack", config: countyController.addDealer },
-  { method: "GET", path: "/county/{id}/deletetrack/{trackid}", config: countyController.deleteDealer },
+  { method: "POST", path: "/county/{id}/adddealer", config: countyController.addDealer },
+  { method: "GET", path: "/county/{id}/deletedealer/{dealerid}", config: countyController.deleteDealer },
 
-  { method: "GET", path: "/dealer/{id}/edittrack/{trackid}", config: dealerController.index },
-  { method: "POST", path: "/dealer/{id}/updatetrack/{trackid}", config: dealerController.update },
+  { method: "GET", path: "/dealer/{id}/editdealer/{dealerid}", config: dealerController.index },
+  { method: "POST", path: "/dealer/{id}/updatedealer/{dealerid}", config: dealerController.update },
 ];

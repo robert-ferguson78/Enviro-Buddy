@@ -1,4 +1,41 @@
 {
-  "users": [],
-  "countys": []
+  "users": [
+    {
+      "firstName": "Maggie",
+      "lastName": "Simpson",
+      "email": "maggie@simpson.com",
+      "password": "secret",
+      "_id": "7a62db77-dce1-4ba0-810b-ad38ec2bff5f"
+    }
+  ],
+  "countys": [
+    {
+      "county": "mayo",
+      "_id": "b77aa102-3812-4072-aa22-d0ecf16b14a8"
+    },
+    {
+      "county": "meath",
+      "_id": "518e6ad7-4a3c-43a8-ad9e-7cddd8542dd1"
+    },
+    {
+      "county": "louth",
+      "_id": "5cf69811-0e15-432c-a934-b3e4fed34345"
+    },
+    {
+      "userid": "7a62db77-dce1-4ba0-810b-ad38ec2bff5f",
+      "county": "cavan",
+      "_id": "428f0fc9-a187-4cd5-b27f-9323196010c6"
+    },
+    {
+      "userid": "7a62db77-dce1-4ba0-810b-ad38ec2bff5f",
+      "county": "cork",
+      "_id": "b99d5038-0ae1-48b8-90cd-e8c148550a7d"
+    },
+    {
+      "userid": "7a62db77-dce1-4ba0-810b-ad38ec2bff5f",
+      "county": "kildare",
+      "_id": "669f75f0-d609-4702-9f64-f2564d239be5"
+    }
+  ],
+  "dealers": []
 }
