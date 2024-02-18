@@ -7,9 +7,11 @@ import { dealerController } from "./controllers/dealer-controller.js";
 export const webRoutes = [
   { method: "GET", path: "/", config: accountsController.index },
   { method: "GET", path: "/signup", config: accountsController.showSignup },
+  { method: "GET", path: "/brandsignup", config: accountsController.showBrandSignup },
   { method: "GET", path: "/login", config: accountsController.showLogin },
   { method: "GET", path: "/logout", config: accountsController.logout },
   { method: "POST", path: "/register", config: accountsController.signup },
+  { method: "POST", path: "/registerbrand", config: accountsController.brandSignup },
   { method: "POST", path: "/authenticate", config: accountsController.login },
 
   { method: "GET", path: "/about", config: aboutController.index },
