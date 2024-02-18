@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { db } from "../../src/models/db.js";
-import { testCountys, testDealers, beethoven, sligo, concerto, testUsers } from "../fixtures.js";
+import { testCountys, testDealers, county, sligo, concerto, testUsers } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
 suite("Dealer Model tests", () => {
@@ -8,29 +8,29 @@ suite("Dealer Model tests", () => {
   let beethovenList = null;
 
   setup(async () => {
-    await db.init("mongo");
+    await db.init("json");
     await db.countyStore.deleteAllCountys();
     await db.dealerStore.deleteAllDealers();
-    beethovenList = await db.countyStore.addCounty(beethoven);
+    beethovenList = await db.countyStore.addCounty(county);
     for (let i = 0; i < testDealers.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
       testDealers[i] = await db.dealerStore.addDealer(beethovenList._id, testDealers[i]);
     }
   });
 
-  test("create single track", async () => {
+  test("create single dealer", async () => {
     const sligoList = await db.countyStore.addCounty(sligo);
-    const track = await db.dealerStore.addDealer(sligotList._id, concerto)
-    assert.isNotNull(track._id);
-    assertSubset (concerto, track);
+    const dealer = await db.dealerStore.addDealer(sligotList._id, concerto)
+    assert.isNotNull(dealer._id);
+    assertSubset (concerto, dealer);
   });
 
-  test("create multiple trackApi", async () => {
+  test("create multiple dealerApi", async () => {
     const dealers = await db.countyStore.getCountyById(beethovenList._id);
     assert.equal(testDealers.length, testDealers.length)
   });
 
-  test("delete all trackApi", async () => {
+  test("delete all dealerApi", async () => {
     const dealers = await db.dealerStore.getAllDealers();
     assert.equal(testDealers.length, dealers.length);
     await db.dealerStore.deleteAllDealers();
@@ -38,10 +38,10 @@ suite("Dealer Model tests", () => {
     assert.equal(0, newDealers.length);
   });
 
-  test("get a track - success", async () => {
+  test("get a dealer - success", async () => {
     const sligoList = await db.countyStore.addCounty(sligo);
-    const track = await db.dealerStore.addDealer(sligoList._id, concerto)
-    const newDealer = await db.dealerStore.getDealerById(track._id);
+    const dealer = await db.dealerStore.addDealer(sligoList._id, concerto)
+    const newDealer = await db.dealerStore.getDealerById(dealer._id);
     assertSubset (concerto, newDealer);
   });
 
