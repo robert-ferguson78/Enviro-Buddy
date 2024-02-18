@@ -2,9 +2,9 @@ import { County } from "./county.js";
 import { dealerMongoStore } from "./dealer-mongo-store.js";
 
 export const countyMongoStore = {
-  async getAllCountys() {
-    const countys = await County.find().lean();
-    return countys;
+  async getAllCounties() {
+    const counties = await County.find().lean();
+    return counties;
   },
 
   async getCountyById(id) {
@@ -24,7 +24,7 @@ export const countyMongoStore = {
     return this.getCountyById(countyObj._id);
   },
 
-  async getUserCountys(id) {
+  async getUserCounties(id) {
     const county = await County.find({ userid: id }).lean();
     return county;
   },
@@ -37,7 +37,7 @@ export const countyMongoStore = {
     }
   },
 
-  async deleteAllCountys() {
+  async deleteAllCounties() {
     await County.deleteMany({});
   }
 };

@@ -47,7 +47,7 @@ export const county = {
   county: "sligo"
 };
 
-export const testCountys = [
+export const testCounties = [
   {
     county: "mayo"
   },

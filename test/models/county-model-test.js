@@ -1,16 +1,16 @@
 import { assert } from "chai";
 import { db } from "../../src/models/db.js";
-import { testCountys, sligo } from "../fixtures.js";
+import { testCounties, sligo } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
 suite("County Model tests", () => {
 
   setup(async () => {
     db.init("json");
-    await db.countyStore.deleteAllCountys();
-    for (let i = 0; i < testCountys.length; i += 1) {
+    await db.countyStore.deleteAllCounties();
+    for (let i = 0; i < testCounties.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      testCountys[i] = await db.countyStore.addCounty(testCountys[i]);
+      testCounties[i] = await db.countyStore.addCounty(testCounties[i]);
     }
   });
 
@@ -20,12 +20,12 @@ suite("County Model tests", () => {
     assert.isDefined(county._id);
   });
 
-  test("delete all countys", async () => {
-    let returnedCountys = await db.countyStore.getAllCountys();
-    assert.equal(returnedCountys.length, 3);
-    await db.countyStore.deleteAllCountys();
-    returnedCountys = await db.countyStore.getAllCountys();
-    assert.equal(returnedCountys.length, 0);
+  test("delete all counties", async () => {
+    let returnedCounties = await db.countyStore.getAllCounties();
+    assert.equal(returnedCounties.length, 3);
+    await db.countyStore.deleteAllCounties();
+    returnedCounties = await db.countyStore.getAllCounties();
+    assert.equal(returnedCounties.length, 0);
   });
 
   test("get a county - success", async () => {
@@ -38,10 +38,10 @@ suite("County Model tests", () => {
   });
 
   test("delete One County - success", async () => {
-    const id = testCountys[0]._id;
+    const id = testCounties[0]._id;
     await db.countyStore.deleteCountyById(id);
-    const returnedCountys = await db.countyStore.getAllCountys();
-    assert.equal(returnedCountys.length, testCountys.length - 1);
+    const returnedCounties = await db.countyStore.getAllCounties();
+    assert.equal(returnedCounties.length, testCounties.length - 1);
     const deletedCounty = await db.countyStore.getCountyById(id);
     assert.isNull(deletedCounty);
   });
@@ -53,7 +53,7 @@ suite("County Model tests", () => {
 
   test("delete One County - fail", async () => {
     await db.countyStore.deleteCountyById("bad-id");
-    const allCountys = await db.countyStore.getAllCountys();
-    assert.equal(testCountys.length, allCountys.length);
+    const allCounties = await db.countyStore.getAllCounties();
+    assert.equal(testCounties.length, allCounties.length);
   });
 });

@@ -3,7 +3,7 @@ import { assert } from "chai";
 import { playtimeService } from "./playtime-service.js";
 import { assertSubset } from "../test-utils.js";
 
-import { maggie, sligo, testCountys } from "../fixtures.js";
+import { maggie, sligo, testCounties } from "../fixtures.js";
 
 EventEmitter.setMaxListeners(25);
 
@@ -11,7 +11,7 @@ suite("County API tests", () => {
   let user = null;
 
   setup(async () => {
-    await playtimeService.deleteAllCountys();
+    await playtimeService.deleteAllCounties();
     await playtimeService.deleteAllUsers();
     user = await playtimeService.createUser(maggie);
     sligo.userid = user._id;
@@ -37,16 +37,16 @@ suite("County API tests", () => {
     }
   });
 
-  test("create multiple countys", async () => {
-    for (let i = 0; i < testCountys.length; i += 1) {
-      testCountys[i].userid = user._id;
+  test("create multiple counties", async () => {
+    for (let i = 0; i < testCounties.length; i += 1) {
+      testCounties[i].userid = user._id;
       // eslint-disable-next-line no-await-in-loop
-      await playtimeService.createCounty(testCountys[i]);
+      await playtimeService.createCounty(testCounties[i]);
     }
-    let returnedLists = await playtimeService.getAllCountys();
-    assert.equal(returnedLists.length, testCountys.length);
-    await playtimeService.deleteAllCountys();
-    returnedLists = await playtimeService.getAllCountys();
+    let returnedLists = await playtimeService.getAllCounties();
+    assert.equal(returnedLists.length, testCounties.length);
+    await playtimeService.deleteAllCounties();
+    returnedLists = await playtimeService.getAllCounties();
     assert.equal(returnedLists.length, 0);
   });
 

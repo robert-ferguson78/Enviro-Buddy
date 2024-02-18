@@ -5,13 +5,13 @@ export const dashboardController = {
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const userCountys = await db.countyStore.getUserCountys(loggedInUser._id);
-       // Sort the countys array alphabetically by the 'name' property
-      const countys = userCountys.sort((a, b) => a.county.localeCompare(b.county));
+      const userCounties = await db.countyStore.getUserCounties(loggedInUser._id);
+       // Sort the counties array alphabetically by the 'name' property
+      const counties = userCounties.sort((a, b) => a.county.localeCompare(b.county));
       const viewData = {
         title: "Playtime Dashboard",
         user: loggedInUser,
-        countys: countys,
+        counties: counties,
       };
       return h.view("dashboard-view", viewData);
     },

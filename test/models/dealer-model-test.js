@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { db } from "../../src/models/db.js";
-import { testCountys, testDealers, county, sligo, concerto, testUsers } from "../fixtures.js";
+import { testCounties, testDealers, county, sligo, concerto, testUsers } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
 suite("Dealer Model tests", () => {
@@ -9,7 +9,7 @@ suite("Dealer Model tests", () => {
 
   setup(async () => {
     await db.init("json");
-    await db.countyStore.deleteAllCountys();
+    await db.countyStore.deleteAllCounties();
     await db.dealerStore.deleteAllDealers();
     beethovenList = await db.countyStore.addCounty(county);
     for (let i = 0; i < testDealers.length; i += 1) {
@@ -49,7 +49,7 @@ suite("Dealer Model tests", () => {
     const id = testDealers[0]._id;
     await db.dealerStore.deleteDealer(id);
     const dealers = await db.dealerStore.getAllDealers();
-    assert.equal(dealers.length, testCountys.length - 1);
+    assert.equal(dealers.length, testCounties.length - 1);
     const deletedDealer = await db.dealerStore.getDealerById(id);
     assert.isNull(deletedDealer);
   });
@@ -62,6 +62,6 @@ suite("Dealer Model tests", () => {
   test("delete One User - fail", async () => {
     await db.dealerStore.deleteDealer("bad-id");
     const dealers = await db.dealerStore.getAllDealers();
-    assert.equal(dealers.length, testCountys.length);
+    assert.equal(dealers.length, testCounties.length);
   });
 });

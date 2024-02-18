@@ -25,27 +25,27 @@ export const playtimeService = {
   },
 
   async createCounty(county) {
-    const res = await axios.post(`${this.playtimeUrl}/api/countys`, county);
+    const res = await axios.post(`${this.playtimeUrl}/api/counties`, county);
     return res.data;
   },
 
-  async deleteAllCountys() {
-    const response = await axios.delete(`${this.playtimeUrl}/api/countys`);
+  async deleteAllCounties() {
+    const response = await axios.delete(`${this.playtimeUrl}/api/counties`);
     return response.data;
   },
 
   async deleteCounty(id) {
-    const response = await axios.delete(`${this.playtimeUrl}/api/countys/${id}`);
+    const response = await axios.delete(`${this.playtimeUrl}/api/counties/${id}`);
     return response;
   },
 
-  async getAllCountys() {
-    const res = await axios.get(`${this.playtimeUrl}/api/countys`);
+  async getAllCounties() {
+    const res = await axios.get(`${this.playtimeUrl}/api/counties`);
     return res.data;
   },
 
   async getCounty(id) {
-    const res = await axios.get(`${this.playtimeUrl}/api/countys/${id}`);
+    const res = await axios.get(`${this.playtimeUrl}/api/counties/${id}`);
     return res.data;
   },
 
@@ -55,7 +55,7 @@ export const playtimeService = {
   },
 
   async createDealer(id, dealer) {
-    const res = await axios.post(`${this.playtimeUrl}/api/countys/${id}/dealers`, dealer);
+    const res = await axios.post(`${this.playtimeUrl}/api/counties/${id}/dealers`, dealer);
     return res.data;
   },
 

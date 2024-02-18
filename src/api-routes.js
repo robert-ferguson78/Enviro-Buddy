@@ -8,15 +8,15 @@ export const apiRoutes = [
   { method: "DELETE", path: "/api/users", config: userApi.deleteAll },
   { method: "GET", path: "/api/users/{id}", config: userApi.findOne },
 
-  { method: "POST", path: "/api/countys", config: countyApi.create },
-  { method: "DELETE", path: "/api/countys", config: countyApi.deleteAll },
-  { method: "GET", path: "/api/countys", config: countyApi.find },
-  { method: "GET", path: "/api/countys/{id}", config: countyApi.findOne },
-  { method: "DELETE", path: "/api/countys/{id}", config: countyApi.deleteOne },
+  { method: "POST", path: "/api/counties", config: countyApi.create },
+  { method: "DELETE", path: "/api/counties", config: countyApi.deleteAll },
+  { method: "GET", path: "/api/counties", config: countyApi.find },
+  { method: "GET", path: "/api/counties/{id}", config: countyApi.findOne },
+  { method: "DELETE", path: "/api/counties/{id}", config: countyApi.deleteOne },
 
   { method: "GET", path: "/api/dealers", config: dealerApi.find },
   { method: "GET", path: "/api/dealers/{id}", config: dealerApi.findOne },
-  { method: "POST", path: "/api/countys/{id}/dealers", config: dealerApi.create },
+  { method: "POST", path: "/api/counties/{id}/dealers", config: dealerApi.create },
   { method: "DELETE", path: "/api/dealers", config: dealerApi.deleteAll },
   { method: "DELETE", path: "/api/dealers/{id}", config: dealerApi.deleteOne },
 ];

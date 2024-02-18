@@ -8,7 +8,7 @@
       "_id": "33f72502-bf72-46b0-994f-002f7024b1f9"
     }
   ],
-  "countys": [
+  "counties": [
     {
       "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
       "county": "cavan",
@@ -18,11 +18,6 @@
       "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
       "county": "antrim",
       "_id": "dd502cd7-9392-401f-853a-fe27a0e164fa"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "roscommon",
-      "_id": "59f681de-e2eb-4630-870e-3dc475baa620"
     },
     {
       "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",

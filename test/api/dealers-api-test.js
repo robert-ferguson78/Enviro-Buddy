@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
 import { playtimeService } from "./playtime-service.js";
-import { maggie, sligo, testCountys, testDealers, concerto } from "../fixtures.js";
+import { maggie, sligo, testCounties, testDealers, concerto } from "../fixtures.js";
 
 suite("Dealer API tests", () => {
   let user = null;

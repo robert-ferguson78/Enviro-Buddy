@@ -1,38 +1,38 @@
 import { v4 } from "uuid";
 import { dealerMemStore } from "./dealer-mem-store.js";
 
-let countys = [];
+let counties = [];
 
 export const countyMemStore = {
-  async getAllCountys() {
-    return countys;
+  async getAllCounties() {
+    return counties;
   },
 
   async addCounty(county) {
     county._id = v4();
-    countys.push(county);
+    counties.push(county);
     return county;
   },
 
   async getCountyById(id) {
-    const list = countys.find((county) => county._id === id);
+    const list = counties.find((county) => county._id === id);
     if (list) {
-      list.countys = await dealerMemStore.getCountysByCountyId(list._id);
+      list.counties = await dealerMemStore.getCountiesByCountyId(list._id);
       return list;
     }
     return null;
   },
 
-  async getUserCountys(userid) {
-    return countys.filter((county) => county.userid === userid);
+  async getUserCounties(userid) {
+    return counties.filter((county) => county.userid === userid);
   },
 
   async deleteCountyById(id) {
-    const index = countys.findIndex((county) => county._id === id);
-    if (index !== -1) countys.splice(index, 1);
+    const index = counties.findIndex((county) => county._id === id);
+    if (index !== -1) counties.splice(index, 1);
   },
 
-  async deleteAllCountys() {
-    countys = [];
+  async deleteAllCounties() {
+    counties = [];
   },
 };

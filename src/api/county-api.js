@@ -7,8 +7,8 @@ export const countyApi = {
     auth: false,
     handler: async function (request, h) {
       try {
-        const countys = await db.countyStore.getAllCountys();
-        return countys;
+        const counties = await db.countyStore.getAllCounties();
+        return counties;
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
       }
@@ -66,7 +66,7 @@ export const countyApi = {
     auth: false,
     handler: async function (request, h) {
       try {
-        await db.countyStore.deleteAllCountys();
+        await db.countyStore.deleteAllCounties();
         return h.response().code(204);
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
