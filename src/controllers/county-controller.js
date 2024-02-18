@@ -15,6 +15,33 @@ export const countyController = {
     },
   },
 
+  allCountiesDealers: {
+    auth: false,
+    handler: async function (request, h) {
+      // console.log("info here2");
+      const county = await db.countyStore.getCountyById(request.params.id);
+      // console.log(county);
+      const viewData = {
+        title: "county",
+        county: county,
+      };
+      return h.view("county-view", viewData);
+    },
+  },
+
+  allCounties: {
+    auth: false,
+    handler: async function (request, h) {
+      let counties = await db.countyStore.getAllCounties();
+      counties = counties.sort((a, b) => a.county.localeCompare(b.county));
+      const viewData = {
+        title: "All Counties",
+        counties: counties
+      };
+      return h.view("all-counties-view", viewData);
+    },
+  },
+
   addDealer: {
     validate: {
       payload: DealerSpec,

@@ -5,13 +5,24 @@ export const dashboardController = {
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const userCounties = await db.countyStore.getUserCounties(loggedInUser._id);
-       // Sort the counties array alphabetically by the 'name' property
-      const counties = userCounties.sort((a, b) => a.county.localeCompare(b.county));
+      let counties;
+      let showBrandOption = false;
+      if (loggedInUser && loggedInUser.type === "brand") {
+          // console.log(loggedInUser.type);
+        const userCounties = await db.countyStore.getUserCounties(loggedInUser._id);
+        // Sort the counties array alphabetically by the 'name' property
+        counties = userCounties.sort((a, b) => a.county.localeCompare(b.county));
+        showBrandOption = true;
+      } else {
+          // console.log(loggedInUser.type);
+        counties = await db.countyStore.getAllCounties();
+        counties = counties.sort((a, b) => a.county.localeCompare(b.county));
+      }
       const viewData = {
         title: "Playtime Dashboard",
         user: loggedInUser,
         counties: counties,
+        showBrandOption: showBrandOption
       };
       return h.view("dashboard-view", viewData);
     },

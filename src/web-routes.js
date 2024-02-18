@@ -20,6 +20,8 @@ export const webRoutes = [
   { method: "POST", path: "/dashboard/addcounty", config: dashboardController.addCounty },
   { method: "GET", path: "/dashboard/deletecounty/{id}", config: dashboardController.deleteCounty },
 
+  { method: "GET", path: "/allcounties", config: countyController.allCounties },
+  { method: "GET", path: "/allcounties/{id}", config: countyController.allCountiesDealers },
   { method: "GET", path: "/county/{id}", config: countyController.index },
   { method: "POST", path: "/county/{id}/adddealer", config: countyController.addDealer },
   { method: "GET", path: "/county/{id}/deletedealer/{dealerid}", config: countyController.deleteDealer },
