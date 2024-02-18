@@ -5,7 +5,24 @@
       "lastName": "ferguson",
       "email": "robert@test.com",
       "password": "secret123",
-      "_id": "33f72502-bf72-46b0-994f-002f7024b1f9"
+      "_id": "33f72502-bf72-46b0-994f-002f7024b1f9",
+      "type": "brand"
+    },
+    {
+      "firstName": "marge",
+      "lastName": "simpson",
+      "email": "maggie@simpson.com",
+      "password": "secret",
+      "_id": "b84e36ea-a446-47bf-97eb-aeb464a13d4f",
+      "type": "user"
+    },
+    {
+      "firstName": "Discover",
+      "lastName": "BMW",
+      "email": "info@testbmw.ie",
+      "password": "secret123",
+      "_id": "b593d3af-75a9-483a-8717-f565e72556ca",
+      "type": "brand"
     }
   ],
   "counties": [
@@ -33,6 +50,11 @@
       "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
       "county": "armagh",
       "_id": "a1fe583d-fb1a-41eb-9c6b-bc7330c56cce"
+    },
+    {
+      "userid": "b84e36ea-a446-47bf-97eb-aeb464a13d4f",
+      "county": "galway",
+      "_id": "35949652-b2e5-41af-9d8d-4ae1ee632c24"
     }
   ],
   "dealers": [
