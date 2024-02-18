@@ -6,6 +6,7 @@ import path from "path";
 import Joi from "joi";
 import { fileURLToPath } from "url";
 import Handlebars from "handlebars";
+import { handlebarsHelpers } from "./helpers/handlebars-helpers.js";
 import { webRoutes } from "./web-routes.js";
 import { db } from "./models/db.js";
 import { accountsController } from "./controllers/accounts-controller.js";
@@ -20,6 +21,13 @@ if (result.error) {
   process.exit(1);
 }
 
+// Register each helper with Handlebars
+Object.keys(handlebarsHelpers).forEach((helper) => {
+  if (Object.prototype.hasOwnProperty.call(handlebarsHelpers, helper)) {
+    Handlebars.registerHelper(helper, handlebarsHelpers[helper]);
+  }
+});
+
 async function init() {
   const server = Hapi.server({
     port: 3000,
@@ -30,17 +38,17 @@ async function init() {
   await server.register(Cookie);
   server.validator(Joi);
 
-  server.views({
-    engines: {
-      hbs: Handlebars,
-    },
-    relativeTo: __dirname,
-    path: "./views",
-    layoutPath: "./views/layouts",
-    partialsPath: "./views/partials",
-    layout: true,
-    isCached: false,
-  });
+server.views({
+  engines: {
+    hbs: Handlebars,
+  },
+  relativeTo: __dirname,
+  path: "./views",
+  layoutPath: "./views/layouts",
+  partialsPath: "./views/partials",
+  layout: true,
+  isCached: false,
+});
 
   server.auth.strategy("session", "cookie", {
     cookie: {
