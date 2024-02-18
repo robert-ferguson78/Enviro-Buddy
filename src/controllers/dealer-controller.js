@@ -7,7 +7,7 @@ export const dealerController = {
       const county = await db.countyStore.getCountyById(request.params.id);
       const dealer = await db.dealerStore.getDealerById(request.params.dealerid);
       const viewData = {
-        title: "Edit Song",
+        title: "Edit Dealer",
         county: county,
         dealer: dealer,
       };
@@ -25,10 +25,15 @@ export const dealerController = {
     },
     handler: async function (request, h) {
       const dealer = await db.dealerStore.getDealerById(request.params.dealerid);
+        console.log(dealer);
       const newDealer = {
-        title: request.payload.title,
-        artist: request.payload.artist,
-        duration: Number(request.payload.duration),
+      name: request.payload.name,
+      address: request.payload.address,
+      phone: request.payload.phone,
+      email: request.payload.email,
+      website: request.payload.website,
+      latitude: request.payload.latitude,
+      longitude: request.payload.longitude
       };
       await db.dealerStore.updateDealer(dealer, newDealer);
       return h.redirect(`/county/${request.params.id}`);

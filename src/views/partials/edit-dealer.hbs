@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+    <!-- Add your CSS links here -->
+</head>
+<body>
+
+<form method="POST" action="/dealer/{{county._id}}/updatedealer/{{dealer._id}}">
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Website</th>
+      <th>Geo Location</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>
+          <div class="field">
+            <input class="input" type="text" value="{{dealer.name}}" name="name">
+          </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="text" value="{{dealer.address}}" name="address">
+      </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="text" value="{{dealer.phone}}" name="phone">
+      </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="email" value="{{dealer.email}}" name="email">
+      </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="text" value="{{dealer.website}}" name="website">
+      </div>
+        </td>
+        <td>
+          <div class="field">
+        <input class="input" type="number" step=".0000001" value="{{dealer.latitude}}" name="latitude">
+      </div>
+      <div class="field">
+        <input class="input" type="number" step=".0000001" value="{{dealer.longitude}}" name="longitude">
+      </div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  <input type="submit" value="Update Dealer">
+</form>
+
+{{#if errors}}
+    <ul>
+        {{#each errors}}
+            <li>{{message}}</li>
+        {{/each}}
+    </ul>
+{{/if}}
+<!-- Add your form for editing the dealer here -->
+</body>
+</html>
