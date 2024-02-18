@@ -4,7 +4,7 @@ import { db } from "./store-utils.js";
 export const dealerJsonStore = {
   async getAllDealers() {
     await db.read();
-    return db.data.s;
+    return db.data.dealers;
   },
 
   async addDealer(countyId, dealer) {
@@ -32,6 +32,7 @@ export const dealerJsonStore = {
 
   async deleteDealer(id) {
     await db.read();
+    console.log(`id ${id}`);
     const index = db.data.dealers.findIndex((dealer) => dealer._id === id);
     db.data.dealers.splice(index, 1);
     await db.write();
