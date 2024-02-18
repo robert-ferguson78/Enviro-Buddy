@@ -33,13 +33,17 @@ export const sligo = {
 };
 
 export const concerto = {
-  "title": "Violin Concerto No. 3",
-  "artist": "Mozart",
-  "duration": 15
+  "name": "J.J. Griffith Limited",
+  "address": "J.J. Griffith Limited, Newport Road, Castlebar, Mayo, Ireland",
+  "phone": "094 903 5582",
+  "email": "sales@griffiths.ie",
+  "website": "https://www.griffithsmotorgroup.ie",
+  "latitude": 53.8576546,
+  "longitude": -9.3046982,
 };
 
 
-export const beethoven = {
+export const county = {
   county: "sligo"
 };
 
@@ -57,18 +61,30 @@ export const testCountys = [
 
 export const testDealers = [
   {
-    "title": "Piano Sonata No. 3",
-    "artist": "Beethoven",
-    "duration": 5
+    "name": "J.J. Griffith Limited",
+    "address": "J.J. Griffith Limited, Newport Road, Castlebar, Mayo, Ireland",
+    "phone": "094 903 5582",
+    "email": "sales@griffiths.ie",
+    "website": "https://www.griffithsmotorgroup.ie",
+    "latitude": 53.8576546,
+    "longitude": -9.3046982,
   },
   {
-    "title": "Piano Sonata No. 7",
-    "artist": "Beethoven",
-    "duration": 6
+    "name": "John Corbett Motor Village",
+    "address": "J.J. Griffith Limited, Newport Road, Castlebar, Mayo, Ireland",
+    "phone": "0504 21903",
+    "email": "jcorbett@motorvillage.ie",
+    "website": "https://motorvillage.ie",
+    "latitude": 52.6468471,
+    "longitude": -7.7945704,
   },
   {
-    "title": "Piano Sonata No. 10",
-    "artist": "Beethoven",
-    "duration": 4
+    "name": "Malones Drogheda",
+    "address": "Malones Drogheda, M1 Retail Park, Mell, Louth, Ireland",
+    "phone": "041 9802420",
+    "email": "stella@malones.ie",
+    "website": "https://www.griffithsmotorgroup.ie",
+    "latitude": 53.7271155,
+    "longitude": -6.3853991,
   }
 ];

@@ -1,41 +1,83 @@
 {
   "users": [
     {
-      "firstName": "Maggie",
-      "lastName": "Simpson",
-      "email": "maggie@simpson.com",
-      "password": "secret",
-      "_id": "7a62db77-dce1-4ba0-810b-ad38ec2bff5f"
+      "firstName": "robert",
+      "lastName": "ferguson",
+      "email": "robert@test.com",
+      "password": "secret123",
+      "_id": "33f72502-bf72-46b0-994f-002f7024b1f9"
     }
   ],
   "countys": [
     {
-      "county": "mayo",
-      "_id": "b77aa102-3812-4072-aa22-d0ecf16b14a8"
+      "county": "sligo",
+      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
+      "_id": "164a8abf-53e4-4c1f-b096-d36fd4e32735"
     },
     {
-      "county": "meath",
-      "_id": "518e6ad7-4a3c-43a8-ad9e-7cddd8542dd1"
-    },
-    {
-      "county": "louth",
-      "_id": "5cf69811-0e15-432c-a934-b3e4fed34345"
-    },
-    {
-      "userid": "7a62db77-dce1-4ba0-810b-ad38ec2bff5f",
+      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
       "county": "cavan",
-      "_id": "428f0fc9-a187-4cd5-b27f-9323196010c6"
+      "_id": "4f83b161-4b1a-4ebf-9129-1386ae1d3f98"
     },
     {
-      "userid": "7a62db77-dce1-4ba0-810b-ad38ec2bff5f",
-      "county": "cork",
-      "_id": "b99d5038-0ae1-48b8-90cd-e8c148550a7d"
+      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
+      "county": "antrim",
+      "_id": "dd502cd7-9392-401f-853a-fe27a0e164fa"
     },
     {
-      "userid": "7a62db77-dce1-4ba0-810b-ad38ec2bff5f",
-      "county": "kildare",
-      "_id": "669f75f0-d609-4702-9f64-f2564d239be5"
+      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
+      "county": "roscommon",
+      "_id": "59f681de-e2eb-4630-870e-3dc475baa620"
+    },
+    {
+      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
+      "county": "armagh",
+      "_id": "a1719d34-2ac0-488b-a80b-9f94a6fea832"
+    },
+    {
+      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
+      "county": "derry",
+      "_id": "96a078aa-e1b7-42a1-aca6-70c610747856"
+    },
+    {
+      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
+      "county": "armagh",
+      "_id": "a1fe583d-fb1a-41eb-9c6b-bc7330c56cce"
     }
   ],
-  "dealers": []
+  "dealers": [
+    {
+      "name": "J.J. Griffith Limited",
+      "address": "J.J. Griffith Limited, Newport Road, Castlebar, Mayo, Ireland",
+      "phone": "094 903 5582",
+      "email": "sales@griffiths.ie",
+      "website": "https://www.griffithsmotorgroup.ie",
+      "latitude": 53.8576546,
+      "longitude": -9.3046982,
+      "_id": "f9919a55-03f4-488e-8e23-d3842ace1f88",
+      "countyId": "4f83b161-4b1a-4ebf-9129-1386ae1d3f98"
+    },
+    {
+      "name": "John Corbett Motor Village",
+      "address": "J.J. Griffith Limited, Newport Road, Castlebar, Mayo, Ireland",
+      "phone": "0504 21903",
+      "email": "jcorbett@motorvillage.ie",
+      "website": "https://motorvillage.ie",
+      "latitude": 52.6468471,
+      "longitude": -7.7945704,
+      "_id": "9cb12d09-7147-4df0-9aea-4d31dd2fa432",
+      "countyId": "4f83b161-4b1a-4ebf-9129-1386ae1d3f98"
+    },
+    {
+      "name": "ara",
+      "address": "gjvuguyigh",
+      "phone": "67890",
+      "email": "jbhk@jhk.com",
+      "website": "ytfguyhkj",
+      "latitude": 87679,
+      "longitude": -876709,
+      "_id": "9fe7b192-a637-4590-8862-69fc7ef3bf73",
+      "countyId": "4f83b161-4b1a-4ebf-9129-1386ae1d3f98"
+    }
+  ]
 }
