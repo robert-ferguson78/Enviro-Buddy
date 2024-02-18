@@ -13,9 +13,13 @@ export const UserSpec = {
 };
 
 export const DealerSpec = {
-  title: Joi.string().required(),
-  artist: Joi.string().required(),
-  duration: Joi.number().allow("").optional(),
+  name: Joi.string().required(),
+  address: Joi.string().required(),
+  phone: Joi.string().allow("").optional(),
+  email: Joi.string().allow("").optional(),
+  website: Joi.string().allow("").optional(),
+  latitude: Joi.number().required(),
+  longitude: Joi.number().required(),
 };
 
 export const CountySpec = {

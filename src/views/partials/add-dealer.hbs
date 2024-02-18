@@ -1,15 +1,27 @@
-<form class="box" action="/county/{{county._id}}/addtrack" method="POST">
+<form class="box" action="/county/{{county._id}}/adddealer" method="POST">
   <label>Enter Dealer Details:</label>
   <div class="field is-horizontal">
     <div class="field-body">
       <div class="field">
-        <input class="input" type="text" placeholder="Enter Title" name="title">
+        <input class="input" type="text" placeholder="Dealer Name" name="name">
       </div>
       <div class="field">
-        <input class="input" type="text" placeholder="Enter Artist" name="artist">
+        <input class="input" type="text" placeholder="Dealer Address" name="address">
       </div>
       <div class="field">
-        <input class="input" type="text" placeholder="Enter duration" name="duration">
+        <input class="input" type="text" placeholder="Phone" name="phone">
+      </div>
+      <div class="field">
+        <input class="input" type="email" placeholder="Email" name="email">
+      </div>
+      <div class="field">
+        <input class="input" type="text" placeholder="Website" name="website">
+      </div>
+      <div class="field">
+        <input class="input" type="number" step=".0000001" placeholder="Latidude" name="latitude">
+      </div>
+      <div class="field">
+        <input class="input" type="number" step=".0000001" placeholder="Longitude" name="longitude">
       </div>
     </div>
   </div>

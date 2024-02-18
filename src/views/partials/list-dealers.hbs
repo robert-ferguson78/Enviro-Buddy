@@ -1,9 +1,12 @@
 <table class="table is-fullwidth">
   <thead>
     <tr>
-      <th>Dealer</th>
-      <th>Artist</th>
-      <th>Duration</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Website</th>
+      <th>Geo Location</th>
       <th></th>
     </tr>
   </thead>
@@ -11,13 +14,22 @@
     {{#each county.dealers}}
       <tr>
         <td>
-          {{title}}
+          {{name}}
         </td>
         <td>
-          {{artist}}
+          {{address}}
         </td>
         <td>
-          {{duration}}
+          {{phone}}
+        </td>
+        <td>
+          {{email}}
+        </td>
+        <td>
+          {{website}}
+        </td>
+        <td>
+          {{latitude}} {{longitude}}
         </td>
         <td>
           <a href="/county/{{../county._id}}/deletedealer/{{_id}}" class="ui icon button">

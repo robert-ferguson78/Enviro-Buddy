@@ -4,9 +4,9 @@ import { db } from "../models/db.js";
 export const countyController = {
   index: {
     handler: async function (request, h) {
-      console.log("info here2");
+      // console.log("info here2");
       const county = await db.countyStore.getCountyById(request.params.id);
-      console.log(county);
+      // console.log(county);
       const viewData = {
         title: "county",
         county: county,
@@ -26,10 +26,15 @@ export const countyController = {
     handler: async function (request, h) {
       const county = await db.countyStore.getCountyById(request.params.id);
       const newDealer = {
-        title: request.payload.title,
-        artist: request.payload.artist,
-        duration: Number(request.payload.duration),
+        name: request.payload.name,
+        address: request.payload.address,
+        phone: request.payload.phone,
+        email: request.payload.email,
+        website: request.payload.website,
+        latitude: Number(request.payload.latitude),
+        longitude: Number(request.payload.longitude),
       };
+      console.log(newDealer);
       await db.dealerStore.addDealer(county._id, newDealer);
       return h.redirect(`/county/${county._id}`);
     },

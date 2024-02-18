@@ -8,10 +8,14 @@ export const dealerJsonStore = {
   },
 
   async addDealer(countyId, dealer) {
+      // console.log("addDealer");
     await db.read();
+      // console.log("read Db");
     dealer._id = v4();
     dealer.countyId = countyId;
-    db.data.dealer.push(dealer);
+      // console.log(dealer.countyId);
+    db.data.dealers.push(dealer);
+      // console.log(dealer);
     await db.write();
     return dealer;
   },
@@ -39,9 +43,13 @@ export const dealerJsonStore = {
   },
 
   async updateDealer(dealer, updatedDealer) {
-    dealer.title = updatedDealer.title;
-    dealer.artist = updatedDealer.artist;
-    dealer.duration = updatedDealer.duration;
+    dealer.name = updatedDealer.name;
+    dealer.address = updatedDealer.address;
+    dealer.phone = updatedDealer.phone;
+    dealer.email = updatedDealer.email;
+    dealer.website = updatedDealer.website;
+    dealer.latitude = updatedDealer.latitude;
+    dealer.longitude = updatedDealer.longitude;
     await db.write();
   },
 };
