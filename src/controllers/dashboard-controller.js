@@ -5,7 +5,9 @@ export const dashboardController = {
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const countys = await db.countyStore.getUserCountys(loggedInUser._id);
+      const userCountys = await db.countyStore.getUserCountys(loggedInUser._id);
+       // Sort the countys array alphabetically by the 'name' property
+      const countys = userCountys.sort((a, b) => a.county.localeCompare(b.county));
       const viewData = {
         title: "Playtime Dashboard",
         user: loggedInUser,
@@ -36,11 +38,11 @@ export const dashboardController = {
 
   deleteCounty: {
     handler: async function (request, h) {
-      console.log("delete" + request.params.id);
+        // console.log("delete" + request.params.id);
       const county = await db.countyStore.getCountyById(request.params.id);
-      console.log("delete2");
+        // console.log("delete2");
       await db.countyStore.deleteCountyById(county._id);
-      console.log("delete3");
+        // console.log("delete3");
       return h.redirect("/dashboard");
     },
   },
