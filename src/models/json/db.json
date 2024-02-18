@@ -43,11 +43,6 @@
     },
     {
       "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "derry",
-      "_id": "96a078aa-e1b7-42a1-aca6-70c610747856"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
       "county": "armagh",
       "_id": "a1fe583d-fb1a-41eb-9c6b-bc7330c56cce"
     },
@@ -92,7 +87,7 @@
       "countyId": "4f83b161-4b1a-4ebf-9129-1386ae1d3f98"
     },
     {
-      "name": "cccc",
+      "name": "ddd",
       "address": "rger",
       "phone": "34657",
       "email": "gbdb@gtb.com",

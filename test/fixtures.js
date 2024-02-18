@@ -1,10 +1,11 @@
 export const serviceUrl = "http://localhost:3000";
 
 export const maggie = {
-  firstName: "Maggie",
-  lastName: "Simpson",
+  firstName: "maggie",
+  lastName: "simpson",
   email: "maggie@simpson.com",
-  password: "secret"
+  password: "secret",
+  type: "user"
 };
 
 export const testUsers = [
@@ -12,19 +13,22 @@ export const testUsers = [
     firstName: "Homer",
     lastName: "Simpson",
     email: "homer@simpson.com",
-    password: "secret"
+    password: "secret",
+    type: "user"
   },
   {
     firstName: "Marge",
     lastName: "Simpson",
     email: "marge@simpson.com",
-    password: "secret"
+    password: "secret",
+    type: "user"
   },
   {
     firstName: "Bart",
     lastName: "Simpson",
     email: "bart@simpson.com",
-    password: "secret"
+    password: "secret",
+    type: "brand"
   }
 ];
 
