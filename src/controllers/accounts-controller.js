@@ -3,8 +3,13 @@ import { db } from "../models/db.js";
 
 export const accountsController = {
   index: {
-    auth: false,
+    auth: {
+      mode: "try"
+    },
     handler: function (request, h) {
+      const viewData = {
+        user: request.auth.credentials,
+      };
       return h.view("main", { title: "Welcome to Enviro-Buddy" });
     },
   },
