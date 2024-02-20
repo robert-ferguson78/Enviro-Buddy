@@ -7,14 +7,22 @@
       <h2 class="title">
         {{county}} car dealers
       </h2>
-      <a href="/county/{{_id}}" class="button">
-        <span class="icon is-small">
-          <i class="fa-sharp fa-solid fa-location-pen"></i>
-        </span>
-      </a>
-      <a href="/dashboard/deletecounty/{{_id}}" class="button">
-        <i class="fa-solid fa-trash-xmark"></i>
-      </a>
+      {{#if ../showBrandOption}}
+        <a href="/county/{{_id}}" class="button">
+          <span class="icon is-small">
+            <i class="fa-sharp fa-solid fa-location-pen"></i>
+          </span>
+        </a>
+        <a href="/dashboard/deletecounty/{{_id}}" class="button">
+          <i class="fa-solid fa-trash-xmark"></i>
+        </a>
+      {{else}}
+        <a href="/allcounties/{{_id}}" class="button">
+          <span class="icon is-small">
+            <i class="fa-sharp fa-solid fa-location-pen"></i>
+          </span>
+        </a>
+      {{/if}}
     </div>
   </div>
   {{#if @last}}

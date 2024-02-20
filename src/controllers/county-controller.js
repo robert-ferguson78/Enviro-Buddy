@@ -4,14 +4,51 @@ import { db } from "../models/db.js";
 export const countyController = {
   index: {
     handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;
+      let showBrandOption = false;
+      if (loggedInUser && loggedInUser.type === "brand") {
+        showBrandOption = true;
+      }
+      const county = await db.countyStore.getCountyById(request.params.id);
+      // console.log(county);
+      const viewData = {
+        title: "county",
+        county: county,
+        user: request.auth.credentials,
+        showBrandOption: showBrandOption
+      };
+      return h.view("county-view", viewData);
+    },
+  },
+
+  allCountiesDealers: {
+    auth: {
+      mode: "try"
+    },
+    handler: async function (request, h) {
       // console.log("info here2");
       const county = await db.countyStore.getCountyById(request.params.id);
       // console.log(county);
       const viewData = {
         title: "county",
         county: county,
+        user: request.auth.credentials,
       };
+       // console.log(request.auth.credentials);
       return h.view("county-view", viewData);
+    },
+  },
+
+  allCounties: {
+    auth: false,
+    handler: async function (request, h) {
+      let counties = await db.countyStore.getAllCounties();
+      counties = counties.sort((a, b) => a.county.localeCompare(b.county));
+      const viewData = {
+        title: "All Counties",
+        counties: counties
+      };
+      return h.view("all-counties-view", viewData);
     },
   },
 

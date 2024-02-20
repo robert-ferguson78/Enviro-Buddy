@@ -7,7 +7,9 @@
       <th>Email</th>
       <th>Website</th>
       <th>Geo Location</th>
+      {{#if showBrandOption}}
       <th>Action</th>
+      {{/if}}
     </tr>
   </thead>
   <tbody>
@@ -32,6 +34,7 @@
           {{latitude}}
       {{longitude}}
         </td>
+        {{#if ../showBrandOption}}
         <td>
           <a href="/dealer/{{../county._id}}/editdealer/{{_id}}" class="ui icon button">
             <i class="fa-solid fa-pen-to-square"></i>
@@ -40,6 +43,7 @@
             <i class="fa-solid fa-trash-xmark"></i>
           </a>
         </td>
+        {{/if}}
       </tr>
     {{/each}}
   </tbody>

@@ -10,6 +10,7 @@ export const dealerController = {
         title: "Edit Dealer",
         county: county,
         dealer: dealer,
+        user: request.auth.credentials,
       };
       return h.view("dealer-view", viewData);
     },

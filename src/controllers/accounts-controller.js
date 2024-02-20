@@ -3,8 +3,13 @@ import { db } from "../models/db.js";
 
 export const accountsController = {
   index: {
-    auth: false,
+    auth: {
+      mode: "try"
+    },
     handler: function (request, h) {
+      const viewData = {
+        user: request.auth.credentials,
+      };
       return h.view("main", { title: "Welcome to Enviro-Buddy" });
     },
   },
@@ -12,6 +17,12 @@ export const accountsController = {
     auth: false,
     handler: function (request, h) {
       return h.view("signup-view", { title: "Sign up for Enviro-Buddy" });
+    },
+  },
+  showBrandSignup: {
+    auth: false,
+    handler: function (request, h) {
+      return h.view("signup-brand-view", { title: "Sign up for Enviro-Buddy" });
     },
   },
   signup: {
@@ -25,7 +36,24 @@ export const accountsController = {
     },
     handler: async function (request, h) {
       const user = request.payload;
-      await db.userStore.addUser(user);
+      // pass "user" as the user type
+      await db.userStore.addUser(user, "user");
+      return h.redirect("/");
+    },
+  },
+  brandSignup: {
+    auth: false,
+    validate: {
+      payload: UserSpec,
+      options: { abortEarly: false },
+      failAction: function (request, h, error) {
+        return h.view("signup-view", { title: "Sign up error", errors: error.details }).takeover().code(400);
+      },
+    },
+    handler: async function (request, h) {
+      const user = request.payload;
+      // pass "brand" as the user type
+      await db.userStore.addUser(user, "brand");
       return h.redirect("/");
     },
   },
