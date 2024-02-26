@@ -44,8 +44,12 @@ export const dealerMemStore = {
   },
 
   async updateDealer(dealer, updatedDealer) {
-    dealer.title = updatedDealer.title;
-    dealer.artist = updatedDealer.artist;
-    dealer.duration = updatedDealer.duration;
+    dealer.name = updatedDealer.name;
+    dealer.address = updatedDealer.address;
+    dealer.phone = updatedDealer.phone;
+    dealer.email = updatedDealer.email;
+    dealer.website = updatedDealer.website;
+    dealer.latitude = updatedDealer.latitude;
+    dealer.longitude = updatedDealer.longitude;
   },
 };

@@ -30,7 +30,7 @@ Object.keys(handlebarsHelpers).forEach((helper) => {
 
 async function init() {
   const server = Hapi.server({
-    port: process.env.PORT || 3000,
+    port: 3000,
     host: "localhost",
   });
 
