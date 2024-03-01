@@ -28,4 +28,6 @@ export const webRoutes = [
 
   { method: "GET", path: "/dealer/{id}/editdealer/{dealerid}", config: dealerController.index },
   { method: "POST", path: "/dealer/{id}/updatedealer/{dealerid}", config: dealerController.update },
+
+  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
 ];
