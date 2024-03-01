@@ -16,13 +16,6 @@ export const countyJsonStore = {
     return county;
   },
 
-  // async getcountyById(id) {
-  //   await db.read();
-  //   const list = db.data.counties.find((county) => county._id === id);
-  //   list.dealers = await dealerJsonStore.getdealersBycountyId(list._id);
-  //   return list;
-  // },
-
   async getCountyById(id) {
     await db.read();
     let list = db.data.counties.find((county) => county._id === id);
@@ -32,6 +25,11 @@ export const countyJsonStore = {
       list = null;
     }
     return list;
+  },
+
+  async findCounty({ userid, county }) {
+    await db.read();
+    return db.data.counties.find(c => c.userid === userid && c.county === county);
   },
 
   async getUserCounties(userid) {

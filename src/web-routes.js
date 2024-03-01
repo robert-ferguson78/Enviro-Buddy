@@ -1,8 +1,12 @@
+import Joi from "joi";
 import { aboutController } from "./controllers/about-controller.js";
 import { accountsController } from "./controllers/accounts-controller.js";
 import { dashboardController } from "./controllers/dashboard-controller.js";
 import { countyController } from "./controllers/county-controller.js";
 import { dealerController } from "./controllers/dealer-controller.js";
+import { awsController } from "./controllers/aws-controller.js";
+
+console.log(awsController);
 
 export const webRoutes = [
   { method: "GET", path: "/", config: accountsController.index },
@@ -28,4 +32,32 @@ export const webRoutes = [
 
   { method: "GET", path: "/dealer/{id}/editdealer/{dealerid}", config: dealerController.index },
   { method: "POST", path: "/dealer/{id}/updatedealer/{dealerid}", config: dealerController.update },
+
+  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
+
+  { method: "POST", 
+    path: "/upload",
+    handler: awsController.upload.handler,
+    options: {
+      payload: {
+        output: "stream",
+        parse: true,
+        allow: "multipart/form-data",
+        multipart: true
+      },
+      validate: {
+        payload: Joi.object({
+          image: Joi.any().required()
+        })
+      },
+    },
+  },
+ { 
+    method: "DELETE", 
+    path: "/delete", 
+    handler: awsController.delete.handler,
+    options: {
+      auth: false
+    }
+  } 
 ];

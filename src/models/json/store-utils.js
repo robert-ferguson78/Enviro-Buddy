@@ -5,4 +5,5 @@ export const db = await JSONFilePreset("src/models/json/db.json", {
   users: [],
   counties: [],
   dealers: [],
+  carTypes: [],
 });

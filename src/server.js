@@ -1,9 +1,12 @@
+import Inert from "@hapi/inert";
 import Vision from "@hapi/vision";
 import Hapi from "@hapi/hapi";
 import Cookie from "@hapi/cookie";
+import Yar from "@hapi/yar";
 import dotenv from "dotenv";
 import path from "path";
 import Joi from "joi";
+import HapiSwagger from "hapi-swagger";
 import { fileURLToPath } from "url";
 import Handlebars from "handlebars";
 import { handlebarsHelpers } from "./helpers/handlebars-helpers.js";
@@ -28,27 +31,55 @@ Object.keys(handlebarsHelpers).forEach((helper) => {
   }
 });
 
+const swaggerOptions = {
+  info: {
+    title: "Envrio Buddy",
+    version: "0.1.0",
+  },
+};
+
 async function init() {
   const server = Hapi.server({
     port: 3000,
     host: "localhost",
   });
 
+  await server.register(Inert);
   await server.register(Vision);
   await server.register(Cookie);
+
+  await server.register([
+    Inert,
+    Vision,
+    {
+      plugin: HapiSwagger,
+      options: swaggerOptions,
+    },
+    {
+      plugin: Yar,
+      options: {
+        storeBlank: false,
+        cookieOptions: {
+          password: process.env.COOKIE_PASSWORD,
+          isSecure: false,
+        },
+      },
+    }
+  ]);
+
   server.validator(Joi);
 
-server.views({
-  engines: {
-    hbs: Handlebars,
-  },
-  relativeTo: __dirname,
-  path: "./views",
-  layoutPath: "./views/layouts",
-  partialsPath: "./views/partials",
-  layout: true,
-  isCached: false,
-});
+  server.views({
+    engines: {
+      hbs: Handlebars,
+    },
+    relativeTo: __dirname,
+    path: "./views",
+    layoutPath: "./views/layouts",
+    partialsPath: "./views/partials",
+    layout: true,
+    isCached: false,
+  });
 
   server.auth.strategy("session", "cookie", {
     cookie: {
@@ -62,6 +93,8 @@ server.views({
   server.auth.default("session");
 
   db.init("json");
+  // db.init("mongo");
+  // db.init();
   server.route(webRoutes);
   server.route(apiRoutes);
   await server.start();
