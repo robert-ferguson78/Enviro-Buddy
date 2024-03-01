@@ -27,6 +27,11 @@ export const countyJsonStore = {
     return list;
   },
 
+  async findCounty({ userid, county }) {
+    await db.read();
+    return db.data.counties.find(c => c.userid === userid && c.county === county);
+  },
+
   async getUserCounties(userid) {
     await db.read();
     return db.data.counties.filter((county) => county.userid === userid);

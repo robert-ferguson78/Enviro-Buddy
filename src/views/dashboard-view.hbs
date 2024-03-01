@@ -5,4 +5,9 @@
   {{#if showBrandOption}}
     {{> add-county}}
   {{/if}}
+  {{#each messages}}
+    <div class="alert alert-info">
+      {{this}}
+    </div>
+  {{/each}}
 </section>
