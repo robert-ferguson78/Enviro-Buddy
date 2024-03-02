@@ -36,7 +36,7 @@ export const webRoutes = [
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
 
   { method: "POST", 
-    path: "/upload",
+    path: "/upload/{dealerId}",
     handler: awsController.upload.handler,
     options: {
       payload: {

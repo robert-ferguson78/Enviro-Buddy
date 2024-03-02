@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import AWS from "aws-sdk";
 import Boom from "@hapi/boom";
+import { db } from "../models/db.js";
 
 dotenv.config();
 
@@ -15,17 +16,26 @@ const s3 = new AWS.S3();
 export const awsController = {
     upload: {
         handler: async (request, h) => {
+            console.log(request.params); // Log the parameters
+    
             console.log("awsController upload handler called");
             const { image } = request.payload;
+            const { dealerId } = request.params; // Get dealerId from params
+            const timestamp = Date.now();
+            const uniqueFilename = `${timestamp}-${image.hapi.filename}`;
             const data = {
                 Bucket: process.env.AWS_BUCKET_NAME,
-                Key: image.hapi.filename,
+                Key: uniqueFilename,
                 Body: image._data,
             };
             try {
                 const result = await s3.upload(data).promise();
                 console.log("Upload successful, image URL:", result.Location);
                 const httpUrl = result.Location.replace("https://", "http://");
+    
+                // Add the image URL to the dealer's images array
+                await db.dealerStore.addImageToDealer(dealerId, httpUrl);
+    
                 return h.response({ imageUrl: httpUrl }).code(200);
             } catch (err) {
                 console.error("Upload failed:", err);
