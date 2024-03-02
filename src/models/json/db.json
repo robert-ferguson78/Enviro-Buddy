@@ -1,31 +1,55 @@
 {
   "users": [
     {
-      "firstName": "Homer",
-      "lastName": "Simpson",
-      "email": "homer@simpson.com",
-      "password": "secret",
-      "_id": "53c622c5-f573-45bc-a647-aa6ca399ba03"
+      "firstName": "robert",
+      "lastName": "ferguson",
+      "email": "robert@test.com",
+      "password": "secret123",
+      "_id": "33f72502-bf72-46b0-994f-002f7024b1f9",
+      "type": "brand"
     },
     {
-      "firstName": "Marge",
-      "lastName": "Simpson",
-      "email": "marge@simpson.com",
+      "firstName": "marge",
+      "lastName": "simpson",
+      "email": "maggie@simpson.com",
       "password": "secret",
-      "_id": "649c5eb5-249c-47c3-b37b-135ec7bb87d1"
+      "_id": "b84e36ea-a446-47bf-97eb-aeb464a13d4f",
+      "type": "user"
     },
     {
-      "firstName": "Bart",
-      "lastName": "Simpson",
-      "email": "bart@simpson.com",
-      "password": "secret",
-      "_id": "62967614-3b37-44b6-88da-b71ddb694582"
+      "firstName": "Discover",
+      "lastName": "BMW",
+      "email": "info@testbmw.ie",
+      "password": "secret123",
+      "_id": "b593d3af-75a9-483a-8717-f565e72556ca",
+      "type": "brand"
     }
   ],
   "counties": [
     {
-      "county": "sligo",
-      "_id": "c4809df5-458f-4df5-968f-36a3cc069f63"
+      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
+      "county": "cavan",
+      "_id": "4f83b161-4b1a-4ebf-9129-1386ae1d3f98"
+    },
+    {
+      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
+      "county": "antrim",
+      "_id": "dd502cd7-9392-401f-853a-fe27a0e164fa"
+    },
+    {
+      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
+      "county": "armagh",
+      "_id": "a1719d34-2ac0-488b-a80b-9f94a6fea832"
+    },
+    {
+      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
+      "county": "armagh",
+      "_id": "a1fe583d-fb1a-41eb-9c6b-bc7330c56cce"
+    },
+    {
+      "userid": "b84e36ea-a446-47bf-97eb-aeb464a13d4f",
+      "county": "galway",
+      "_id": "35949652-b2e5-41af-9d8d-4ae1ee632c24"
     }
   ],
   "dealers": [
@@ -37,8 +61,17 @@
       "website": "https://www.griffithsmotorgroup.ie",
       "latitude": 53.8576546,
       "longitude": -9.3046982,
-      "_id": "e5967a03-1618-4ecb-907c-3f158ca8c673",
-      "countyId": "c4809df5-458f-4df5-968f-36a3cc069f63"
+      "_id": "f9919a55-03f4-488e-8e23-d3842ace1f88",
+      "countyId": "4f83b161-4b1a-4ebf-9129-1386ae1d3f98",
+      "images": [
+        "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709338959667-DALL%C2%B7E%202024-02-21%2011.33.06_result.jpg",
+        "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709339432095-DALL%C2%B7E%202024-02-21%2011.33.06_result.jpg",
+        "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709339487286-DALL%C2%B7E%202024-02-21%2010.12.29_result.jpg",
+        "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709339695915-DALL%C2%B7E%202024-02-21%2010.12.29_result.jpg",
+        "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709339700944-DALL%C2%B7E%202024-02-21%2010.12.29_result.jpg",
+        "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709339720411-DALL%C2%B7E%202024-02-21%2010.12.29_result.jpg",
+        "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709340024129-DALL%C2%B7E%202024-02-21%2010.12.29_result.jpg"
+      ]
     },
     {
       "name": "John Corbett Motor Village",
@@ -48,19 +81,41 @@
       "website": "https://motorvillage.ie",
       "latitude": 52.6468471,
       "longitude": -7.7945704,
-      "_id": "5775feed-d2e1-4351-bbf0-c72f1a5ac6c2",
-      "countyId": "c4809df5-458f-4df5-968f-36a3cc069f63"
+      "_id": "9cb12d09-7147-4df0-9aea-4d31dd2fa432",
+      "countyId": "4f83b161-4b1a-4ebf-9129-1386ae1d3f98"
     },
     {
-      "name": "Malones Drogheda",
-      "address": "Malones Drogheda, M1 Retail Park, Mell, Louth, Ireland",
-      "phone": "041 9802420",
-      "email": "stella@malones.ie",
-      "website": "https://www.griffithsmotorgroup.ie",
-      "latitude": 53.7271155,
-      "longitude": -6.3853991,
-      "_id": "419f664a-7728-420c-a6f9-86cbe1fa4113",
-      "countyId": "c4809df5-458f-4df5-968f-36a3cc069f63"
+      "name": "dara",
+      "address": "gjvuguyigh",
+      "phone": "67890",
+      "email": "jbhk@jhk.com",
+      "website": "ytfguyhkj",
+      "latitude": 87679,
+      "longitude": -876709,
+      "_id": "9fe7b192-a637-4590-8862-69fc7ef3bf73",
+      "countyId": "4f83b161-4b1a-4ebf-9129-1386ae1d3f98"
+    },
+    {
+      "name": "ddd",
+      "address": "rger",
+      "phone": "34657",
+      "email": "gbdb@gtb.com",
+      "website": "gfrewgre",
+      "latitude": 456,
+      "longitude": 36346,
+      "_id": "b1cd441d-b3db-4ed9-aac7-31a4a16755b0",
+      "countyId": "dd502cd7-9392-401f-853a-fe27a0e164fa"
+    },
+    {
+      "name": "test",
+      "address": "guyh",
+      "phone": "987",
+      "email": "jkgh@jhb.com",
+      "website": "jbkn",
+      "latitude": 768900,
+      "longitude": -7658,
+      "_id": "904ce3e7-aa0e-4efe-a723-b35cce3c433a",
+      "countyId": "4f83b161-4b1a-4ebf-9129-1386ae1d3f98"
     }
   ]
 }

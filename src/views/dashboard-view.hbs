@@ -11,27 +11,3 @@
     </div>
   {{/each}}
 </section>
-<form id="upload-form">
-  <input type="file" id="image-input" />
-  <button type="submit">Upload</button>
-</form>
-
-<img id="preview" />
-
-<script>
-  document.getElementById('upload-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const file = document.getElementById('image-input').files[0];
-    const formData = new FormData();
-    formData.append('image', file);
-
-    const response = await fetch('/upload', {
-      method: 'POST',
-      body: formData
-    });
-
-    const data = await response.json();
-    document.getElementById('preview').src = data.imageUrl;
-  });
-</script>
