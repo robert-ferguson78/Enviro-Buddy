@@ -20,6 +20,19 @@ export const dealerJsonStore = {
     return dealer;
   },
 
+  async addImageToDealer(id, imageUrl) {
+    await db.read();
+    const foundDealer = db.data.dealers.find((dealer) => dealer._id === id);
+    if (!foundDealer) {
+        throw new Error("Dealer not found");
+    }
+    if (!foundDealer.images) {
+        foundDealer.images = [];
+    }
+    foundDealer.images.push(imageUrl);
+    await db.write();
+  },
+
   async getDealersByCountyId(id) {
     await db.read();
     return db.data.dealers.filter((dealer) => dealer.countyId === id);

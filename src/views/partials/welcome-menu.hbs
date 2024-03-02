@@ -15,5 +15,10 @@
 </nav>
 
 <script>
-  document.getElementById("{{active}}").classList.add("is-primary");
+  let activeElement = document.getElementById("{{active}}");
+  if (activeElement) {
+      activeElement.classList.add("is-primary");
+  } else {
+      console.error(`Element with id '{{active}}' not found`);
+  }
 </script>
