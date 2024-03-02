@@ -27,7 +27,12 @@
 </nav>
 
 <script>
-  document.getElementById("{{active}}").classList.add("is-primary");
+  let activeElement = document.getElementById("{{active}}");
+  if (activeElement) {
+      activeElement.classList.add("is-primary");
+  } else {
+      // console.error(`Element with id '{{active}}' not found`);
+  }
   document.addEventListener("DOMContentLoaded", () => {
     // Get all "navbar-burger" elements
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll(".navbar-burger"), 0);
@@ -40,8 +45,14 @@
           const target = el.dataset.target;
           const $target = document.getElementById(target);
           // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-          el.classList.toggle("is-active");
-          $target.classList.toggle("is-active");
+          // Check if $target exists
+          if ($target) {
+              // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+              el.classList.toggle("is-active");
+              $target.classList.toggle("is-active");
+          } else {
+              console.error(`Element with id '${target}' not found`);
+          }
         });
       });
     }
