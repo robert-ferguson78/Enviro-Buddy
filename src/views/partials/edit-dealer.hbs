@@ -51,47 +51,6 @@
   <input type="submit" value="Update Dealer">
 </form>
 
-<form id="upload-form" action="/upload/{{dealer._id}}" method="post" enctype="multipart/form-data">
-    <input type="file" name="image">
-    <input type="submit" value="Upload Image">
-</form>
-
-<img id="preview" />
-
-<script>
-window.onload = function() {
-  document.getElementById('upload-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const dealerId = new URL(e.target.action).pathname.split('/').pop();
-    const file = e.target.elements['image'].files[0];
-    const formData = new FormData();
-    formData.append('image', file);
-
-    const response = await fetch(`/upload/${dealerId}`, {
-      method: 'POST',
-      body: formData
-    });
-
-    if (!response.ok) {
-      console.error('Upload failed:', await response.text());
-      return;
-    }
-
-    const data = await response.json();
-    if (data.imageUrl && data.imageUrl.trim() !== '') {
-        let previewElement = document.getElementById('preview');
-        if (previewElement) {
-            previewElement.src = data.imageUrl;
-        } else {
-            console.error("Element with id 'preview' not found");
-        }
-    } else {
-        console.error("data.imageUrl is empty");
-    }
-  });
-}
-</script>
 
 {{#if errors}}
     <ul>

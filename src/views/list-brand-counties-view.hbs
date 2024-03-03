@@ -1,0 +1,13 @@
+{{> menu active="dashboard"}}
+
+<section class="section">
+  {{> list-counties showBrandOption=showBrandOption}}
+  {{#if showBrandOption}}
+    {{> add-county}}
+  {{/if}}
+  {{#each messages}}
+    <div class="alert alert-info">
+      {{this}}
+    </div>
+  {{/each}}
+</section>

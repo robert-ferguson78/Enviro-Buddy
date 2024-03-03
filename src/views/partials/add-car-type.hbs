@@ -1,0 +1,96 @@
+<h1 class="title">Upload Electric Vehicle</h1>
+    <form id="upload-form" action="/upload/{{user._id}}" method="post">
+      <div class="columns">
+        <div class="column is-two-third">
+          <div class="control">
+            <label class="label">Enter Car Name</label>
+            <input class="input is-normal" type="text" name="carName" placeholder="Car Name">
+          </div>
+          <div class="control">
+            <label class="label">Enter Car Range in KM</label>
+            <input class="input is-normal" type="text" name="carRange" placeholder="Car Range">
+          </div>
+          <div class="control">
+            <label class="label">Enter Car Body Type</label>
+            <input class="input is-normal" type="text" name="carType" placeholder="Car Type">
+          </div>
+          <div class="control pt-5">
+            <div class="file has-name">
+              <label class="file-label">
+                <input class="file-input" type="file" name="image">
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Choose a Vehicle Image…
+                  </span>
+                </span>
+                <span class="file-name">
+                  Image Name
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-third">
+          <div class="control">
+            <label class="label">Image Preview</label>
+            <img id="preview" />
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-full">
+          <input class="button is-link" type="submit" value="Upload Vehicle">
+        </div>
+      </div>
+    </form>
+
+<script>
+window.onload = function() {
+  const form = document.getElementById('upload-form');
+  const imageInput = form.elements['image'];
+  const preview = document.getElementById('preview');
+
+  imageInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        preview.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const userId = new URL(e.target.action).pathname.split('/').pop();
+    const file = imageInput.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+    // add other details from form along with image
+    formData.append('carName', form.elements['carName'].value);
+    formData.append('carRange', form.elements['carRange'].value);
+    formData.append('carType', form.elements['carType'].value);
+
+    const response = await fetch(`/upload/${userId}`, {
+      method: 'POST',
+      body: formData
+    });
+
+    if (!response.ok) {
+      console.error('Upload failed:', await response.text());
+      return;
+    }
+
+    const data = await response.json();
+    preview.src = data.imageUrl;
+
+    // Redirect to the dashboard page after submission
+    window.location.href = '/cartype';
+  });
+};
+</script>

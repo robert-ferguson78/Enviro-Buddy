@@ -1,13 +1,26 @@
 {{> menu active="dashboard"}}
 
 <section class="section">
-  {{> list-counties showBrandOption=showBrandOption}}
+  <div class="box">
+    I'm in a box.
+    <a href="/counties" class="button is-info">
+      Manage Counties and Dealerships
+    </a>
+  </div>
+  <div class="box">
+    I'm in a box.
+    <a href="/cartype" class="button is-info">
+      Manage Car Types
+    </a>
+  </div>
+  {{!-- {{> list-counties showBrandOption=showBrandOption}}
   {{#if showBrandOption}}
     {{> add-county}}
+    {{> add-car-type}}
   {{/if}}
   {{#each messages}}
     <div class="alert alert-info">
       {{this}}
     </div>
-  {{/each}}
+  {{/each}} --}}
 </section>

@@ -1,28 +1,25 @@
-{{#each counties}}
+<h1>Car types placeholder message</h1>
+{{#each carTypes}}
   {{#if @first}}
     <div class="columns">
   {{/if}}
   <div class="column is-one-third">
     <div class="box box-link-hover-shadow">
+      <img src="{{imageUrl}}">
       <h2 class="title">
-        <span class="caps">{{county}}</span> Car Dealers
+        {{carName}}
       </h2>
-      {{#if ../showBrandOption}}
-        <a href="/county/{{_id}}" class="button">
+      <h3 class="subtitle">
+        {{carType}}
+      </h3>
+        <a href="/cartype/editcartype/{{_id}}" class="button">
           <span class="icon is-small">
             <i class="fa-sharp fa-solid fa-location-pen"></i>
           </span>
         </a>
-        <a href="/county/deletecounty/{{_id}}" class="button">
+        <a href="/cartype/deletecartype/{{_id}}" class="button">
           <i class="fa-solid fa-trash-xmark"></i>
         </a>
-      {{else}}
-        <a href="/allcounties/{{_id}}" class="button">
-          <span class="icon is-small">
-            <i class="fa-sharp fa-solid fa-location-pen"></i>
-          </span>
-        </a>
-      {{/if}}
     </div>
   </div>
   {{#if @last}}
