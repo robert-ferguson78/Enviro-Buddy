@@ -25,3 +25,16 @@ export const DealerSpec = {
 export const CountySpec = {
   county: Joi.string().required(),
 };
+
+export const CarTypeSpec = {
+  carName: Joi.string().required(),
+  carRange: Joi.string().required(),
+  carType: Joi.string().required(),
+};
+
+export const EditCarTypeSpec = {
+  carName: Joi.string().required(),
+  carRange: Joi.string().required(),
+  carType: Joi.string().required(),
+  image: Joi.any().required(),
+};

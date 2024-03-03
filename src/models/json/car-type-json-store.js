@@ -1,25 +1,51 @@
+import { v4 } from "uuid";
 import { db } from "./store-utils.js";
 
 export const carTypeJsonStore = {
-  async find() {
-    return db.get("carTypes").value();
+  async findCarType() {
+    await db.read();
+    return db.data.carTypes;
   },
 
-  async findById(id) {
-    return db.get("carTypes").find({ id }).value();
+  async findByIdCarType(id) {
+    await db.read();
+    return db.data.carTypes.find(carType => carType.id === id);
   },
 
-  async create(carType) {
-    const carTypes = db.get("carTypes");
-    carTypes.push(carType).write();
+  async getCarTypesByBrandId(brandId) {
+    console.log("brand ID:", brandId);
+    await db.read();
+    const carTypes = db.data.carTypes.filter(carType => carType.userId === brandId);
+    console.log("carTypes in getCarTypesByBrandId:", carTypes);
+    return carTypes;
+  },
+
+  async createCarType(carType) {
+    await db.read();
+    carType.id = v4();
+    db.data.carTypes.push(carType);
+    await db.write();
     return carType;
   },
 
-  async update(id, carType) {
-    return db.get("carTypes").find({ id }).assign(carType).write();
+  async updateCarType(id, carType) {
+    await db.read();
+    const foundCarType = db.data.carTypes.find(ct => ct.id === id);
+    if (!foundCarType) {
+      throw new Error("CarType not found");
+    }
+    Object.assign(foundCarType, carType);
+    await db.write();
+    return foundCarType;
   },
 
-  async delete(id) {
-    return db.get("carTypes").remove({ id }).write();
+  async deleteCarType(id) {
+    await db.read();
+    const index = db.data.carTypes.findIndex(carType => carType.id === id);
+    if (index === -1) {
+      throw new Error("CarType not found");
+    }
+    db.data.carTypes.splice(index, 1);
+    await db.write();
   }
 };
