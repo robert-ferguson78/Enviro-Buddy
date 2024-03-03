@@ -17,10 +17,11 @@ export const awsController = {
     upload: {
         handler: async (request, h) => {
             console.log(request.params); // Log the parameters
+            console.log("Here is payload: ", request.payload); // Log the payload
     
             console.log("awsController upload handler called");
-            const { image } = request.payload;
-            const { dealerId } = request.params; // Get dealerId from params
+            const { image, carName, carRange, carType } = request.payload;
+            const { userId } = request.params; // Get user_id from params
             const timestamp = Date.now();
             const uniqueFilename = `${timestamp}-${image.hapi.filename}`;
             const data = {
@@ -32,9 +33,19 @@ export const awsController = {
                 const result = await s3.upload(data).promise();
                 console.log("Upload successful, image URL:", result.Location);
                 const httpUrl = result.Location.replace("https://", "http://");
-    
+
+                // Create a new car type
+                const newCarType = {
+                    userId: userId,
+                    carName: carName,
+                    carRange: carRange,
+                    carType: carType,
+                    imageUrl: httpUrl,
+                };
+  
+                console.log(newCarType);
                 // Add the image URL to the dealer's images array
-                await db.dealerStore.addImageToDealer(dealerId, httpUrl);
+                await db.carTypeStore.createCarType(newCarType);
     
                 return h.response({ imageUrl: httpUrl }).code(200);
             } catch (err) {
