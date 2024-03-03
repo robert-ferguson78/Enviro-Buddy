@@ -1,10 +1,12 @@
 import Joi from "joi";
+import { CarTypeSpec } from "./models/joi-schemas.js";
 import { aboutController } from "./controllers/about-controller.js";
 import { accountsController } from "./controllers/accounts-controller.js";
 import { dashboardController } from "./controllers/dashboard-controller.js";
 import { countyController } from "./controllers/county-controller.js";
 import { dealerController } from "./controllers/dealer-controller.js";
 import { awsController } from "./controllers/aws-controller.js";
+import { carTypeController } from "./controllers/cartype-controller.js";
 
 console.log(awsController);
 
@@ -21,22 +23,27 @@ export const webRoutes = [
   { method: "GET", path: "/about", config: aboutController.index },
 
   { method: "GET", path: "/dashboard", config: dashboardController.index },
-  { method: "POST", path: "/dashboard/addcounty", config: dashboardController.addCounty },
-  { method: "GET", path: "/dashboard/deletecounty/{id}", config: dashboardController.deleteCounty },
+  { method: "GET", path: "/counties", config: countyController.index },
+  { method: "POST", path: "/county/addcounty", config: countyController.addCounty },
+  { method: "GET", path: "/county/{id}", config: countyController.allCountiesDealers },
+  { method: "GET", path: "/county/deletecounty/{id}", config: countyController.deleteCounty },
 
   { method: "GET", path: "/allcounties", config: countyController.allCounties },
   { method: "GET", path: "/allcounties/{id}", config: countyController.allCountiesDealers },
-  { method: "GET", path: "/county/{id}", config: countyController.index },
   { method: "POST", path: "/county/{id}/adddealer", config: countyController.addDealer },
   { method: "GET", path: "/county/{id}/deletedealer/{dealerid}", config: countyController.deleteDealer },
 
   { method: "GET", path: "/dealer/{id}/editdealer/{dealerid}", config: dealerController.index },
   { method: "POST", path: "/dealer/{id}/updatedealer/{dealerid}", config: dealerController.update },
 
+  { method: "GET", path: "/cartype", config: carTypeController.index },
+  { method: "POST", path: "/cartype/updatedealer/{cartypeid}", config: carTypeController.updateCarType },
+  { method: "GET", path: "/cartype/deletecartype/{cartypeid}", config: carTypeController.deleteCarType },
+
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
 
   { method: "POST", 
-    path: "/upload/{dealerId}",
+    path: "/upload/{userId}",
     handler: awsController.upload.handler,
     options: {
       payload: {
@@ -47,7 +54,10 @@ export const webRoutes = [
       },
       validate: {
         payload: Joi.object({
-          image: Joi.any().required()
+          image: Joi.any().required(),
+          carName: CarTypeSpec.carName,
+          carRange: CarTypeSpec.carRange,
+          carType: CarTypeSpec.carType
         })
       },
     },
@@ -59,5 +69,5 @@ export const webRoutes = [
     options: {
       auth: false
     }
-  } 
+  },
 ];
