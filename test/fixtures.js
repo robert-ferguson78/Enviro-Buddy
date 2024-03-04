@@ -1,33 +1,32 @@
 export const serviceUrl = "http://localhost:3000";
 
 export const maggie = {
-  firstName: "maggie",
+  firstName: "marge",
   lastName: "simpson",
-  email: "maggie@simpson.com",
-  password: "secret",
-  type: "user"
+  email: "marge@simpson.com",
+  password: "secret"
 };
 
 export const testUsers = [
   {
-    firstName: "Homer",
-    lastName: "Simpson",
-    email: "homer@simpson.com",
+    firstName: "robert",
+    lastName: "ferguson",
+    email: "robert@test.com",
+    password: "secret123",
+    type: "user"
+  },
+  {
+    firstName: "maggie",
+    lastName: "simpson",
+    email: "maggie@simpson.com",
     password: "secret",
     type: "user"
   },
   {
-    firstName: "Marge",
-    lastName: "Simpson",
-    email: "marge@simpson.com",
-    password: "secret",
-    type: "user"
-  },
-  {
-    firstName: "Bart",
-    lastName: "Simpson",
-    email: "bart@simpson.com",
-    password: "secret",
+    firstName: "Discover",
+    lastName: "BMW",
+    email: "info@testbmw.ie",
+    password: "secret123",
     type: "brand"
   }
 ];

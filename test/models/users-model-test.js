@@ -10,12 +10,12 @@ suite("User Model tests", () => {
     await db.userStore.deleteAll();
     for (let i = 0; i < testUsers.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      testUsers[i] = await db.userStore.addUser(testUsers[i]);
+      testUsers[i] = await db.userStore.addUser(testUsers[i], testUsers[i].type);
     }
   });
 
   test("create a user", async () => {
-    const newUser = await db.userStore.addUser(maggie);
+    const newUser = await db.userStore.addUser(maggie, "user");
     assertSubset(maggie, newUser);
   });
 
@@ -28,7 +28,7 @@ suite("User Model tests", () => {
   });
 
   test("get a user - success", async () => {
-    const user = await db.userStore.addUser(maggie, "brand");
+    const user = await db.userStore.addUser(maggie, "user");
     const returnedUser1 = await db.userStore.getUserById(user._id);
     assert.deepEqual(user, returnedUser1);
     const returnedUser2 = await db.userStore.getUserByEmail(user.email);
