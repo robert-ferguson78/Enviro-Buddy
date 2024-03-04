@@ -28,13 +28,14 @@ export const carTypeJsonStore = {
     return carType;
   },
 
-  async updateCarType(id, carType) {
+  async updateCarType(id, updatedCarType) {
     await db.read();
     const foundCarType = db.data.carTypes.find(ct => ct.id === id);
+    console.log("foundCarType:", foundCarType);
     if (!foundCarType) {
       throw new Error("CarType not found");
     }
-    Object.assign(foundCarType, carType);
+    Object.assign(foundCarType, updatedCarType);
     await db.write();
     return foundCarType;
   },

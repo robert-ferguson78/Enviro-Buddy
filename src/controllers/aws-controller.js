@@ -54,7 +54,7 @@ export const awsController = {
             }
         }
     },
-    delete: {
+    deleteImage: {
         handler: async (request, h) => {
             console.log("awsController delete handler called");
             const { filename } = request.payload;

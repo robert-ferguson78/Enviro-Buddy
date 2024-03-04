@@ -37,10 +37,30 @@ export const webRoutes = [
   { method: "POST", path: "/dealer/{id}/updatedealer/{dealerid}", config: dealerController.update },
 
   { method: "GET", path: "/cartype", config: carTypeController.index },
-  { method: "POST", path: "/cartype/updatedealer/{cartypeid}", config: carTypeController.updateCarType },
-  { method: "GET", path: "/cartype/deletecartype/{cartypeid}", config: carTypeController.deleteCarType },
-
-  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
+  { method: "GET", path: "/cartype/{id}", config: carTypeController.editCarType },
+  // { method: "POST", path: "/editcartype/{id}", config: carTypeController.updateCarType },
+  { method: "GET", path: "/cartype/deletecartype/{id}", config: carTypeController.deleteCarType },
+  
+  { method: "POST", 
+    path: "/editcartype/{id}",
+    handler: carTypeController.updateCarType.handler,
+    options: {
+      payload: {
+        output: "stream",
+        parse: true,
+        allow: "multipart/form-data",
+        multipart: true
+      },
+      validate: {
+        payload: Joi.object({
+          image: Joi.any(),
+          carName: CarTypeSpec.carName,
+          carRange: CarTypeSpec.carRange,
+          carType: CarTypeSpec.carType
+        })
+      },
+    },
+  },
 
   { method: "POST", 
     path: "/upload/{userId}",
@@ -62,12 +82,13 @@ export const webRoutes = [
       },
     },
   },
- { 
-    method: "DELETE", 
-    path: "/delete", 
-    handler: awsController.delete.handler,
+ { method: "DELETE", path: "/delete", 
+    handler: awsController.deleteImage.handler,
     options: {
       auth: false
     }
   },
+
+  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
+
 ];
