@@ -167,107 +167,11 @@
   "carTypes": [
     {
       "userId": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "carName": "VW ID4",
-      "carRange": "320km",
-      "carType": "saloon",
-      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709409774832-DALL%C2%B7E%202024-02-21%2011.35.06_result.jpg",
-      "id": "2e192f7e-57f9-4416-9a47-d7e28f807180"
-    },
-    {
-      "userId": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "carName": "VW ID4",
-      "carRange": "320km",
-      "carType": "saloon",
-      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709410938172-DALL%C2%B7E%202024-02-21%2010.12.03_result.jpg",
-      "id": "1ba41da9-e267-4ad1-b7bd-c0f13ba3702b"
-    },
-    {
-      "userId": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "carName": "VW ID4",
-      "carRange": "300km",
-      "carType": "saloon",
-      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709411042223-DALL%C2%B7E%202024-02-21%2011.35.06_result.jpg",
-      "id": "b2d4b078-60bd-4632-91a8-60e12db58c55"
-    },
-    {
-      "userId": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "carName": "VW ID4",
-      "carRange": "300km",
-      "carType": "saloon",
-      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709419245686-DALL%C2%B7E%202024-02-21%2011.35.06_result.jpg",
-      "id": "f8936e61-b107-4843-a5fb-e6f2914fdb91"
-    },
-    {
-      "userId": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "carName": "VW ID4",
-      "carRange": "300km",
-      "carType": "saloon",
-      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709419282618-DALL%C2%B7E%202024-02-21%2011.35.06_result.jpg",
-      "id": "e4462de8-b480-4a40-9050-eed2156a00d0"
-    },
-    {
-      "userId": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "carName": "VW ID5",
-      "carRange": "450km",
-      "carType": "suv",
-      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709420042860-DALL%C2%B7E%202024-02-21%2011.33.06_result.jpg",
-      "id": "611d1c6d-20ed-4d94-9917-3000203902da"
-    },
-    {
-      "userId": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "carName": "VW ID5",
-      "carRange": "450km",
-      "carType": "suv",
-      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709420153775-DALL%C2%B7E%202024-02-21%2011.33.06_result.jpg",
-      "id": "88e110c2-d99c-4235-8d71-ce9c6994d8d2"
-    },
-    {
-      "userId": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "carName": "VW ID5",
-      "carRange": "450km",
-      "carType": "suv",
-      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709420178977-DALL%C2%B7E%202024-02-21%2010.12.03_result.jpg",
-      "id": "2f98fcc1-9776-48d9-a0f3-8d193352d533"
-    },
-    {
-      "userId": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "carName": "wrge",
-      "carRange": "56km",
-      "carType": "hatchback",
-      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709476546323-DALL%C2%B7E%202024-02-21%2011.35.06_result.jpg",
-      "id": "7feff604-f898-4017-aeb0-9d9d908f72ea"
-    },
-    {
-      "userId": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "carName": "wev",
-      "carRange": "56km",
-      "carType": "hatchback",
-      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709476622642-DALL%C2%B7E%202024-02-21%2010.12.03_result.jpg",
-      "_id": "266919db-f3d3-4911-81ae-146f983575d4"
-    },
-    {
-      "userId": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "carName": "efew",
-      "carRange": "34",
-      "carType": "ewfe",
-      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709476703125-DALL%C2%B7E%202024-02-21%2011.33.06_result.jpg",
-      "id": "1357e6d9-aa1a-4455-87f0-9c243019003b"
-    },
-    {
-      "userId": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "carName": "ewf",
-      "carRange": "4",
-      "carType": "r4f",
-      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709477212189-DALL%C2%B7E%202024-02-21%2011.35.06_result.jpg",
-      "_id": "d1728ed7-65bd-464b-b4d3-3bbd2dab6e2b"
-    },
-    {
-      "userId": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "carName": "Ford estate",
-      "carRange": "500",
-      "carType": "saloom",
-      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709479322633-DALL%C2%B7E%202024-02-21%2011.35.06_result.jpg",
-      "id": "f80ae6f1-d91e-49ee-98a5-d374a57a2ac3"
+      "carName": "aaabbbccceee",
+      "carRange": "222333444555",
+      "carType": "cccdddeeefff",
+      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709574620983-DALL%C2%B7E%202024-02-21%2010.12.29_result.jpg",
+      "id": "0d66ae3c-4a79-4f70-ae82-8a9fbe77331b"
     }
   ]
 }

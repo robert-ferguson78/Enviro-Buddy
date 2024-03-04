@@ -1,4 +1,4 @@
-<h1>Car types placeholder message</h1>
+<h1 class="title">Currently Uplaoded Electric Vehicles</h1>
 {{#each carTypes}}
   {{#if @first}}
     <div class="columns">
@@ -12,12 +12,12 @@
       <h3 class="subtitle">
         {{carType}}
       </h3>
-        <a href="/cartype/editcartype/{{_id}}" class="button">
+        <a href="/cartype/{{id}}" class="button">
           <span class="icon is-small">
             <i class="fa-sharp fa-solid fa-location-pen"></i>
           </span>
         </a>
-        <a href="/cartype/deletecartype/{{_id}}" class="button">
+        <a href="/cartype/deletecartype/{{id}}" class="button">
           <i class="fa-solid fa-trash-xmark"></i>
         </a>
     </div>
