@@ -201,8 +201,8 @@
       "phone": "34657",
       "email": "gbdb@gtb.com",
       "website": "gfrewgre",
-      "latitude": 456,
-      "longitude": 36346,
+      "latitude": 54.030288,
+      "longitude": -7.7387259,
       "_id": "b1cd441d-b3db-4ed9-aac7-31a4a16755b0",
       "countyId": "dd502cd7-9392-401f-853a-fe27a0e164fa"
     },
@@ -212,8 +212,8 @@
       "phone": "57689",
       "email": "jhb@jvb.com",
       "website": "ytfvuyb",
-      "latitude": 5678,
-      "longitude": 678,
+      "latitude": 54.190992,
+      "longitude": -8.3663199,
       "_id": "ff3d2878-3b6e-44f8-bfdf-af85c8b3f0b5",
       "countyId": "2eb496e4-d224-4d3b-9a2a-09136f4a3fb8"
     },
@@ -223,8 +223,8 @@
       "phone": "56789",
       "email": "ghj@jhgh.com",
       "website": "fghn",
-      "latitude": 879,
-      "longitude": 8678,
+      "latitude": 53.992988,
+      "longitude": -6.6430679,
       "_id": "23b82c5f-35c8-4d11-9ccc-bcaaa4f1c1ab",
       "countyId": "2adac3e1-fa44-4b1a-984f-5df207a9f550"
     },
@@ -234,8 +234,8 @@
       "phone": "wrvrv",
       "email": "jhb@kjb.com",
       "website": "4",
-      "latitude": 4535,
-      "longitude": 454,
+      "latitude": 52.997225,
+      "longitude": -6.2754444,
       "_id": "750708f5-fdd7-49a1-b786-a4584cb3c253",
       "countyId": "084ea55b-3c14-4015-a1f0-c5dff56af0f3"
     },
@@ -245,8 +245,8 @@
       "phone": "ge",
       "email": "kjbn@jh.com",
       "website": "rgre",
-      "latitude": 34,
-      "longitude": 5,
+      "latitude": 52.954102,
+      "longitude": -6.4122009,
       "_id": "4d5a78c3-2a27-4ff7-8d47-bbf71dbfd1d0",
       "countyId": "91219fa1-3046-49e1-8eee-1285e754f581"
     }

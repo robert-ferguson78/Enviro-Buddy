@@ -1,3 +1,19 @@
 .caps {
     text-transform: capitalize;
 }
+.popup-stats-ctn.title {
+    font-size: 1.5em;
+    margin-bottom: 10px;;
+}
+.popup-stats-ctn {
+    font-size: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+.popup-stats-ctn span {
+    display: inline-block;
+}
+.popup-stats-ctn span.details {
+    margin-left: 10px;
+}
