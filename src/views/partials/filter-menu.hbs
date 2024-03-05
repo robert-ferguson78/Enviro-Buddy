@@ -1,29 +1,116 @@
-<form action="/filter" method="get">
-  <div class="filter-menu">
-    <h3>Car Brand</h3>
-    <select name="brandName">
-      <option value="">Select Brand</option>
-      {{#each brandNames}}
-        <option value="{{this}}">{{this}}</option>
-      {{/each}}
-    </select>
 
-    <h3>Countries</h3>
-    <select name="country">
-      <option value="">Select Country</option>
-        {{#each counties}}
-            <option value="{{this.county}}">{{this.county}}</option>
-        {{/each}}
-    </select>
 
-    <h3>Car Body Types</h3>
-    <select name="carBodyType">
-      <option value="">Select Car Body Type</option>
-      {{#each carBodyTypes}}
-        <option value="{{this}}">{{this}}</option>
-      {{/each}}
-    </select>
 
-    <input type="submit" value="Filter">
-  </div>
-</form>
+
+<div class="tabs is-toggle is-fullwidth">
+  <ul>
+    <li class="is-active" data-target="search-by-brand">
+      <a>
+        <span class="icon is-small"><i class="fa-solid fa-car" aria-hidden="true"></i></span>
+        <span>Search by Car Brand</span>
+      </a>
+    </li>
+    <li data-target="search-by-county">
+      <a>
+        <span class="icon is-small"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i></span>
+        <span>Search by County</span>
+      </a>
+    </li>
+    <li data-target="search-by-cartype">
+      <a>
+        <span class="icon is-small"><i class="fa-solid fa-car-side-bolt" aria-hidden="true"></i></span>
+        <span>Search by Car Body Type</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- Content for each tab -->
+<div id="search-by-brand" class="tab-content" style="display: block;">
+    <form action="/filter/carbrand" method="get">
+        <div class="field has-addons has-addons-centered">
+            <div class="control">
+                <div class="select">
+                    <select name="brandName">
+                        <option value="">Select Brand</option>
+                        {{#each brandNames}}
+                        <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                     </select>
+                </div>
+            </div>
+            <div class="control">
+                <input type="submit" value="Filter Car Dealers" class="button is-primary">
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="search-by-county" class="tab-content" style="display: none;">
+    <form action="/filter/carcounty" method="get">
+        <div class="field has-addons has-addons-centered">
+            <div class="control">
+                <div class="select">
+                    <select name="county">
+                    <option value="">Select County</option>
+                        {{#each counties}}
+                            <option value="{{this.county}}">{{this.county}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="control">
+                <input type="submit" value="Filter Car Dealers" class="button is-primary">
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="search-by-cartype" class="tab-content" style="display: none;">
+    <form action="/filter/carbody" method="get">
+        <div class="field has-addons has-addons-centered">
+            <div class="control">
+                <div class="select">
+                    <select name="carBodyType">
+                        <option value="">Select Car Body Type</option>
+                        {{#each carBodyTypes}}
+                            <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="control">
+                <input type="submit" value="Filter Car Dealers" class="button is-primary">
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Find all tabs
+    const tabs = document.querySelectorAll('.tabs ul li');
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Remove is-active class from all tabs
+        tabs.forEach(t => t.classList.remove('is-active'));
+        
+        // Add is-active class to clicked tab
+        this.classList.add('is-active');
+        
+        // Hide all tab content
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabContents.forEach(content => content.style.display = 'none');
+        
+        // Show current tab's content
+        const target = document.getElementById(this.dataset.target);
+        if (target) {
+          target.style.display = 'block';
+        }
+      });
+    });
+  });
+</script>

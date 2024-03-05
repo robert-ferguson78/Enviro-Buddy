@@ -29,6 +29,14 @@
                     + "<i class='fa-solid fa-globe-pointer'></i></span><span class='details'> {{website}}"
                     + "</span></div>"
                     );
-  marker.addTo(map);
+  marker.addTo(map).on('click', function(e) {
+  var myDiv = document.getElementById('test1');
+  if (myDiv.style.display === 'none') {
+    myDiv.style.display = 'block';
+    document.getElementById('test1').innerHTML = "{{name}}";
+  } else {
+     document.getElementById('test1').innerHTML = "{{name}}";
+  }
+  });
   {{/each}}
 </script>
