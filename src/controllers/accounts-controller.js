@@ -84,9 +84,13 @@ export const accountsController = {
       if (user.type === "admin") {
         return h.redirect("/admindashboard");
       }
-  
-      return h.redirect("/dashboard");
-    },
+      // Check if the user type is brand
+      if (user.type === "brand") {
+          return h.redirect("/dashboard");
+      }
+      // fall back to all other users
+      return h.redirect("/envirobuddy");
+      },
   },
   logout: {
     handler: function (request, h) {

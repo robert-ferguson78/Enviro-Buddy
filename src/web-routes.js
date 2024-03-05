@@ -8,6 +8,7 @@ import { dealerController } from "./controllers/dealer-controller.js";
 import { awsController } from "./controllers/aws-controller.js";
 import { carTypeController } from "./controllers/cartype-controller.js";
 import { adminController } from "./controllers/admin-controller.js";
+import { userController } from "./controllers/user-controller.js";
 
 console.log(awsController);
 
@@ -22,6 +23,8 @@ export const webRoutes = [
   { method: "POST", path: "/authenticate", config: accountsController.login },
 
   { method: "GET", path: "/about", config: aboutController.index },
+
+  { method: "GET", path: "/envirobuddy", config: userController.index },
 
   { method: "GET", path: "/dashboard", config: dashboardController.index },
   { method: "GET", path: "/brandcounties/{id}", config: countyController.adminIndex },
