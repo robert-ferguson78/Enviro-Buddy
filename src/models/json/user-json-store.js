@@ -30,6 +30,14 @@ export const userJsonStore = {
     return u;
   },
 
+  async getAllBrandNames() {
+    await db.read();
+    const brandNames = db.data.users
+      .filter(user => user.type === "brand")
+      .map(user => user.brandName);
+    return brandNames;
+  },
+
   async deleteUserById(id) {
     await db.read();
     const index = db.data.users.findIndex((user) => user._id === id);

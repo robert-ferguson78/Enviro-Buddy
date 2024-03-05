@@ -20,6 +20,12 @@ export const carTypeJsonStore = {
     return carTypes;
   },
 
+  async getAllCarBodyTypes() {
+    await db.read();
+    const carBodyTypes = [...new Set(db.data.carTypes.map(carType => carType.carType))];
+    return carBodyTypes;
+  },
+
   async createCarType(carType) {
     await db.read();
     carType.id = v4();

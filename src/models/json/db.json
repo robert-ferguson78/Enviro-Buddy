@@ -254,27 +254,51 @@
   "carTypes": [
     {
       "userId": "b593d3af-75a9-483a-8717-f565e72556ca",
-      "carName": "audi 1",
-      "carRange": "123km",
-      "carType": "small",
-      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709592927736-DALL%C2%B7E%202024-02-21%2010.12.03_result.jpg",
-      "id": "56cc5801-01f2-4f6a-a007-65e225df232d"
+      "carName": "audi1",
+      "carRange": "500km",
+      "carType": "Hatchback",
+      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709658660633-DALL%C2%B7E%202024-02-21%2010.12.29_result.jpg",
+      "id": "3da82591-f1f4-40d4-849e-175aa9b8849d"
     },
     {
       "userId": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "carName": "bmw 1",
-      "carRange": "234km",
-      "carType": "small",
-      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709592962122-DALL%C2%B7E%202024-02-21%2010.12.29_result.jpg",
-      "id": "0dbae96f-b3b8-4dba-a33f-26ca3f0f3260"
+      "carName": "bmw1",
+      "carRange": "340km",
+      "carType": "Saloon",
+      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709658710233-DALL%C2%B7E%202024-02-21%2010.12.03_result.jpg",
+      "id": "7572c3ac-accf-47b4-8626-ae35ae561016"
+    },
+    {
+      "userId": "33f72502-bf72-46b0-994f-002f7024b1f9",
+      "carName": "bmw2",
+      "carRange": "330km",
+      "carType": "Hatchback",
+      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709658933051-DALL%C2%B7E%202024-02-21%2010.12.29_result.jpg",
+      "id": "5a0c046a-fd23-41fd-a471-62ed242e72dd"
+    },
+    {
+      "userId": "33f72502-bf72-46b0-994f-002f7024b1f9",
+      "carName": "bmw3",
+      "carRange": "200km",
+      "carType": "SUV",
+      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709658955098-DALL%C2%B7E%202024-02-21%2011.35.06_result.jpg",
+      "id": "164c6c59-1445-48f8-806b-9d2d45399081"
     },
     {
       "userId": "b593d3af-75a9-483a-8717-f565e72556ca",
-      "carName": "teq",
-      "carRange": "765",
-      "carType": "jgyh",
-      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709639789189-DALL%C2%B7E%202024-02-21%2010.12.29_result.jpg",
-      "id": "f709ec3d-cbcc-4c74-a431-112355d2d602"
+      "carName": "audi2",
+      "carRange": "400km",
+      "carType": "Saloon",
+      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709658997255-DALL%C2%B7E%202024-02-21%2010.12.03_result.jpg",
+      "id": "5da67028-0a15-499c-98b2-694dfd9cd7f3"
+    },
+    {
+      "userId": "b593d3af-75a9-483a-8717-f565e72556ca",
+      "carName": "audi3",
+      "carRange": "210km",
+      "carType": "SUV",
+      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709659014287-DALL%C2%B7E%202024-02-21%2011.35.06_result.jpg",
+      "id": "ea289f03-6a4d-4216-9bcd-c71a3a339a06"
     }
   ]
 }

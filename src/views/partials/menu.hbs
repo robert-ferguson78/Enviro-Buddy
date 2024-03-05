@@ -18,6 +18,9 @@
               <a id="cartype" class="button" href="/cartype"> Cartype </a>
               <a id="about" class="button" href="/about"> About </a>
               <a id="logout" class="button" href="/logout"> Logout </a>
+            {{else if (eq user.type "user")}}
+              <a id="envirobuddy" class="button" href="/envirobuddy"> Enviro-Buddy </a>
+              <a id="logout" class="button" href="/logout"> Logout </a>
             {{/if}}
           {{else}}
             <a class="button" id="login" href="/login"> Log in </a>

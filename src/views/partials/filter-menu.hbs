@@ -1,0 +1,29 @@
+<form action="/filter" method="get">
+  <div class="filter-menu">
+    <h3>Car Brand</h3>
+    <select name="brandName">
+      <option value="">Select Brand</option>
+      {{#each brandNames}}
+        <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
+
+    <h3>Countries</h3>
+    <select name="country">
+      <option value="">Select Country</option>
+        {{#each counties}}
+            <option value="{{this.county}}">{{this.county}}</option>
+        {{/each}}
+    </select>
+
+    <h3>Car Body Types</h3>
+    <select name="carBodyType">
+      <option value="">Select Car Body Type</option>
+      {{#each carBodyTypes}}
+        <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
+
+    <input type="submit" value="Filter">
+  </div>
+</form>

@@ -27,6 +27,15 @@ export const countyJsonStore = {
     return list;
   },
 
+  async getAllUniqueCounties() {
+    await db.read();
+    return db.data.counties
+      .filter((county, index, self) =>
+        index === self.findIndex((c) => c.county === county.county)
+      )
+      .sort((a, b) => a.county.localeCompare(b.county));
+  },
+
   async findCounty({ userid, county }) {
     await db.read();
     return db.data.counties.find(c => c.userid === userid && c.county === county);
