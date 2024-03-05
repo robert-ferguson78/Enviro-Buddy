@@ -9,16 +9,19 @@
       <div class="navbar-item">
         <div class="buttons">
           {{#if user}}
-            <a id="dashboard" class="button" href="/dashboard"> Dashboard </a>
+            {{#if (eq user.type "admin")}}
+              <a id="dashboard" class="button" href="/dashboard"> Dashboard </a>
+              <a id="dashboard" class="button" href="/logout"> Logout </a>
+            {{else if (eq user.type "brand")}}
+              <a id="dashboard" class="button" href="/dashboard"> Dashboard </a>
+              <a id="counties" class="button" href="/counties"> Counties </a>
+              <a id="cartype" class="button" href="/cartype"> Cartype </a>
+              <a id="about" class="button" href="/about"> About </a>
+              <a id="logout" class="button" href="/logout"> Logout </a>
+            {{/if}}
           {{else}}
-            <a id="dashboard" class="button" href="/allcounties"> Dashboard </a>
-          {{/if}}
-            <a id="about" class="button" href="/about"> About </a>
-          {{#if user}}
-            <a id="logout" class="button" href="/logout"> Logout </a>
-          {{else}}
-            <a id="login" class="button" href="/login"> Login </a>
-            <a id="signup" class="button" href="/signup"> Sign Up </a>
+            <a class="button" id="login" href="/login"> Log in </a>
+            <a class="button" id="signup" href="/signup"> Sign up </a>
           {{/if}}
         </div>
       </div>
