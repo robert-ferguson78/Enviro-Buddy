@@ -10,6 +10,9 @@
     "lint": "./node_modules/.bin/eslint . --ext .js",
     "test": "./node_modules/mocha/bin/_mocha --ui tdd test/**/*.js -exit"
   },
+  "engines": {
+    "node": ">=16"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wit-hdip-comp-sci-2021/playtime.git"
