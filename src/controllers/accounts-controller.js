@@ -7,10 +7,16 @@ export const accountsController = {
       mode: "try"
     },
     handler: function (request, h) {
-      const viewData = {
-        user: request.auth.credentials,
-      };
-      return h.view("main", { title: "Welcome to Enviro-Buddy" });
+      console.log("index handler called");
+      const viewData = {};
+      if (request.auth.isAuthenticated) {
+        console.log("user is authenticated");
+        viewData.user = request.auth.credentials;
+      } else {
+        console.log("user is not authenticated");
+      }
+      console.log("rendering view");
+      return h.view("main", { title: "Welcome to Enviro-Buddy", ...viewData });
     },
   },
   showSignup: {
@@ -96,6 +102,7 @@ export const accountsController = {
     handler: function (request, h) {
       console.log("logout handler called");
       request.cookieAuth.clear();
+      console.log("cookie cleared");
       return h.redirect("/");
     },
   },
