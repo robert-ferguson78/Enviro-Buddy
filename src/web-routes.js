@@ -7,6 +7,7 @@ import { countyController } from "./controllers/county-controller.js";
 import { dealerController } from "./controllers/dealer-controller.js";
 import { awsController } from "./controllers/aws-controller.js";
 import { carTypeController } from "./controllers/cartype-controller.js";
+import { adminController } from "./controllers/admin-controller.js";
 
 console.log(awsController);
 
@@ -23,6 +24,7 @@ export const webRoutes = [
   { method: "GET", path: "/about", config: aboutController.index },
 
   { method: "GET", path: "/dashboard", config: dashboardController.index },
+  { method: "GET", path: "/dashboard/{id}", config: dashboardController.unserCounties },
   { method: "GET", path: "/counties", config: countyController.index },
   { method: "POST", path: "/county/addcounty", config: countyController.addCounty },
   { method: "GET", path: "/county/{id}", config: countyController.allCountiesDealers },
@@ -88,6 +90,9 @@ export const webRoutes = [
       auth: false
     }
   },
+
+  { method: "GET", path: "/admindashboard", config: adminController.index },
+  { method: "GET", path: "/removeuser/{id}", config: adminController.removeUser },
 
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
 

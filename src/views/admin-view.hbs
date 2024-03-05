@@ -1,0 +1,81 @@
+{{> menu active="dashboard"}}
+
+<section class="section">
+  <div class="box">
+    <div class="block">
+      <h1 class="title">Manage Brand Users</h1>
+    </div>
+    <div class="block">
+        <table class="table is-fullwidth">
+        <thead>
+            <tr>
+            <th>Contact Name</th>
+            <th>Brand</th>
+            <th>Contact Email</th>
+            <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each brandUsers}}
+            <tr>
+                <td>
+                {{this.name}}
+                </td>
+                <td>
+                {{this.brandName}}
+                </td>
+                <td>
+                {{this.email}}
+                </td>
+                <td>
+                  <a href="/county/{{this._id}}" class="ui icon button">
+                    <i class="fa-solid fa-eye"></i>
+                </a>
+                <a href="/removeuser/{{this._id}}" class="ui icon button">
+                    <i class="fa-solid fa-trash-xmark"></i>
+                </a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+        </table>
+    </div>
+  </div>
+  <div class="box">
+    <div class="block">
+      <h1 class="title">Manage Viewer Users</h1>
+    </div>
+    <div class="block">
+        <table class="table is-fullwidth">
+        <thead>
+            <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>EMAIL</th>
+            <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each normalUsers}}
+            <tr>
+                <td>
+                {{this.firstName}}
+                </td>
+                <td>
+                {{this.lastName}}
+                </td>
+                <td>
+                {{this.email}}
+                </td>
+                <td>
+                <a href="/removeuser/{{this._id}}" class="ui icon button">
+                    <i class="fa-solid fa-trash-xmark"></i>
+                </a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+        </table>
+    </div>
+  </div>
+</section>

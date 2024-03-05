@@ -25,6 +25,7 @@ export const dealerController = {
       },
     },
     handler: async function (request, h) {
+      const user = request.auth.credentials;
       const dealer = await db.dealerStore.getDealerById(request.params.dealerid);
         console.log(dealer);
       const newDealer = {
@@ -37,6 +38,10 @@ export const dealerController = {
       longitude: request.payload.longitude
       };
       await db.dealerStore.updateDealer(dealer, newDealer);
+
+      if (user.type === "admin") {
+        return h.redirect(`/allcounties/${request.params.id}`);
+      }
       return h.redirect(`/county/${request.params.id}`);
     },
   },

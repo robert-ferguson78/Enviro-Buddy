@@ -12,6 +12,13 @@ export const UserSpec = {
   password: Joi.string().required(),
 };
 
+export const BrandUserSpec = {
+  name: Joi.string().required(),
+  brandName: Joi.string().required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().required(),
+};
+
 export const DealerSpec = {
   name: Joi.string().required(),
   address: Joi.string().required(),

@@ -8,13 +8,12 @@ export const countyController = {
       let counties;
       let showBrandOption = false;
       if (loggedInUser && loggedInUser.type === "brand") {
-          // console.log(loggedInUser.type);
         const userCounties = await db.countyStore.getUserCounties(loggedInUser._id);
-        // Sort the counties array alphabetically by the 'name' property
+        console.log("logged in user: ", loggedInUser._id);
         counties = userCounties.sort((a, b) => a.county.localeCompare(b.county));
         showBrandOption = true;
+        console.log("one");
       } else {
-          // console.log(loggedInUser.type);
         counties = await db.countyStore.getAllCounties();
         counties = counties.sort((a, b) => a.county.localeCompare(b.county));
       }
@@ -59,8 +58,7 @@ export const countyController = {
           return h.redirect("/counties");
           // return h.view("dashboard-view", { title: "Add County error", errors: [{ message: "Duplicate county entry" }] }).takeover().code(400);
         }
-    
-        await db.countyStore.addCounty(newCounty);
+
         request.yar.flash("info", "County successfully added!");
         return h.redirect("/counties");
       } catch (error) {
@@ -82,32 +80,49 @@ export const countyController = {
   },
 
   allCountiesDealers: {
-    auth: {
-      mode: "try"
-    },
     handler: async function (request, h) {
-      // console.log("info here2");
+      const user = request.auth.credentials;
+      if (!user || (user.type !== "admin" && user.type !== "brand")) {
+        return h.redirect("/");
+      }
+  
       const county = await db.countyStore.getCountyById(request.params.id);
-      // console.log(county);
+      let dealers;
+      if (user.type === "brand") {
+        dealers = await db.dealerStore.getDealersByCountyId(user._id);
+      } else {
+        dealers = await db.dealerStore.getAllDealers();
+      }
+
       const viewData = {
         title: "county",
         county: county,
-        user: request.auth.credentials,
+        user: user,
+        dealers: dealers,
       };
-       // console.log(request.auth.credentials);
+
+      if (user.type === "admin") {
+        return h.view("admin-county-view", viewData);
+      }
+
       return h.view("county-view", viewData);
     },
   },
-
+  
   allCounties: {
-    auth: false,
     handler: async function (request, h) {
+      const user = request.auth.credentials;
+      if (!user || user.type !== "admin") {
+        return h.redirect("/");
+      }
+  
       let counties = await db.countyStore.getAllCounties();
       counties = counties.sort((a, b) => a.county.localeCompare(b.county));
       const viewData = {
         title: "All Counties",
         counties: counties
       };
+  
       return h.view("all-counties-view", viewData);
     },
   },
@@ -139,8 +154,15 @@ export const countyController = {
 
   deleteDealer: {
     handler: async function (request, h) {
+      const user = request.auth.credentials;
       const county = await db.countyStore.getCountyById(request.params.id);
       await db.dealerStore.deleteDealer(request.params.dealerid);
+  
+      // Check if the user type is admin
+      if (user.type === "admin") {
+        return h.redirect(`/allcounties/${county._id}`);
+      }
+  
       return h.redirect(`/county/${county._id}`);
     },
   },

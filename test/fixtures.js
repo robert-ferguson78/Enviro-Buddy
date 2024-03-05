@@ -10,6 +10,13 @@ export const maggie = {
 export const testUsers = [
   {
     firstName: "robert",
+    lastName: "admin",
+    email: "admin@test.com",
+    password: "secret123",
+    type: "admin"
+  },
+  {
+    firstName: "robert",
     lastName: "ferguson",
     email: "robert@test.com",
     password: "secret123",

@@ -1,0 +1,36 @@
+{{#each counties}}
+  {{#if @first}}
+    <div class="columns">
+  {{/if}}
+  <div class="column is-one-third">
+    <div class="box box-link-hover-shadow">
+      <h2 class="title">
+        <span class="caps">{{county}}</span> Car Dealers
+      </h2>
+      {{#if ../showBrandOption}}
+        <a href="/county/{{_id}}" class="button">
+          <span class="icon is-small">
+            <i class="fa-sharp fa-solid fa-location-pen"></i>
+          </span>
+        </a>
+        <a href="/county/deletecounty/{{_id}}" class="button">
+          <i class="fa-solid fa-trash-xmark"></i>
+        </a>
+      {{else}}
+        <a href="/allcounties/{{_id}}" class="button">
+          <span class="icon is-small">
+            <i class="fa-sharp fa-solid fa-location-pen"></i>
+          </span>
+        </a>
+      {{/if}}
+    </div>
+  </div>
+  {{#if @last}}
+    </div>
+  {{else}}
+    {{#modAdd1 @index 3}}
+      </div>
+      <div class="columns">
+    {{/modAdd1}}
+  {{/if}}
+{{/each}}

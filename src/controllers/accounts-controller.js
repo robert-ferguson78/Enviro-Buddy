@@ -1,4 +1,4 @@
-import { UserSpec, UserCredentialsSpec } from "../models/joi-schemas.js";
+import { UserSpec, BrandUserSpec, UserCredentialsSpec } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
 
 export const accountsController = {
@@ -44,7 +44,7 @@ export const accountsController = {
   brandSignup: {
     auth: false,
     validate: {
-      payload: UserSpec,
+      payload: BrandUserSpec,
       options: { abortEarly: false },
       failAction: function (request, h, error) {
         return h.view("signup-view", { title: "Sign up error", errors: error.details }).takeover().code(400);
@@ -79,6 +79,12 @@ export const accountsController = {
         return h.redirect("/");
       }
       request.cookieAuth.set({ id: user._id });
+  
+      // Check if the user type is admin
+      if (user.type === "admin") {
+        return h.redirect("/admindashboard");
+      }
+  
       return h.redirect("/dashboard");
     },
   },
