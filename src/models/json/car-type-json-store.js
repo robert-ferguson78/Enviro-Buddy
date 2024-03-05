@@ -13,10 +13,10 @@ export const carTypeJsonStore = {
   },
 
   async getCarTypesByBrandId(brandId) {
-    console.log("brand ID:", brandId);
+    // console.log("brand ID:", brandId);
     await db.read();
     const carTypes = db.data.carTypes.filter(carType => carType.userId === brandId);
-    console.log("carTypes in getCarTypesByBrandId:", carTypes);
+    // console.log("carTypes in getCarTypesByBrandId:", carTypes);
     return carTypes;
   },
 
@@ -31,7 +31,7 @@ export const carTypeJsonStore = {
   async updateCarType(id, updatedCarType) {
     await db.read();
     const foundCarType = db.data.carTypes.find(ct => ct.id === id);
-    console.log("foundCarType:", foundCarType);
+    // console.log("foundCarType:", foundCarType);
     if (!foundCarType) {
       throw new Error("CarType not found");
     }

@@ -35,7 +35,7 @@ export const carTypeController = {
         carTypes: carTypes,
         messages: request.yar.flash("info")
       };
-      console.log("carTypes is here:", carTypes);
+      // console.log("carTypes is here:", carTypes);
       return h.view("list-brand-car-types-view", viewData);
     },
   },
@@ -58,15 +58,15 @@ export const carTypeController = {
         carTypes: carTypes,
         messages: request.yar.flash("info")
       };
-      console.log("carTypes is here2:", carTypes);
+      // console.log("carTypes is here2:", carTypes);
       return h.view("cartype-view", viewData);
     },
   },
 
   updateCarType: {
     handler: async (request, h) => {
-        console.log(request.params); // Log the parameters
-        console.log("Here is payload: ", request.payload); // Log the payload
+        // console.log(request.params); // Log the parameters
+        // console.log("Here is payload: ", request.payload); // Log the payload
 
         console.log("awsController updateCarType handler called");
         const { image, carName, carRange, carType } = request.payload;
@@ -81,7 +81,7 @@ export const carTypeController = {
         };
         try {
         if (typeof image === "object" && image !== null) {
-            console.log("Image object:", image);
+            // console.log("Image object:", image);
             const timestamp = Date.now();
             const uniqueFilename = `${timestamp}-${image.hapi.filename}`;
             const data = {
@@ -98,10 +98,10 @@ export const carTypeController = {
                   Bucket: process.env.AWS_BUCKET_NAME,
                   Key: oldImageKey
               };
-              console.log("Old image key:", oldImageKey);
+              // console.log("Old image key:", oldImageKey);
               try {
                   await s3.deleteObject(deleteParams).promise();
-                  console.log("Old image deleted successfully");
+                  // console.log("Old image deleted successfully");
               } catch (err) {
                   console.error("Error deleting image:", err);
               }
@@ -125,7 +125,7 @@ export const carTypeController = {
         console.error("Error handling image:", err);
     }
 
-        console.log(updatedCarType);
+        // console.log(updatedCarType);
         // Update the car type in the database
         try {
             await db.carTypeStore.updateCarType(id, updatedCarType);

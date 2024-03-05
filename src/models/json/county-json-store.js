@@ -43,6 +43,12 @@ export const countyJsonStore = {
   //   db.data.counties.splice(index, 1);
   //   await db.write();
   // },
+  async getUserIdByCountyId(countyId) {
+    await db.read();
+    const foundCounty = db.data.counties.find((county) => county._id === countyId);
+    console.log(foundCounty);
+    return foundCounty ? foundCounty.userid : null;
+  },
 
   async deleteCountyById(id) {
     await db.read();

@@ -5,11 +5,11 @@ export const adminController = {
         handler: async function (request, h) {
             const loggedInUser = request.auth.credentials;
             console.log("adminController.index");
-            console.log(request.user);
+            // console.log(request.user);
             if (loggedInUser.type !== "admin") {
             return h.redirect("/");
             }
-            console.log("adminController.index");
+            // console.log("adminController.index");
 
             const allUsers = await db.userStore.getAllUsers();
             const brandUsers = allUsers.filter(user => user.type === "brand");
@@ -26,7 +26,7 @@ export const adminController = {
     removeUser: {
         handler: async function (request, h) {
             const loggedInUser = request.auth.credentials;
-            console.log("adminController.index");
+            console.log("remove user");
             if (loggedInUser.type !== "admin") {
                 return h.redirect("/");
             }

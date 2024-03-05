@@ -24,7 +24,7 @@ export const webRoutes = [
   { method: "GET", path: "/about", config: aboutController.index },
 
   { method: "GET", path: "/dashboard", config: dashboardController.index },
-  { method: "GET", path: "/dashboard/{id}", config: dashboardController.unserCounties },
+  { method: "GET", path: "/brandcounties/{id}", config: countyController.adminIndex },
   { method: "GET", path: "/counties", config: countyController.index },
   { method: "POST", path: "/county/addcounty", config: countyController.addCounty },
   { method: "GET", path: "/county/{id}", config: countyController.allCountiesDealers },

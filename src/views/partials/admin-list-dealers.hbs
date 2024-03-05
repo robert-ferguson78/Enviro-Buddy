@@ -1,0 +1,46 @@
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Website</th>
+      <th>Geo Location</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each county.dealers}}
+      <tr>
+        <td>
+          {{name}}
+        </td>
+        <td>
+          {{address}}
+        </td>
+        <td>
+          {{phone}}
+        </td>
+        <td>
+          {{email}}
+        </td>
+        <td>
+          {{website}}
+        </td>
+        <td>
+          {{latitude}}
+      {{longitude}}
+        </td>
+        <td>
+          <a href="/dealer/{{../county._id}}/editdealer/{{_id}}" class="ui icon button">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </a>
+          <a href="/county/{{../county._id}}/deletedealer/{{_id}}" class="ui icon button">
+            <i class="fa-solid fa-trash-xmark"></i>
+          </a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

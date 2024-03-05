@@ -16,8 +16,8 @@ const s3 = new AWS.S3();
 export const awsController = {
     upload: {
         handler: async (request, h) => {
-            console.log(request.params); // Log the parameters
-            console.log("Here is payload: ", request.payload); // Log the payload
+            // console.log(request.params); // Log the parameters
+            // console.log("Here is payload: ", request.payload); // Log the payload
     
             console.log("awsController upload handler called");
             const { image, carName, carRange, carType } = request.payload;
@@ -43,7 +43,7 @@ export const awsController = {
                     imageUrl: httpUrl,
                 };
   
-                console.log(newCarType);
+                // console.log(newCarType);
                 // Add the image URL to the dealer's images array
                 await db.carTypeStore.createCarType(newCarType);
     

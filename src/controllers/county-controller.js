@@ -28,6 +28,36 @@ export const countyController = {
     },
   },
 
+  adminIndex: {
+    handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;
+      let counties;
+      let showAdminOption = false;
+      if (loggedInUser && loggedInUser.type === "admin") {
+        const { id: userId } = request.params; // get the user id from the route using object destructuring
+        console.log("userId:", userId); // log the userId
+        const userCounties = await db.countyStore.getUserCounties(userId);
+        console.log("logged in admin: ", loggedInUser._id);
+        counties = userCounties.sort((a, b) => a.county.localeCompare(b.county));
+        console.log("userCounties:", userCounties); // log the result of getUserCounties(
+        showAdminOption = true;
+        console.log("one");
+      } else {
+        return h.redirect("/"); // redirect to home page if user is not an admin
+      }
+      const viewData = {
+        title: "Enviro-Buddy County Dashboard",
+        user: loggedInUser,
+        counties: counties,
+        showAdminOption: showAdminOption,
+        messages: request.yar.flash("info")
+      };
+      console.log(viewData); // log the viewData object
+      
+      return h.view("list-admin-counties-view", viewData);
+    },
+  },
+
   addCounty: {
     validate: {
       payload: CountySpec,
@@ -81,6 +111,7 @@ export const countyController = {
 
   allCountiesDealers: {
     handler: async function (request, h) {
+      let userId;
       const user = request.auth.credentials;
       if (!user || (user.type !== "admin" && user.type !== "brand")) {
         return h.redirect("/");
@@ -92,6 +123,11 @@ export const countyController = {
         dealers = await db.dealerStore.getDealersByCountyId(user._id);
       } else {
         dealers = await db.dealerStore.getAllDealers();
+        try {
+          userId = await db.countyStore.getUserIdByCountyId(county._id);
+        } catch (error) {
+          console.error("Error getting user id by county id:", error);
+        }
       }
 
       const viewData = {
@@ -99,6 +135,7 @@ export const countyController = {
         county: county,
         user: user,
         dealers: dealers,
+        userId: userId,
       };
 
       if (user.type === "admin") {

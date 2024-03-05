@@ -1,0 +1,10 @@
+{{> menu active="dashboard"}}
+
+<section class="section">
+  {{> admin-list-counties showBrandOption=showBrandOption}}
+  {{#each messages}}
+    <div class="alert alert-info">
+      {{this}}
+    </div>
+  {{/each}}
+</section>

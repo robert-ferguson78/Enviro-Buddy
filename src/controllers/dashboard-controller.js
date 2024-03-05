@@ -11,7 +11,7 @@ export const dashboardController = {
       return h.view("dashboard-view", viewData);
     },
   },
-
+  
   // deleteCarType: {
   //   handler: async function (request, h) {
   //       // console.log("delete" + request.params.id);
