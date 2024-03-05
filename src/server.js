@@ -44,6 +44,21 @@ async function init() {
     host: "localhost",
   });
 
+  server.ext("onPreResponse", (request, h) => {
+    if (request.auth.isAuthenticated && request.response.source && request.response.source.context) {
+      const context = {
+        user: request.auth.credentials
+      };
+      // Merge the existing context with the new context
+      request.response.source.context = {
+        ...request.response.source.context,
+        ...context
+      };
+      console.log("some text here: ", request.response.source.context.user);
+    }
+    return h.continue;
+  });
+
   await server.register(Inert);
   await server.register(Vision);
   await server.register(Cookie);
