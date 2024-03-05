@@ -1,25 +1,28 @@
 import { db } from "../models/db.js";
+import { getAnalyticsByBrand } from "../utils/analytics.js";
 
 export const adminController = {
     index: {
         handler: async function (request, h) {
             const loggedInUser = request.auth.credentials;
             console.log("adminController.index");
-            // console.log(request.user);
             if (loggedInUser.type !== "admin") {
-            return h.redirect("/");
+                return h.redirect("/");
             }
-            // console.log("adminController.index");
 
             const allUsers = await db.userStore.getAllUsers();
             const brandUsers = allUsers.filter(user => user.type === "brand");
             const normalUsers = allUsers.filter(user => user.type === "user");
 
-            const viewData = {
-            brandUsers,
-            normalUsers,
-            };
+            // Call the getAnalyticsByBrand function
+            const analyticsByBrand = await getAnalyticsByBrand();
 
+            const viewData = {
+                brandUsers,
+                normalUsers,
+                analyticsByBrand,
+            };
+            console.log("analytocs brand info: ", analyticsByBrand);
             return h.view("admin-view", viewData);
         },
     },

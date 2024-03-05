@@ -31,6 +31,22 @@
       "password": "secret123",
       "_id": "b593d3af-75a9-483a-8717-f565e72556ca",
       "type": "brand"
+    },
+    {
+      "name": "Marty",
+      "brandName": "Volvo",
+      "email": "volvo@test.com",
+      "password": "secret123",
+      "_id": "0a7c71a9-a9f5-4999-a518-bcedfa4845ac",
+      "type": "brand"
+    },
+    {
+      "name": "Sean Mulligan",
+      "brandName": "Fiat",
+      "email": "fiat@test.com",
+      "password": "secret123",
+      "_id": "291f3aaf-ca5f-4fa7-b0f8-9268e02663a3",
+      "type": "brand"
     }
   ],
   "counties": [
@@ -133,6 +149,16 @@
       "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
       "county": "waterford",
       "_id": "2adac3e1-fa44-4b1a-984f-5df207a9f550"
+    },
+    {
+      "userid": "0a7c71a9-a9f5-4999-a518-bcedfa4845ac",
+      "county": "antrim",
+      "_id": "084ea55b-3c14-4015-a1f0-c5dff56af0f3"
+    },
+    {
+      "userid": "0a7c71a9-a9f5-4999-a518-bcedfa4845ac",
+      "county": "armagh",
+      "_id": "91219fa1-3046-49e1-8eee-1285e754f581"
     }
   ],
   "dealers": [
@@ -201,6 +227,28 @@
       "longitude": 8678,
       "_id": "23b82c5f-35c8-4d11-9ccc-bcaaa4f1c1ab",
       "countyId": "2adac3e1-fa44-4b1a-984f-5df207a9f550"
+    },
+    {
+      "name": "efrwe",
+      "address": "wgrwv",
+      "phone": "wrvrv",
+      "email": "jhb@kjb.com",
+      "website": "4",
+      "latitude": 4535,
+      "longitude": 454,
+      "_id": "750708f5-fdd7-49a1-b786-a4584cb3c253",
+      "countyId": "084ea55b-3c14-4015-a1f0-c5dff56af0f3"
+    },
+    {
+      "name": "g5e",
+      "address": "eh",
+      "phone": "ge",
+      "email": "kjbn@jh.com",
+      "website": "rgre",
+      "latitude": 34,
+      "longitude": 5,
+      "_id": "4d5a78c3-2a27-4ff7-8d47-bbf71dbfd1d0",
+      "countyId": "91219fa1-3046-49e1-8eee-1285e754f581"
     }
   ],
   "carTypes": [
@@ -219,6 +267,14 @@
       "carType": "small",
       "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709592962122-DALL%C2%B7E%202024-02-21%2010.12.29_result.jpg",
       "id": "0dbae96f-b3b8-4dba-a33f-26ca3f0f3260"
+    },
+    {
+      "userId": "b593d3af-75a9-483a-8717-f565e72556ca",
+      "carName": "teq",
+      "carRange": "765",
+      "carType": "jgyh",
+      "imageUrl": "http://envirobuddy.s3.eu-west-1.amazonaws.com/1709639789189-DALL%C2%B7E%202024-02-21%2010.12.29_result.jpg",
+      "id": "f709ec3d-cbcc-4c74-a431-112355d2d602"
     }
   ]
 }

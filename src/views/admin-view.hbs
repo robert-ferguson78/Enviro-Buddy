@@ -78,4 +78,30 @@
         </table>
     </div>
   </div>
+  <div class="box">
+    <h1 class="title">Uploads by Car Brand</h1>
+    {{#each analyticsByBrand}}
+      {{#if @first}}
+        <div class="columns">
+      {{/if}}
+        <div class="column is-one-third">
+          <div class="box box-link-hover-shadow">
+            <p class="title">{{this.brandName}}</p>
+            <p class="subtitle">{{this.dealerCount}} Dealers</br>
+            {{this.dealerCount}} Car Types</br>
+            {{this.countyCount}} Counties</br></br>
+            <b>County with Most Dealers:</b><br>
+            {{this.maxDealerCounty.countyName}} - {{this.maxDealerCounty.dealerCount}} Dealers</p>
+          </div>
+        </div>
+      {{#if @last}}
+          </div>
+      {{else}}
+        {{#modAdd1 @index 3}}
+            </div>
+            <div class="columns">
+        {{/modAdd1}}
+      {{/if}}
+     {{/each}}
+      </div>
 </section>
