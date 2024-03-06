@@ -9,6 +9,10 @@ import { userMongoStore } from "./mongo/user-mongo-store.js";
 import { countyMongoStore } from "./mongo/county-mongo-store.js";
 import { dealerMongoStore } from "./mongo/dealer-mongo-store.js";
 import { connectMongo } from "./mongo/connect.js";
+import { userFirestoreStore } from "./firestore/user-firestore-store.js";
+import { countyFirestoreStore } from "./firestore/county-firestore-store.js";
+import { dealerFirestoreStore } from "./firestore/dealer-firestore-store.js";
+import { carTypeFirestoreStore } from "./firestore/car-type-firestore-store.js";
 
 export const db = {
   userStore: null,
@@ -31,6 +35,12 @@ export const db = {
         this.carTypeStore = carTypeMongoStore;
         connectMongo();
         break;
+      case "firestore" :
+          this.userStore = userFirestoreStore;
+          this.countyStore = countyFirestoreStore;
+          this.dealerStore = dealerFirestoreStore;
+          this.carTypeStore = carTypeFirestoreStore;
+          break;
       default :
         this.userStore = userMemStore;
         this.countyStore = countyMemStore;

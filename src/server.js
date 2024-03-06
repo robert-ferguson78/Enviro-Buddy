@@ -107,9 +107,9 @@ async function init() {
   });
   server.auth.default("session");
 
-  db.init("json");
+  // db.init("json");
   // db.init("mongo");
-  // db.init();
+  db.init("firestore");
   server.route(webRoutes);
   server.route(apiRoutes);
   await server.start();

@@ -8,14 +8,14 @@ export const countyController = {
       let counties;
       let showBrandOption = false;
       if (loggedInUser && loggedInUser.type === "brand") {
-        const userCounties = await db.countyStore.getUserCounties(loggedInUser._id);
+        const userCounties = await db.countyStore.where("userid", "==", loggedInUser._id).get();
         console.log("logged in user: ", loggedInUser._id);
-        counties = userCounties.sort((a, b) => a.county.localeCompare(b.county));
+        counties = userCounties.docs.map(doc => doc.data()).sort((a, b) => a.county.localeCompare(b.county));
         showBrandOption = true;
         console.log("one");
       } else {
-        counties = await db.countyStore.getAllCounties();
-        counties = counties.sort((a, b) => a.county.localeCompare(b.county));
+        const allCounties = await db.countyStore.get();
+        counties = allCounties.docs.map(doc => doc.data()).sort((a, b) => a.county.localeCompare(b.county));
       }
       const viewData = {
         title: "Enviro-Buddy County Dashboard",
@@ -36,7 +36,7 @@ export const countyController = {
       if (loggedInUser && loggedInUser.type === "admin") {
         const { id: userId } = request.params; // get the user id from the route using object destructuring
         console.log("userId:", userId); // log the userId
-        const userCounties = await db.countyStore.getUserCounties(userId);
+        const userCounties = await db.countyStore.getCountiesByUserId(userId);
         console.log("logged in admin: ", loggedInUser._id);
         counties = userCounties.sort((a, b) => a.county.localeCompare(b.county));
         console.log("userCounties:", userCounties); // log the result of getUserCounties(
@@ -76,7 +76,7 @@ export const countyController = {
         console.log("newCounty:", newCounty);
     
         // Check if a county with the same userid and county already exists
-        const existingCounty = await db.countyStore.findCounty(newCounty);
+        const existingCounty = await db.countyStore.getCountyByUserIdAndCounty(newCounty);
         console.log("addCounty:", existingCounty);
         if (!existingCounty) {
           const createdCounty = await db.countyStore.addCounty(newCounty);

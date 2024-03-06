@@ -1,19 +1,28 @@
-import { db } from "../models/db.js";
+import { db } from "../models/firestore/connect.js";
+
+const usersRef = db.collection("users");
+const countiesRef = db.collection("counties");
+const dealersRef = db.collection("dealers");
+const carTypesRef = db.collection("carTypes");
 
 export async function getAnalyticsByBrand() {
     try {
         console.log("getAnalyticsByBrand");
-        const allUsers = await db.userStore.getAllUsers();
-        const brandUsers = allUsers.filter(user => user.type === "brand");
+        const allUsersSnapshot = await usersRef.where("type", "==", "brand").get();
+        const brandUsers = allUsersSnapshot.docs.map(doc => ({ _id: doc.id, ...doc.data() }));
         console.log("getAnalyticsByBrand");
 
         const analytics = await Promise.all(brandUsers.map(async (user) => {
             let maxDealerCounty = { countyId: null, countyName: null, dealerCount: 0 }; // Initialize maxDealerCounty for each brand user
 
             try {
-                const counties = await db.countyStore.getUserCounties(user._id);
+                const countiesSnapshot = await countiesRef.where("userId", "==", user._id).get();
+                const counties = countiesSnapshot.docs.map(doc => ({ _id: doc.id, ...doc.data() }));
+
                 const countsPerCounty = await Promise.all(counties.map(async (county) => {
-                    const dealers = await db.dealerStore.getDealersByCountyId(county._id);
+                    const dealersSnapshot = await dealersRef.where("countyId", "==", county._id).get();
+                    const dealers = dealersSnapshot.docs.map(doc => ({ _id: doc.id, ...doc.data() }));
+
                     if (dealers.length > maxDealerCounty.dealerCount) { // Update maxDealerCounty if current county has more dealers
                         maxDealerCounty = { countyId: county._id, countyName: county.county, dealerCount: dealers.length };
                     }
@@ -21,7 +30,8 @@ export async function getAnalyticsByBrand() {
                 }));
                 const totalDealerCount = countsPerCounty.reduce((a, b) => a + b, 0);
 
-                const carTypes = await db.carTypeStore.getCarTypesByBrandId(user._id);
+                const carTypesSnapshot = await carTypesRef.where("brandId", "==", user._id).get();
+                const carTypes = carTypesSnapshot.docs.map(doc => ({ _id: doc.id, ...doc.data() }));
 
                 return {
                     userId: user._id,

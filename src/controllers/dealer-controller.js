@@ -1,11 +1,18 @@
+import { db } from "../models/firestore/connect.js";
 import { DealerSpec } from "../models/joi-schemas.js";
-import { db } from "../models/db.js";
+
+const countiesRef = db.collection("counties");
+const dealersRef = db.collection("dealers");
 
 export const dealerController = {
   index: {
     handler: async function (request, h) {
-      const county = await db.countyStore.getCountyById(request.params.id);
-      const dealer = await db.dealerStore.getDealerById(request.params.dealerid);
+      const countyDoc = await countiesRef.doc(request.params.id).get();
+      const county = { _id: countyDoc.id, ...countyDoc.data() };
+
+      const dealerDoc = await dealersRef.doc(request.params.dealerid).get();
+      const dealer = { _id: dealerDoc.id, ...dealerDoc.data() };
+
       const viewData = {
         title: "Edit Dealer",
         county: county,
@@ -26,18 +33,17 @@ export const dealerController = {
     },
     handler: async function (request, h) {
       const user = request.auth.credentials;
-      const dealer = await db.dealerStore.getDealerById(request.params.dealerid);
-        console.log(dealer);
+
       const newDealer = {
-      name: request.payload.name,
-      address: request.payload.address,
-      phone: request.payload.phone,
-      email: request.payload.email,
-      website: request.payload.website,
-      latitude: request.payload.latitude,
-      longitude: request.payload.longitude
+        name: request.payload.name,
+        address: request.payload.address,
+        phone: request.payload.phone,
+        email: request.payload.email,
+        website: request.payload.website,
+        latitude: request.payload.latitude,
+        longitude: request.payload.longitude
       };
-      await db.dealerStore.updateDealer(dealer, newDealer);
+      await dealersRef.doc(request.params.dealerid).update(newDealer);
 
       if (user.type === "admin") {
         return h.redirect(`/allcounties/${request.params.id}`);

@@ -1,20 +1,20 @@
 {
   "users": [
     {
-      "firstName": "robert",
-      "lastName": "admin",
-      "email": "admin@test.com",
-      "password": "secret123",
-      "_id": "33f72502-bf72-46b0-229d-76239024b298",
-      "type": "admin"
-    },
-    {
       "name": "robert ferguson",
       "brandName": "BMW",
       "email": "robert@test.com",
       "password": "secret123",
       "_id": "33f72502-bf72-46b0-994f-002f7024b1f9",
       "type": "brand"
+    },
+    {
+      "firstName": "robert",
+      "lastName": "admin",
+      "email": "admin@test.com",
+      "password": "secret123",
+      "_id": "33f72502-bf72-46b0-229d-76239024b298",
+      "type": "admin"
     },
     {
       "firstName": "marge",
@@ -46,6 +46,14 @@
       "email": "fiat@test.com",
       "password": "secret123",
       "_id": "291f3aaf-ca5f-4fa7-b0f8-9268e02663a3",
+      "type": "brand"
+    },
+    {
+      "name": "Paul Murphy",
+      "brandName": "citroen",
+      "email": "citroen@test.com",
+      "password": "secret123",
+      "_id": "f4b8c04b-a37e-4008-9923-364538433d6a",
       "type": "brand"
     }
   ],
