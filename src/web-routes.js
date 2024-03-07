@@ -13,8 +13,6 @@ import { userController } from "./controllers/user-controller.js";
 console.log(awsController);
 
 export const webRoutes = [
-  { method: "GET", path: "/test", config: testController.index },
-
   { method: "GET", path: "/", config: accountsController.index },
   { method: "GET", path: "/signup", config: accountsController.showSignup },
   { method: "GET", path: "/brandsignup", config: accountsController.showBrandSignup },
