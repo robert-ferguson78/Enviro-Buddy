@@ -45,17 +45,25 @@ async function init() {
   });
 
   server.ext("onPreResponse", (request, h) => {
-    if (request.auth.isAuthenticated && request.response.source && request.response.source.context) {
+    const { response } = request;
+
+    if (response.isBoom) {
+      // Log the error
+      console.error(response);
+    }
+  
+    if (request.auth.isAuthenticated && response.source && response.source.context) {
       const context = {
         user: request.auth.credentials
       };
       // Merge the existing context with the new context
-      request.response.source.context = {
-        ...request.response.source.context,
+      response.source.context = {
+        ...response.source.context,
         ...context
       };
-      console.log("some text here: ", request.response.source.context.user);
+      console.log("some text here: ", response.source.context.user);
     }
+  
     return h.continue;
   });
 
@@ -94,6 +102,11 @@ async function init() {
     partialsPath: "./views/partials",
     layout: true,
     isCached: false,
+    compileOptions: { // Add this property
+      runtimeOptions: {
+        allowProtoPropertiesByDefault: true
+      }
+    }
   });
 
   server.auth.strategy("session", "cookie", {
@@ -107,9 +120,9 @@ async function init() {
   });
   server.auth.default("session");
 
-  db.init("json");
-  // db.init("mongo");
-  // db.init();
+  // db.init("json");
+  db.init("mongo");
+  // db.init("firestore");
   server.route(webRoutes);
   server.route(apiRoutes);
   await server.start();

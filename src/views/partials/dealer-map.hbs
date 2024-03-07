@@ -1,5 +1,5 @@
 <!--leaflet Map-->
-{{#if dealers}}
+{{#if dealerInfo}}
   <div class="content box">
     <div id="map" style="width: 100%; height: 600px;"></div>
   </div>
@@ -15,7 +15,7 @@
 
   // creating a marker for each placemark and adding it to the map
   let marker, circle, zoomed; 
-  {{#each dealers}}
+  {{#each dealerInfo}}
   marker = L.marker([{{latitude}}, {{longitude}}], {title: "{{name}}"});
   // adding a popup to the marker that displays the placemark title and image if it exists
   marker.bindPopup("<span class='popup-stats-ctn title'><strong>{{name}}</strong></span>" 

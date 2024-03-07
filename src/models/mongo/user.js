@@ -4,10 +4,14 @@ import Boom from "@hapi/boom";
 const { Schema } = Mongoose;
 
 const userSchema = new Schema({
+  name: String,
+  type: String,
+  brandName: String,
   firstName: String,
   lastName: String,
   email: String,
   password: String,
+  userId: String,
 });
 
 userSchema.statics.findByEmail = function (email) {

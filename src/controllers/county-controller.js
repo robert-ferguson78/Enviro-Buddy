@@ -4,19 +4,21 @@ import { db } from "../models/db.js";
 export const countyController = {
   index: {
     handler: async function (request, h) {
-      const loggedInUser = request.auth.credentials;
+      const loggedInUser = request.auth.credentials ? request.auth.credentials.toObject() : null;
+      console.log("loggedInUser: ", loggedInUser);
       let counties;
       let showBrandOption = false;
       if (loggedInUser && loggedInUser.type === "brand") {
-        const userCounties = await db.countyStore.getUserCounties(loggedInUser._id);
-        console.log("logged in user: ", loggedInUser._id);
-        counties = userCounties.sort((a, b) => a.county.localeCompare(b.county));
+        const userCounties = await db.countyStore.getUserCounties(loggedInUser.userId);
+        console.log("logged in user: ", loggedInUser.userId);
+        counties = userCounties.map(county => county.toObject()).sort((a, b) => a.county.localeCompare(b.county));
         showBrandOption = true;
         console.log("one");
       } else {
-        counties = await db.countyStore.getAllCounties();
-        counties = counties.sort((a, b) => a.county.localeCompare(b.county));
+        counties = (await db.countyStore.getAllCounties()).map(county => county.toObject()).sort((a, b) => a.county.localeCompare(b.county));
+        console.log("2");
       }
+      console.log("counties: ", counties); // Add this line
       const viewData = {
         title: "Enviro-Buddy County Dashboard",
         user: loggedInUser,
@@ -24,6 +26,7 @@ export const countyController = {
         showBrandOption: showBrandOption,
         messages: request.yar.flash("info")
       };
+      console.log("3");
       return h.view("list-brand-counties-view", viewData);
     },
   },
@@ -37,7 +40,7 @@ export const countyController = {
         const { id: userId } = request.params; // get the user id from the route using object destructuring
         console.log("userId:", userId); // log the userId
         const userCounties = await db.countyStore.getUserCounties(userId);
-        console.log("logged in admin: ", loggedInUser._id);
+        console.log("logged in admin: ", loggedInUser.userId);
         counties = userCounties.sort((a, b) => a.county.localeCompare(b.county));
         console.log("userCounties:", userCounties); // log the result of getUserCounties(
         showAdminOption = true;
@@ -70,7 +73,7 @@ export const countyController = {
       try {
         const loggedInUser = request.auth.credentials;
         const newCounty = {
-          userid: loggedInUser._id,
+          userid: loggedInUser.userId,
           county: request.payload.county,
         };
         console.log("newCounty:", newCounty);

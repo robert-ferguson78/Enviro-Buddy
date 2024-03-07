@@ -1,40 +1,47 @@
+import { v4 as uuidv4 } from "uuid";
 import { User } from "./user.js";
 
 export const userMongoStore = {
   async getAllUsers() {
-    const users = await User.find().lean();
-    return users;
+    return User.find({});
   },
 
-  async getUserById(id) {
-    if (id) {
-      const user = await User.findOne({ _id: id }).lean();
-      return user;
-    }
-    return null;
-  },
-
-  async addUser(user) {
+  async addUser(user, userType) {
+    user.userId = uuidv4();
+    console.log("Generated userId: ", user.userId); // Check the generated userId
+    user.type = userType;
+    console.log("user: ", user);
     const newUser = new User(user);
-    const userObj = await newUser.save();
-    const u = await this.getUserById(userObj._id);
-    return u;
-  },
+    try {
+        const savedUser = await newUser.save();
+        console.log("Document written with ID: ", user.userId);
+        return savedUser;
+    } catch (error) {
+        console.error("Error saving user: ", error); // Log any errors
+        return null;
+    }
+},
+
+async getUserById(userId) {
+  const user = await User.findOne({ userId: userId });
+  console.log(user);
+  return user;
+},
 
   async getUserByEmail(email) {
-    const user = await User.findOne({ email: email }).lean();
-    return user;
+    return User.findOne({ email: email });
+  },
+
+  async getAllBrandNames() {
+    const users = await User.find({ type: "brand" });
+    return users.map(user => user.brandName);
   },
 
   async deleteUserById(id) {
-    try {
-      await User.deleteOne({ _id: id });
-    } catch (error) {
-      console.log("bad id");
-    }
+    return User.findOneAndDelete({ userId: userId });
   },
 
   async deleteAll() {
-    await User.deleteMany({});
-  }
+    return User.deleteMany({});
+  },
 };

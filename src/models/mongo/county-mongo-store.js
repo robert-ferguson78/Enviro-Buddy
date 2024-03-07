@@ -3,41 +3,48 @@ import { dealerMongoStore } from "./dealer-mongo-store.js";
 
 export const countyMongoStore = {
   async getAllCounties() {
-    const counties = await County.find().lean();
-    return counties;
+    return County.find({});
   },
 
-  async getCountyById(id) {
-    if (id) {
-      const county = await County.findOne({ _id: id }).lean();
-      if (county) {
-        county.dealers = await dealerMongoStore.getDealersByCountyId(county._id);
-      }
-      return county;
-    }
-    return null;
-  },
-
-  async addCounty(county) {
+  async addCounty(county, userId) {
+    county.userId = userId;
     const newCounty = new County(county);
-    const countyObj = await newCounty.save();
-    return this.getCountyById(countyObj._id);
+    const savedCounty = await newCounty.save();
+    return savedCounty;
   },
 
-  async getUserCounties(id) {
-    const county = await County.find({ userid: id }).lean();
+  async getCountyById(userId) { // Changed parameter name from id to userId
+    const county = await County.findOne({ userId }); // Changed findById to findOne and used userId
+    if (county) {
+      county.dealers = await dealerMongoStore.getDealersByCountyId(county.userId);
+    }
     return county;
   },
 
-  async deleteCountyById(id) {
-    try {
-      await County.deleteOne({ _id: id });
-    } catch (error) {
-      console.log("bad id");
-    }
+  async getAllUniqueCounties() {
+    const counties = await County.find({});
+    const uniqueCounties = [...new Set(counties.map(county => county.title))];
+    return uniqueCounties;
+  },
+
+  async findCounty({ userId, title }) {
+    return County.findOne({ userId, title });
+  },
+
+  async getUserCounties(userId) {
+    return County.find({ userId });
+  },
+
+  async getUserIdByCountyId(userId) { // Changed parameter name from countyId to userId
+    const county = await County.findOne({ userId }); // Changed findById to findOne and used userId
+    return county ? county.userId : null;
+  },
+
+  async deleteCountyById(userId) { // Changed parameter name from id to userId
+    return County.findOneAndDelete({ userId }); // Changed findByIdAndDelete to findOneAndDelete and used userId
   },
 
   async deleteAllCounties() {
-    await County.deleteMany({});
-  }
+    return County.deleteMany({});
+  },
 };

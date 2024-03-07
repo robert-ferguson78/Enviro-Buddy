@@ -10,7 +10,7 @@ export const countyJsonStore = {
 
   async addCounty(county) {
     await db.read();
-    county._id = v4();
+    county.countyId = v4();
     db.data.counties.push(county);
     await db.write();
     return county;

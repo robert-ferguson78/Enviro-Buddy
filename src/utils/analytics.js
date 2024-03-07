@@ -1,19 +1,22 @@
-import { db } from "../models/db.js";
+import { User } from "../models/mongo/user.js";
+import { County } from "../models/mongo/county.js";
+import { Dealer } from "../models/mongo/dealer.js";
+import { CarType } from "../models/mongo/cartypes.js";
 
 export async function getAnalyticsByBrand() {
     try {
         console.log("getAnalyticsByBrand");
-        const allUsers = await db.userStore.getAllUsers();
-        const brandUsers = allUsers.filter(user => user.type === "brand");
-        console.log("getAnalyticsByBrand");
+        const brandUsers = await User.find({ type: "brand" });
 
         const analytics = await Promise.all(brandUsers.map(async (user) => {
             let maxDealerCounty = { countyId: null, countyName: null, dealerCount: 0 }; // Initialize maxDealerCounty for each brand user
 
             try {
-                const counties = await db.countyStore.getUserCounties(user._id);
+                const counties = await County.find({ userId: user._id });
+
                 const countsPerCounty = await Promise.all(counties.map(async (county) => {
-                    const dealers = await db.dealerStore.getDealersByCountyId(county._id);
+                    const dealers = await Dealer.find({ countyId: county._id });
+
                     if (dealers.length > maxDealerCounty.dealerCount) { // Update maxDealerCounty if current county has more dealers
                         maxDealerCounty = { countyId: county._id, countyName: county.county, dealerCount: dealers.length };
                     }
@@ -21,7 +24,7 @@ export async function getAnalyticsByBrand() {
                 }));
                 const totalDealerCount = countsPerCounty.reduce((a, b) => a + b, 0);
 
-                const carTypes = await db.carTypeStore.getCarTypesByBrandId(user._id);
+                const carTypes = await CarType.find({ brandId: user._id });
 
                 return {
                     userId: user._id,

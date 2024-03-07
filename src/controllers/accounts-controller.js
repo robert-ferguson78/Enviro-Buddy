@@ -84,7 +84,7 @@ export const accountsController = {
       if (!user || user.password !== password) {
         return h.redirect("/");
       }
-      request.cookieAuth.set({ id: user._id });
+      request.cookieAuth.set({ id: user.userId });
   
       // Check if the user type is admin
       if (user.type === "admin") {
@@ -108,7 +108,9 @@ export const accountsController = {
   },
 
   async validate(request, session) {
+    console.log("Session ID:", session.id);
     const user = await db.userStore.getUserById(session.id);
+    console.log("User:", user);
     if (!user) {
       return { isValid: false };
     }
