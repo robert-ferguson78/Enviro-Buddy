@@ -1,3 +1,4 @@
+import { v4 } from "uuid";
 import { db } from "./connect.js";
 import { dealerFirestoreStore } from "./dealer-fireStore-store.js";
 
@@ -10,8 +11,21 @@ export const countyFirestoreStore = {
     },
 
     async addCounty(county) {
-        const docRef = await countiesRef.add(county);
-        return { _id: docRef.id, ...county };
+        console.log("Starting addCounty with county: ", county);
+        const uniqueId = v4();
+        console.log("Generated uniqueId: ", uniqueId);
+        const data = {
+            _id: uniqueId,
+            ...county
+        };
+        console.log("Data to be added: ", data);
+        try {
+            await countiesRef.doc(uniqueId).set(data);
+            console.log("Document written with ID: ", uniqueId);
+        } catch (error) {
+            console.error("Error writing document: ", error);
+        }
+        return data;
     },
 
     async getCountyById(id) {
@@ -21,6 +35,30 @@ export const countyFirestoreStore = {
             county.dealers = await dealerFirestoreStore.getDealersByCountyId(county._id);
         }
         return county;
+    },
+
+    async getCheckForCounty(newCounty) {
+        const snapshot = await countiesRef
+            .where("userid", "==", newCounty.userid)
+            .where("county", "==", newCounty.county)
+            .get();
+        return snapshot.empty ? null : { _id: snapshot.docs[0].id, ...snapshot.docs[0].data() };
+    },
+
+    async getCountiesByUserId(id) {
+        console.log("getCountiesByUserId ran");
+        const snapshot = await countiesRef.where("userid", "==", id).get();
+        if (snapshot.empty) {
+          console.log("No matching documents.");
+          return [];
+        }  
+      
+        const counties = [];
+        snapshot.forEach(doc => {
+          counties.push({ _id: doc.id, ...doc.data() });
+        });
+      
+        return counties;
     },
 
     async getAllUniqueCounties() {

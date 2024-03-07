@@ -10,6 +10,7 @@ export const dealerFirestoreStore = {
 
     async addDealer(countyId, dealer) {
         dealer.countyId = countyId;
+        console.log("Dealer to be added: ", dealer);
         const docRef = await dealersRef.add(dealer);
         return { _id: docRef.id, ...dealer };
     },

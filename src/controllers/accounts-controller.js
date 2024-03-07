@@ -58,6 +58,7 @@ export const accountsController = {
     },
     handler: async function (request, h) {
       const user = request.payload;
+      console.log("user: ", user);
       // pass "brand" as the user type
       await db.userStore.addUser(user, "brand");
       return h.redirect("/");
@@ -82,7 +83,7 @@ export const accountsController = {
       const { email, password } = request.payload;
       const user = await db.userStore.getUserByEmail(email);
       if (!user || user.password !== password) {
-        return h.redirect("/");
+        return h.redirect("/login");
       }
       request.cookieAuth.set({ id: user._id });
   

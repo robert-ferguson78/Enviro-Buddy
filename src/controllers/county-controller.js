@@ -5,17 +5,21 @@ export const countyController = {
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
+      console.log("loggedInUser:", loggedInUser);
       let counties;
       let showBrandOption = false;
+      console.log("showBrandOptions:", showBrandOption);
       if (loggedInUser && loggedInUser.type === "brand") {
-        const userCounties = await db.countyStore.where("userid", "==", loggedInUser._id).get();
-        console.log("logged in user: ", loggedInUser._id);
-        counties = userCounties.docs.map(doc => doc.data()).sort((a, b) => a.county.localeCompare(b.county));
-        showBrandOption = true;
         console.log("one");
+        console.log("userId is: ", loggedInUser._id);
+        const userCounties = await db.countyStore.getCountiesByUserId(loggedInUser._id);
+        console.log("two");
+        console.log("logged in user: ", loggedInUser._id);
+        counties = userCounties.sort((a, b) => a.county.localeCompare(b.county));
+        showBrandOption = true;
       } else {
-        const allCounties = await db.countyStore.get();
-        counties = allCounties.docs.map(doc => doc.data()).sort((a, b) => a.county.localeCompare(b.county));
+        const allCounties = await db.countyStore.getAllCounties();
+        counties = allCounties.sort((a, b) => a.county.localeCompare(b.county));
       }
       const viewData = {
         title: "Enviro-Buddy County Dashboard",
@@ -76,7 +80,7 @@ export const countyController = {
         console.log("newCounty:", newCounty);
     
         // Check if a county with the same userid and county already exists
-        const existingCounty = await db.countyStore.getCountyByUserIdAndCounty(newCounty);
+        const existingCounty = await db.countyStore.getCheckForCounty(newCounty);
         console.log("addCounty:", existingCounty);
         if (!existingCounty) {
           const createdCounty = await db.countyStore.addCounty(newCounty);
@@ -174,7 +178,9 @@ export const countyController = {
     },
     handler: async function (request, h) {
       const county = await db.countyStore.getCountyById(request.params.id);
+      const loggedInUser = request.auth.credentials;
       const newDealer = {
+        userid: loggedInUser._id,
         name: request.payload.name,
         address: request.payload.address,
         phone: request.payload.phone,

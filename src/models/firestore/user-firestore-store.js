@@ -1,4 +1,7 @@
+import { v4 } from "uuid";
 import { db } from "./connect.js";
+
+// const uniqueId = v4();
 
 const usersRef = db.collection("users");
 
@@ -9,24 +12,34 @@ export const userFirestoreStore = {
     },
 
     async addUser(user, userType) {
-        user.type = userType;
-        console.log("user: ", user);
-        const docRef = await usersRef.set(user);
-        console.log("Document written with ID: ", docRef.id);
-        return { _id: docRef.id, ...user };
-    },
-
-    // async addUser(){
-    //     const data = {
-    //         name: "Los Angeles",
-    //         state: "CA",
-    //         country: "USA"
-    //       };
-          
-    //       // Add a new document in collection "cities" with ID 'LA'
-    //       const res = await db.collection("users").doc("6557766887").set(data);
-    //       console.log("Document written with ID: ", res);
-    // },
+        const uniquId = v4();
+        console.log("userType: ", userType);
+        let data;
+        if (userType === "brand") {
+        data = {
+            name: user.name,
+            brandName: user.brandName,
+            email: user.email,
+            password: user.password,
+            type: userType,
+            _id: uniquId,
+        };
+        } else {
+        data = {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            password: user.password,
+            type: userType,
+            _id: uniquId,
+        };
+        }
+        // console.log("what is data: ", data);
+      
+        const docRef = await usersRef.doc(uniquId).set(data)
+        console.log("Document written with ID: ", uniquId);
+        return { _id: uniquId, ...user };
+      },
 
     async getUserById(id) {
         const doc = await usersRef.doc(id).get();

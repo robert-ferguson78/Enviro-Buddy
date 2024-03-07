@@ -1,35 +1,34 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
 import dotenv from "dotenv";
 
+// import { readFile } from "node:fs/promises";
+
 import { initializeApp, applicationDefault, cert } from "firebase-admin/app";
+
 import { getFirestore, Timestamp, FieldValue, Filter } from "firebase-admin/firestore";
 
-// starting .env
 dotenv.config();
 
-// initializeApp({
-//   credential: applicationDefault()
-// });
+// const fileUrl = new URL("../../config/envirobuddykey.json", import.meta.url);
+// const serviceAccount = JSON.parse(await readFile(fileUrl, "utf8"));
 
-// const db = getFirestore();
+initializeApp({
+  credential: cert(
+    {
+      "type": process.env.FBtype,
+      "project_id": process.env.FBproject_id,
+      "private_key_id": process.env.FBprivate_key_id,
+      "private_key": process.env.FBprivate_key,
+      "client_email": process.env.FBclient_email,
+      "client_id": process.env.FBclient_id,
+      "auth_uri": process.env.FBauth_uri,
+      "token_uri": process.env.FBtoken_uri,
+      "auth_provider_x509_cert_url": process.env.FBauth_provider_x509_cert_url,
+      "client_x509_cert_url": process.env.FBclient_x509_cert_url,
+      "universe_domain": process.env.FBuniverse_domain
+    }
+  )
+});
 
-
-// setting keys for firebase auth 
-const firebaseConfig = {
-    apiKey: process.env.api_key,
-    authDomain: process.env.auth_domain,
-    projectId: process.env.project_id,
-    storageBucket: process.env.storage_bucket,
-    messagingSenderId: process.env.messaging_sender_id,
-    appId: process.env.app_id,
-    measurementId: process.env.measurement_id
-  };
- 
-// // initialisating database with config
-initializeApp(firebaseConfig);
-
-// // setting firestore to export
-const db = firebase.firestore();
+const db = getFirestore();
 
 export { db };
