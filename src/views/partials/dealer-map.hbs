@@ -16,27 +16,34 @@
   // creating a marker for each placemark and adding it to the map
   let marker, circle, zoomed; 
   {{#each dealerInfo}}
-  marker = L.marker([{{latitude}}, {{longitude}}], {title: "{{name}}"});
-  // adding a popup to the marker that displays the placemark title and image if it exists
-  marker.bindPopup("<span class='popup-stats-ctn title'><strong>{{name}}</strong></span>" 
-                    + "<div class='popup-stats-ctn'><span>"
-                    + "<i class='fa-solid fa-address-book'></i></span><span class='details'> {{address}}"
-                    + "</span></div><div class='popup-stats-ctn'><span>"
-                    + "<i class='fa-solid fa-phone'></i></span><span class='details'> {{phone}}"
-                    + "</span></div><div class='popup-stats-ctn'><span>"
-                    + "<i class='fa-solid fa-envelope'></i></span><span class='details'> {{email}}"
-                    + "</span></div><div class='popup-stats-ctn'><span>"
-                    + "<i class='fa-solid fa-globe-pointer'></i></span><span class='details'> {{website}}"
-                    + "</span></div>"
-                    );
-  marker.addTo(map).on('click', function(e) {
-  var myDiv = document.getElementById('test1');
-  if (myDiv.style.display === 'none') {
-    myDiv.style.display = 'block';
-    document.getElementById('test1').innerHTML = "{{name}}";
-  } else {
-     document.getElementById('test1').innerHTML = "{{name}}";
-  }
-  });
+      marker = L.marker([{{latitude}}, {{longitude}}], {title: "{{name}}"});
+      // adding a popup to the marker that displays the placemark title and image if it exists
+      marker.bindPopup("<span class='popup-stats-ctn title'><strong>{{name}}</strong></span>" 
+                        + "<div class='popup-stats-ctn'><span>"
+                        + "<i class='fa-solid fa-car-side'></i></span><span class='details'> {{brandName}}"
+                        + "</span></div><div class='popup-stats-ctn'><span>"
+                        + "<i class='fa-solid fa-address-book'></i></span><span class='details'> {{address}}"
+                        + "</span></div><div class='popup-stats-ctn'><span>"
+                        + "<i class='fa-solid fa-phone'></i></span><span class='details'> {{phone}}"
+                        + "</span></div>"
+                        );
+      marker.addTo(map).on('click', function(e) {
+      var myDiv = document.getElementById('test1');
+      if (myDiv.style.display === 'none') {
+        myDiv.style.display = 'block';
+        document.getElementById('test1').innerHTML = "{{name}}";
+      } else {
+        document.getElementById('test1').innerHTML = "{{name}}";
+      }
+      });
   {{/each}}
 </script>
+
+{{#each dealerInfo}}
+lat= {{latitude}}
+long= {{longitude}}
+title= {{name}}
+address= {{address}}
+phone= {{phone}}
+website= {{website}}
+{{/each}}

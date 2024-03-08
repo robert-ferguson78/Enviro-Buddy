@@ -5,7 +5,7 @@ export const adminController = {
     index: {
         handler: async function (request, h) {
             const loggedInUser = request.auth.credentials;
-            console.log("adminController.index");
+            // console.log("adminController.index");
             if (loggedInUser.type !== "admin") {
                 return h.redirect("/");
             }
@@ -15,21 +15,21 @@ export const adminController = {
             const normalUsers = allUsers.filter(user => user.type === "user");
 
             // Call the getAnalyticsByBrand function
-            const analyticsByBrand = await getAnalyticsByBrand();
+            // const analyticsByBrand = await getAnalyticsByBrand();
 
             const viewData = {
                 brandUsers,
                 normalUsers,
-                analyticsByBrand,
+                // analyticsByBrand,
             };
-            console.log("analytocs brand info: ", analyticsByBrand);
+            // console.log("analytocs brand info: ", analyticsByBrand);
             return h.view("admin-view", viewData);
         },
     },
     removeUser: {
         handler: async function (request, h) {
             const loggedInUser = request.auth.credentials;
-            console.log("remove user");
+            // console.log("remove user");
             if (loggedInUser.type !== "admin") {
                 return h.redirect("/");
             }

@@ -54,7 +54,7 @@ async function init() {
         ...request.response.source.context,
         ...context
       };
-      console.log("some text here: ", request.response.source.context.user);
+      // console.log("some text here: ", request.response.source.context.user);
     }
     return h.continue;
   });

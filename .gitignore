@@ -1,6 +1,9 @@
 # IDE
 .idea
 
+# Firestore functions ignore node_modules
+functions/node_modules
+
 # Logs
 logs
 *.log

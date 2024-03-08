@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 import { db } from "./connect.js";
-import { dealerFirestoreStore } from "./dealer-fireStore-store.js";
+import { dealerFirestoreStore } from "./dealer-firestore-store.js";
 
 const countiesRef = db.collection("counties");
 

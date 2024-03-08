@@ -53,8 +53,8 @@
                 <div class="select">
                     <select name="county">
                     <option value="">Select County</option>
-                        {{#each counties}}
-                            <option value="{{this.county}}">{{this.county}}</option>
+                        {{#each uniqueCountyNames}}
+                            <option value="{{this}}">{{this}}</option>
                         {{/each}}
                     </select>
                 </div>

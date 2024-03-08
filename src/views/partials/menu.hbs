@@ -10,7 +10,7 @@
         <div class="buttons">
           {{#if user}}
             {{#if (eq user.type "admin")}}
-              <a id="dashboard" class="button" href="/dashboard"> Dashboard </a>
+              <a id="dashboard" class="button" href="/admindashboard"> Dashboard </a>
               <a id="dashboard" class="button" href="/logout"> Logout </a>
             {{else if (eq user.type "brand")}}
               <a id="dashboard" class="button" href="/dashboard"> Dashboard </a>
