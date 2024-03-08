@@ -25,7 +25,7 @@
                         + "<i class='fa-solid fa-address-book'></i></span><span class='details'> {{address}}"
                         + "</span></div><div class='popup-stats-ctn'><span>"
                         + "<i class='fa-solid fa-phone'></i></span><span class='details'> {{phone}}"
-                        + "</span>here is the ID: {{_id}}</div>"
+                        + "</span></div>"
                         );
       marker.addTo(map).on('click', function(e) {
         // Get all blocks with class hide-dealerinfo
@@ -39,7 +39,12 @@
         // Get the clicked block
         var myDiv = document.getElementById('{{_id}}');
         // Scroll variable div blok ID
-        var myScrollDiv = document.getElementById('dealerinfoctn');
+        // var myScrollDiv = document.getElementById('dealerinfoctn');
+
+        // Jquery scroll to the myDiv element
+        $('html, body').animate({
+            scrollTop: $("#dealerinfoctn").offset().top
+        }, 600); // 2000 is the duration of the animation in milliseconds
 
         // Set the clicked block to display: block
         if (myDiv.style.display === 'none') {
