@@ -9,3 +9,54 @@
       </div>
     </div>
 </section>
+
+{{#each dealerInfo}}
+<div class="columns pb-6">
+  <div class="column is-full box box-link-hover-shadow">
+    <div class="columns">
+      <div class="column is-one-quarter">
+        <h2 class="title is-4">
+          Dealer Details
+        </h2>
+        <span><i class='fa-solid fa-car-side'></i> <b>Dealer Name:</b> {{name}}</span><br />
+        <span><i class='fa-solid fa-address-book'></i> <b>Dealer Address:</b> {{address}}</span><br />
+        <span><i class='fa-solid fa-phone'></i> <b>Phone:</b> {{phone}}</span><br />
+        <span><i class="fa-solid fa-envelope"></i> <b>Email:</b> {{email}}</span><br />
+        <span><i class="fa-solid fa-globe-pointer"></i> <b>Website:</b> {{website}}</span>
+      </div>
+      <div class="column">
+        <h2 class="title is-4">
+          Electric Vehicles Available at Dealership
+        </h2>
+        {{#each carTypes}}
+          {{#if @first}}
+            <div class="columns">
+          {{/if}}
+          <div class="column is-one-third">
+            <div class="box box-link-hover-shadow">
+              <img src="{{imageUrl}}">
+              <h2 class="subtitle is-7 mb-1">
+                <b>Car Model:</b> {{carName}}
+              </h2>
+              <h3 class="subtitle is-7 mb-1">
+                <b>Car Body Type:</b> {{carType}}
+              </h3>
+              <h3 class="subtitle is-7 mb-1">
+                <b>Car Range:</b> {{carRange}}
+              </h3>
+            </div>
+          </div>
+          {{#if @last}}
+            </div>
+          {{else}}
+            {{#modAdd1 @index 3}}
+              </div>
+              <div class="columns">
+            {{/modAdd1}}
+          {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}

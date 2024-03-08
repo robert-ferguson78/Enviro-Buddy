@@ -47,6 +47,7 @@ export const userController = {
                 return {
                     ...userForDealer,
                     name: dealer.name,
+                    website: dealer.website,
                     county: userCounty ? userCounty.county : "N/A",
                     carTypes: userCarTypes ? userCarTypes.map(carType => ({
                         carName: carType.carName,
