@@ -16,7 +16,8 @@ export const accountsController = {
         console.log("user is not authenticated");
       }
       console.log("rendering view");
-      return h.view("main", { title: "Welcome to Enviro-Buddy", ...viewData });
+      // return h.view("main", { title: "Welcome to Enviro-Buddy", ...viewData });
+      return h.redirect("/envirobuddy");
     },
   },
   showSignup: {
