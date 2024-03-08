@@ -27,7 +27,7 @@
 
 <!-- Content for each tab -->
 <div id="search-by-brand" class="tab-content" style="display: block;">
-    <form action="/filter/carbrand" method="get">
+    <form action="/envirobuddy/carbrand/" method="get">
         <div class="field has-addons has-addons-centered">
             <div class="control">
                 <div class="select">
@@ -47,11 +47,11 @@
 </div>
 
 <div id="search-by-county" class="tab-content" style="display: none;">
-    <form action="/filter/carcounty" method="get">
+    <form action="/envirobuddy/carcounty/" method="get">
         <div class="field has-addons has-addons-centered">
             <div class="control">
                 <div class="select">
-                    <select name="county">
+                    <select name="countyName">
                     <option value="">Select County</option>
                         {{#each uniqueCountyNames}}
                             <option value="{{this}}">{{this}}</option>
@@ -67,7 +67,7 @@
 </div>
 
 <div id="search-by-cartype" class="tab-content" style="display: none;">
-    <form action="/filter/carbody" method="get">
+    <form action="/envirobuddy/carbodytype/" method="get">
         <div class="field has-addons has-addons-centered">
             <div class="control">
                 <div class="select">
@@ -112,5 +112,23 @@
         }
       });
     });
+  });
+
+  document.getElementById('carBodyType').addEventListener('change', function() {
+      var form = document.getElementById('bodyTypeForm'); // Assuming the form id is 'bodyTypeForm'
+      var selectedBodyType = this.value;
+      form.action = "/envirobuddy/carbodytype/" + selectedBodyType; // Assuming the route is '/envirobuddy/carbodytype/'
+  });
+
+  document.querySelector('select[name="brandName"]').addEventListener('change', function() {
+      var form = this.closest('form');
+      var selectedBrandName = this.value;
+      form.action = "/envirobuddy/carbrand/" + selectedBrandName;
+  });
+
+  document.querySelector('select[name="countyName"]').addEventListener('change', function() {
+      var form = this.closest('form');
+      var selectedCounty = this.value;
+      form.action = "/envirobuddy/carcounty/" + selectedCountyName;
   });
 </script>

@@ -25,16 +25,30 @@
                         + "<i class='fa-solid fa-address-book'></i></span><span class='details'> {{address}}"
                         + "</span></div><div class='popup-stats-ctn'><span>"
                         + "<i class='fa-solid fa-phone'></i></span><span class='details'> {{phone}}"
-                        + "</span></div>"
+                        + "</span>here is the ID: {{_id}}</div>"
                         );
       marker.addTo(map).on('click', function(e) {
-      var myDiv = document.getElementById('test1');
-      if (myDiv.style.display === 'none') {
-        myDiv.style.display = 'block';
-        document.getElementById('test1').innerHTML = "{{name}}";
-      } else {
-        document.getElementById('test1').innerHTML = "{{name}}";
-      }
+        // Get all blocks with class hide-dealerinfo
+        var dealerInfoBlocks = document.querySelectorAll('.hide-dealerinfo');
+        
+        // Set all blocks with class hide-dealerinfo to display: none
+        dealerInfoBlocks.forEach(function(block) {
+          block.style.display = 'none';
+        });
+
+        // Get the clicked block
+        var myDiv = document.getElementById('{{_id}}');
+        // Scroll variable div blok ID
+        var myScrollDiv = document.getElementById('dealerinfoctn');
+
+        // Set the clicked block to display: block
+        if (myDiv.style.display === 'none') {
+          myDiv.style.display = 'block';
+          // Scroll to the myDiv element
+          myScrollDiv.scrollIntoView({behavior: "smooth"});
+        } else {
+          console.log('display is not none');
+        }
       });
   {{/each}}
 </script>

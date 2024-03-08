@@ -25,7 +25,10 @@ export const webRoutes = [
   { method: "GET", path: "/about", config: aboutController.index },
 
   { method: "GET", path: "/envirobuddy", config: userController.index },
-
+  { method: "GET", path: "/envirobuddy/carcounty/", config: userController.carCounty },
+  { method: "GET", path: "/envirobuddy/carbrand/", config: userController.carBrand },
+  { method: "GET", path: "/envirobuddy/carbodytype/", config: userController.bodyType },
+  
   { method: "GET", path: "/dashboard", config: dashboardController.index },
   { method: "GET", path: "/brandcounties/{id}", config: countyController.adminIndex },
   { method: "GET", path: "/counties", config: countyController.index },

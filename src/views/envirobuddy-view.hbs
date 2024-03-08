@@ -3,16 +3,16 @@
 <section class="section">
   {{> filter-menu}}
   {{> dealer-map}}
-    <div id="test1" class="block" style="display:none;">
+    {{!-- <div id="test1" class="block" style="display:none;">
       <div class="box">
         <p>User area block 2</p>
       </div>
-    </div>
+    </div> --}}
 </section>
 
 {{#each dealerInfo}}
-<div class="columns pb-6">
-  <div class="column is-full box box-link-hover-shadow">
+<div id="dealerinfoctn" class="columns">
+  <div id="{{_id}}" class="column is-full box box-link-hover-shadow mb-6 hide-dealerinfo" style="display:none;">
     <div class="columns">
       <div class="column is-one-quarter">
         <h2 class="title is-4">
