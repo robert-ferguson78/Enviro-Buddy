@@ -7,6 +7,7 @@ const carTypesRef = db.collection("carTypes");
 
 export const userController = {
     index: {
+        auth: false,
         handler: async function (request, h) {
             const usersSnapshot = await usersRef.where("type", "==", "brand").get();
             const users = usersSnapshot.docs.map(doc => ({ _id: doc.id, ...doc.data() }));
@@ -76,6 +77,7 @@ export const userController = {
         },
     },
     bodyType: {
+        auth: false,
         handler: async function (request, h) {
             const { carBodyType } = request.query;
             console.log("Query parameters:", request.query);
@@ -152,6 +154,7 @@ export const userController = {
         },
     },
     carBrand: {
+        auth: false,
         handler: async function (request, h) {
         try {
             const { brandName } = request.query;
@@ -232,6 +235,7 @@ export const userController = {
         },
     },
     carCounty: {
+        auth: false,
         handler: async function (request, h) {
             const { countyName } = request.query;
             console.log("Query parameters:", request.query);
