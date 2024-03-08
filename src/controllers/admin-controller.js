@@ -15,14 +15,14 @@ export const adminController = {
             const normalUsers = allUsers.filter(user => user.type === "user");
 
             // Call the getAnalyticsByBrand function
-            // const analyticsByBrand = await getAnalyticsByBrand();
+            const analyticsByBrand = await getAnalyticsByBrand();
 
             const viewData = {
                 brandUsers,
                 normalUsers,
-                // analyticsByBrand,
+                analyticsByBrand,
             };
-            // console.log("analytocs brand info: ", analyticsByBrand);
+            console.log("analytocs brand info: ", analyticsByBrand);
             return h.view("admin-view", viewData);
         },
     },
