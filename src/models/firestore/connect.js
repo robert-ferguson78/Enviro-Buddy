@@ -17,7 +17,7 @@ initializeApp({
       "type": process.env.FBtype,
       "project_id": process.env.FBproject_id,
       "private_key_id": process.env.FBprivate_key_id,
-      "private_key": process.env.FBprivate_key,
+      "private_key": process.env.FBprivate_key.replace(/\\n/g, "\n"),
       "client_email": process.env.FBclient_email,
       "client_id": process.env.FBclient_id,
       "auth_uri": process.env.FBauth_uri,
