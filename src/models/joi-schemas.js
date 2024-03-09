@@ -1,16 +1,31 @@
 import Joi from "joi";
 
-export const UserCredentialsSpec = {
-  email: Joi.string().email().required(),
-  password: Joi.string().required(),
-};
+export const IdSpec = Joi.alternatives().try(Joi.string(), Joi.object()).description("a valid ID");
 
-export const UserSpec = {
-  firstName: Joi.string().required(),
-  lastName: Joi.string().required(),
-  email: Joi.string().email().required(),
-  password: Joi.string().required(),
-};
+// spec for users credentials
+export const UserCredentialsSpec = Joi.object()
+  .keys({
+    email: Joi.string().example("admin@test.com").required(),
+    password: Joi.string().example("secret123").required(),
+  })
+  .label("UserCredentials");
+
+// spec for users
+export const UserSpec = UserCredentialsSpec.keys({
+  firstName: Joi.string().example("Homer").optional(),
+  lastName: Joi.string().example("Simpson").optional(),
+  brandName: Joi.string().example("Simpson").optional(),
+  type: Joi.string().example("Simpson").optional(),
+  name: Joi.string().example("name").optional(),
+}).label("UserDetails");
+
+// adding Id and V for swagger
+export const UserSpecPlus = UserSpec.keys({
+  _id: IdSpec,
+  __v: Joi.number(),
+}).label("UserDetailsPlus");
+
+export const UserArray = Joi.array().items(UserSpecPlus).label("UserArray");
 
 export const BrandUserSpec = {
   name: Joi.string().required(),
@@ -29,6 +44,12 @@ export const DealerSpec = {
   longitude: Joi.number().required(),
 };
 
+// adding Id and V for swagger
+export const DealerSpecPlus = DealerSpec.keys({
+  _id: IdSpec,
+  __v: Joi.number(),
+}).label("DealerDetailsPlus");
+
 export const CountySpec = {
   county: Joi.string().required(),
 };
@@ -45,3 +66,10 @@ export const EditCarTypeSpec = {
   carType: Joi.string().required(),
   image: Joi.any().required(),
 };
+
+export const JwtAuth = Joi.object()
+  .keys({
+    success: Joi.boolean().example("true").required(),
+    token: Joi.string().example("eyJhbGciOiJND.g5YmJisIjoiaGYwNTNjAOhE.gCWGmY5-YigQw0DCBo").required(),
+  })
+  .label("Jwt Authentification");

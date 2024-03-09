@@ -12,8 +12,11 @@ export const userFirestoreStore = {
     },
 
     async addUser(user, userType) {
-        const uniquId = v4();
-        console.log("userType: ", userType);
+        // console.log("user._id: ", user._id); // Add this line
+        // console.log("user is: ", user); // Add this line
+        const uniquId = user._id || v4();
+        // console.log("uniquId: ", uniquId); // Add this line
+        // console.log("userType: ", userType);
         let data;
         if (userType === "brand") {
         data = {
@@ -34,16 +37,23 @@ export const userFirestoreStore = {
             _id: uniquId,
         };
         }
-        // console.log("what is data: ", data);
+        console.log("what is data: ", data);
       
         const docRef = await usersRef.doc(uniquId).set(data)
-        console.log("Document written with ID: ", uniquId);
-        return { _id: uniquId, ...user };
+        console.log("uniquId: ", uniquId);
+        return { ...data };
       },
 
-    async getUserById(id) {
-        const doc = await usersRef.doc(id).get();
-        return doc.exists ? { _id: doc.id, ...doc.data() } : null;
+    async getUserById(_id) {
+    // console.log("this.userCollection in getUserById: ", usersRef); // Add this line
+    const users = await usersRef.where("_id", "==", _id).get();
+    if (users.empty) {
+        return null;
+    }
+    if (users.size > 1) {
+        throw new Error(`Multiple users found with _id: ${_id}`);
+    }
+    return users.docs[0].data();
     },
 
     async getUserByEmail(email) {
@@ -63,7 +73,7 @@ export const userFirestoreStore = {
 
     async deleteAll() {
         const snapshot = await usersRef.get();
-        const batch = fireStore.batch();
+        const batch = db.batch();
         snapshot.docs.forEach((doc) => {
             batch.delete(doc.ref);
         });

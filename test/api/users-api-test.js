@@ -1,21 +1,25 @@
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
 import { playtimeService } from "./playtime-service.js";
-import { maggie, testUsers } from "../fixtures.js";
+import { maggie, maggieNoId, maggieCredentials, testUsers } from "../fixtures.js";
 import { db } from "../../src/models/db.js";
 
 suite("User API tests", () => {
   setup(async () => {
+    await playtimeService.createUser(maggieNoId);
+    await playtimeService.authenticate(maggieCredentials);
     await playtimeService.deleteAllUsers();
     for (let i = 0; i < testUsers.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
       testUsers[0] = await playtimeService.createUser(testUsers[i]);
     }
+    await playtimeService.createUser(maggie);
+    await playtimeService.authenticate(maggieCredentials);
   });
   teardown(async () => {});
 
   test("create a user", async () => {
-    const newUser = await playtimeService.createUser(maggie);
+    const newUser = await playtimeService.createUser(maggieNoId, "user");
     assertSubset(maggie, newUser);
     assert.isDefined(newUser._id);
   });
