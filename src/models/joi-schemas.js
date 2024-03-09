@@ -34,7 +34,7 @@ export const BrandUserSpec = {
   password: Joi.string().required(),
 };
 
-export const DealerSpec = {
+export const DealerSpec = Joi.object() .keys({
   name: Joi.string().required(),
   address: Joi.string().required(),
   phone: Joi.string().allow("").optional(),
@@ -42,7 +42,7 @@ export const DealerSpec = {
   website: Joi.string().allow("").optional(),
   latitude: Joi.number().required(),
   longitude: Joi.number().required(),
-};
+});
 
 // adding Id and V for swagger
 export const DealerSpecPlus = DealerSpec.keys({

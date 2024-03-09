@@ -85,4 +85,17 @@ export const playtimeService = {
     const res = await axios.delete(`${this.playtimeUrl}/api/dealers/${id}`);
     return res.data;
   },
+
+  async clearAuth() {
+    axios.defaults.headers.common["Authorization"] = "";
+  },
+
+  async authenticate(user) {
+    const response = await axios.post(`${this.playtimeUrl}/api/users/authenticate`, user);
+    // eslint-disable-next-line prefer-template
+    axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
+    // axios.defaults.headers.common["Authorization"] = response.data.token;
+    return response.data;
+  },
+
 };
