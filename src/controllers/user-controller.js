@@ -7,8 +7,20 @@ const carTypesRef = db.collection("carTypes");
 
 export const userController = {
     index: {
-        auth: false,
+        auth: {
+            mode: "try"
+          },
         handler: async function (request, h) {
+            if (request.auth.isAuthenticated) {
+                console.log("user is authenticated");
+                // viewData.user = request.auth.credentials;
+              } else {
+                console.log("user is not authenticated");
+              }
+            function getDealerCountForCounty(countyId, dealers) {
+                return dealers.filter(dealer => dealer.countyId === countyId).length;
+            }
+
             const usersSnapshot = await usersRef.where("type", "==", "brand").get();
             const users = usersSnapshot.docs.map(doc => ({ _id: doc.id, ...doc.data() }));
             console.log("Users of type brand:", users);
@@ -24,7 +36,7 @@ export const userController = {
 
             const countyNames = counties.map(county => county.county);
             // Remove duplicates
-            const uniqueCountyNames = countyNames.filter((county, index) => countyNames.indexOf(county) === index);
+            const uniqueCountyNames = counties.filter(county => getDealerCountForCounty(county._id, dealers) > 0).map(county => county.county);
 
 
             const carTypesSnapshot = await carTypesRef.get();
@@ -77,8 +89,14 @@ export const userController = {
         },
     },
     bodyType: {
-        auth: false,
+        auth: {
+            mode: "try"
+          },
         handler: async function (request, h) {
+            function getDealerCountForCounty(countyId, dealers) {
+                return dealers.filter(dealer => dealer.countyId === countyId).length;
+            }
+            
             const { carBodyType } = request.query;
             console.log("Query parameters:", request.query);
             console.log("Body Type:", carBodyType);
@@ -98,7 +116,7 @@ export const userController = {
 
             const countyNames = counties.map(county => county.county);
             // Remove duplicates
-            const uniqueCountyNames = countyNames.filter((county, index) => countyNames.indexOf(county) === index);
+            const uniqueCountyNames = counties.filter(county => getDealerCountForCounty(county._id, dealers) > 0).map(county => county.county);
 
 
             const carTypesSnapshot = await carTypesRef.get();
@@ -154,18 +172,22 @@ export const userController = {
         },
     },
     carBrand: {
-        auth: false,
+        auth: {
+            mode: "try"
+          },
         handler: async function (request, h) {
+            function getDealerCountForCounty(countyId, dealers) {
+                return dealers.filter(dealer => dealer.countyId === countyId).length;
+            }
         try {
             const { brandName } = request.query;
-            console.log("Query parameters:", request.query);
-            console.log("Brand Name:", brandName);
-    
+            // console.log("Query parameters:", request.query);
+            // console.log("Brand Name:", brandName);
             const usersSnapshot = await usersRef.where("type", "==", "brand").get();
             const users = usersSnapshot.docs.map(doc => ({ _id: doc.id, ...doc.data() }));
             console.log("Users of type brand:", users);
             const brandNames = users.map(user => user.brandName);
-    
+
             const dealersSnapshot = await dealersRef.get();
             const dealers = dealersSnapshot.docs.map(doc => ({ _id: doc.id, ...doc.data() }));
             console.log("Dealers:", dealers);
@@ -175,7 +197,7 @@ export const userController = {
             console.log("Counties:", counties);
     
             const countyNames = counties.map(county => county.county);
-            const uniqueCountyNames = countyNames.filter((county, index) => countyNames.indexOf(county) === index);
+            const uniqueCountyNames = counties.filter(county => getDealerCountForCounty(county._id, dealers) > 0).map(county => county.county);
     
             const carTypesSnapshot = await carTypesRef.get();
             const carTypes = carTypesSnapshot.docs.map(doc => ({ _id: doc.id, ...doc.data() }));
@@ -235,8 +257,13 @@ export const userController = {
         },
     },
     carCounty: {
-        auth: false,
+        auth: {
+            mode: "try"
+          },
         handler: async function (request, h) {
+            function getDealerCountForCounty(countyId, dealers) {
+                return dealers.filter(dealer => dealer.countyId === countyId).length;
+            }
             const { countyName } = request.query;
             console.log("Query parameters:", request.query);
             console.log("county:", countyName);
@@ -256,7 +283,7 @@ export const userController = {
 
             const countyNames = counties.map(county => county.county);
             // Remove duplicates
-            const uniqueCountyNames = countyNames.filter((county, index) => countyNames.indexOf(county) === index);
+            const uniqueCountyNames = counties.filter(county => getDealerCountForCounty(county._id, dealers) > 0).map(county => county.county);
 
 
             const carTypesSnapshot = await carTypesRef.get();

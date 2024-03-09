@@ -1,3 +1,7 @@
+.navbar {
+    background-color: #066F64;
+    min-height:130px;
+}
 .caps {
     text-transform: capitalize;
 }
@@ -16,4 +20,8 @@
 }
 .popup-stats-ctn span.details {
     margin-left: 10px;
+}
+.logo {
+    min-width: 100px;
+    min-height: 100%;
 }

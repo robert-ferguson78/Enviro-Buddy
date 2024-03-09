@@ -1,14 +1,11 @@
 {{> menu active="envirobuddy"}}
 
-<section class="section">
-  {{> filter-menu}}
-  {{> dealer-map}}
-    {{!-- <div id="test1" class="block" style="display:none;">
-      <div class="box">
-        <p>User area block 2</p>
-      </div>
-    </div> --}}
-</section>
+<div class="columns">
+  <div class="column">
+    {{> filter-menu}}
+    {{> dealer-map}}
+  </div>
+</div>
 
 {{#each dealerInfo}}
 <div id="dealerinfoctn" class="columns">

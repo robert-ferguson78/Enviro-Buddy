@@ -1,66 +1,73 @@
-<nav class="navbar">
-  <div class="navbar-brand">
-    {{> envirobuddy-brand}}
-  </div>
-  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false"> <span aria-hidden="true"></span>
-    <span aria-hidden="true"></span> <span aria-hidden="true"></span> </a>
-  <div class="navbar-menu" id="navMenu">
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          {{#if user}}
-            {{#if (eq user.type "admin")}}
-              <a id="dashboard" class="button" href="/admindashboard"> Dashboard </a>
-              <a id="dashboard" class="button" href="/logout"> Logout </a>
-            {{else if (eq user.type "brand")}}
-              <a id="dashboard" class="button" href="/dashboard"> Dashboard </a>
-              <a id="counties" class="button" href="/counties"> Counties </a>
-              <a id="cartype" class="button" href="/cartype"> Cartype </a>
-              <a id="about" class="button" href="/about"> About </a>
-              <a id="logout" class="button" href="/logout"> Logout </a>
-            {{else if (eq user.type "user")}}
+<nav class="navbar mb-6">
+  <div class="container">
+    <div class="navbar-brand">
+      {{> envirobuddy-brand}}
+    </div>
+    <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false"> <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span> <span aria-hidden="true"></span> </a>
+    <div class="navbar-menu" id="navMenu">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            {{#if user}}
+              {{#if (eq user.type "admin")}}
+                <a id="dashboard" class="button" href="/admindashboard"> Dashboard </a>
+                <a id="about" class="button" href="/about"> About </a>
+                <a id="dashboard" class="button" href="/logout"> Logout </a>
+              {{else if (eq user.type "brand")}}
+                <a id="dashboard" class="button" href="/dashboard"> Dashboard </a>
+                <a id="counties" class="button" href="/counties"> Counties </a>
+                <a id="cartype" class="button" href="/cartype"> Cartype </a>
+                <a id="about" class="button" href="/about"> About </a>
+                <a id="logout" class="button" href="/logout"> Logout </a>
+              {{else if (eq user.type "user")}}
+                <a id="envirobuddy" class="button" href="/envirobuddy"> Enviro-Buddy </a>
+                <a id="about" class="button" href="/about"> About </a>
+                <a id="logout" class="button" href="/logout"> Logout </a>
+              {{/if}}
+            {{else}}
               <a id="envirobuddy" class="button" href="/envirobuddy"> Enviro-Buddy </a>
-              <a id="logout" class="button" href="/logout"> Logout </a>
+              <a id="about" class="button" href="/about"> About </a>
+              <a class="button" id="login" href="/login"> Log in </a>
+              <a class="button" id="signup" href="/signup"> Sign up </a>
             {{/if}}
-          {{else}}
-            <a class="button" id="login" href="/login"> Log in </a>
-            <a class="button" id="signup" href="/signup"> Sign up </a>
-          {{/if}}
+          </div>
         </div>
       </div>
     </div>
   </div>
 </nav>
 
-<script>
-  let activeElement = document.getElementById("{{active}}");
-  if (activeElement) {
-      activeElement.classList.add("is-primary");
-  } else {
-      // console.error(`Element with id '{{active}}' not found`);
-  }
-  document.addEventListener("DOMContentLoaded", () => {
-    // Get all "navbar-burger" elements
-    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll(".navbar-burger"), 0);
-    // Check if there are any navbar burgers
-    if ($navbarBurgers.length > 0) {
-      // Add a click event on each of them
-      $navbarBurgers.forEach(el => {
-        el.addEventListener("click", () => {
-          // Get the target from the "data-target" attribute
-          const target = el.dataset.target;
-          const $target = document.getElementById(target);
-          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-          // Check if $target exists
-          if ($target) {
-              // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-              el.classList.toggle("is-active");
-              $target.classList.toggle("is-active");
-          } else {
-              console.error(`Element with id '${target}' not found`);
-          }
-        });
-      });
+<div class="container">
+  <script>
+    let activeElement = document.getElementById("{{active}}");
+    if (activeElement) {
+        activeElement.classList.add("is-primary");
+    } else {
+        // console.error(`Element with id '{{active}}' not found`);
     }
-  });
-</script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Get all "navbar-burger" elements
+      const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll(".navbar-burger"), 0);
+      // Check if there are any navbar burgers
+      if ($navbarBurgers.length > 0) {
+        // Add a click event on each of them
+        $navbarBurgers.forEach(el => {
+          el.addEventListener("click", () => {
+            // Get the target from the "data-target" attribute
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            // Check if $target exists
+            if ($target) {
+                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                el.classList.toggle("is-active");
+                $target.classList.toggle("is-active");
+            } else {
+                console.error(`Element with id '${target}' not found`);
+            }
+          });
+        });
+      }
+    });
+  </script>

@@ -4,19 +4,19 @@
 
 <div class="tabs is-toggle is-fullwidth">
   <ul>
-    <li class="is-active" data-target="search-by-brand">
+    <li id="brand-tab" class="" data-target="search-by-brand">
       <a>
         <span class="icon is-small"><i class="fa-solid fa-car" aria-hidden="true"></i></span>
         <span>Search by Car Brand</span>
       </a>
     </li>
-    <li data-target="search-by-county">
+    <li id="county-tab" class="" data-target="search-by-county">
       <a>
         <span class="icon is-small"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i></span>
         <span>Search by County</span>
       </a>
     </li>
-    <li data-target="search-by-cartype">
+    <li id="cartype-tab" class="" data-target="search-by-cartype">
       <a>
         <span class="icon is-small"><i class="fa-solid fa-car-side-bolt" aria-hidden="true"></i></span>
         <span>Search by Car Body Type</span>
@@ -89,14 +89,14 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     // Find all tabs
-    const tabs = document.querySelectorAll('.tabs ul li');
+    const highlightTabs = document.querySelectorAll('.tabs ul li');
     
-    tabs.forEach(tab => {
+    highlightTabs.forEach(tab => {
       tab.addEventListener('click', function(e) {
         e.preventDefault();
         
         // Remove is-active class from all tabs
-        tabs.forEach(t => t.classList.remove('is-active'));
+        highlightTabs.forEach(t => t.classList.remove('is-active'));
         
         // Add is-active class to clicked tab
         this.classList.add('is-active');
@@ -112,23 +112,36 @@
         }
       });
     });
-  });
 
-  document.getElementById('carBodyType').addEventListener('change', function() {
-      var form = document.getElementById('bodyTypeForm'); // Assuming the form id is 'bodyTypeForm'
+  document.querySelector('select[name="carBodyType"]').addEventListener('change', function() {
+      var form = this.closest('form');
       var selectedBodyType = this.value;
-      form.action = "/envirobuddy/carbodytype/" + selectedBodyType; // Assuming the route is '/envirobuddy/carbodytype/'
+      form.action = "/envirobuddy/carbodytype/";
   });
 
   document.querySelector('select[name="brandName"]').addEventListener('change', function() {
       var form = this.closest('form');
       var selectedBrandName = this.value;
-      form.action = "/envirobuddy/carbrand/" + selectedBrandName;
+      form.action = "/envirobuddy/carbrand/";
   });
 
   document.querySelector('select[name="countyName"]').addEventListener('change', function() {
       var form = this.closest('form');
       var selectedCounty = this.value;
-      form.action = "/envirobuddy/carcounty/" + selectedCountyName;
+      form.action = "/envirobuddy/carcounty/";
   });
+
+  const url = window.location.href;
+
+    const tabs = document.querySelectorAll('#brand-tab, #county-tab, #cartype-tab');
+    tabs.forEach(tab => tab.classList.remove('is-active'));
+
+  if (url.includes('/envirobuddy/carbrand/')) {
+      document.getElementById('brand-tab').classList.add('is-active');
+  } else if (url.includes('/envirobuddy/carcounty/')) {
+      document.getElementById('county-tab').classList.add('is-active');
+  } else if (url.includes('/envirobuddy/carbodytype/')) {
+      document.getElementById('cartype-tab').classList.add('is-active');
+  }
+});
 </script>
