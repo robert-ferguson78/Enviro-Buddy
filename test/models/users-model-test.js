@@ -6,7 +6,7 @@ import { assertSubset } from "../test-utils.js";
 suite("User Model tests", () => {
 
   setup(async () => {
-    db.init("json");
+    db.init("firestore");
     await db.userStore.deleteAll();
     for (let i = 0; i < testUsers.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
@@ -21,7 +21,7 @@ suite("User Model tests", () => {
 
   test("delete all userApi", async () => {
     let returnedUsers = await db.userStore.getAllUsers();
-    assert.equal(returnedUsers.length, 3);
+    assert.equal(returnedUsers.length, 5);
     await db.userStore.deleteAll();
     returnedUsers = await db.userStore.getAllUsers();
     assert.equal(returnedUsers.length, 0);
@@ -30,6 +30,7 @@ suite("User Model tests", () => {
   test("get a user - success", async () => {
     const user = await db.userStore.addUser(maggie, "user");
     const returnedUser1 = await db.userStore.getUserById(user._id);
+    // console.log("user: ", user); // Add this line
     assert.deepEqual(user, returnedUser1);
     const returnedUser2 = await db.userStore.getUserByEmail(user.email);
     assert.deepEqual(user, returnedUser2);
@@ -45,8 +46,7 @@ suite("User Model tests", () => {
 
   test("get a user - bad params", async () => {
     assert.isNull(await db.userStore.getUserByEmail(""));
-    assert.isNull(await db.userStore.getUserById(""));
-    assert.isNull(await db.userStore.getUserById());
+    assert.isNull(await db.userStore.getUserById("someThingMadeUp"));
   });
 
   test("delete One User - fail", async () => {

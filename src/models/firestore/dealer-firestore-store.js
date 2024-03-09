@@ -39,12 +39,18 @@ export const dealerFirestoreStore = {
     },
 
     async deleteDealer(id) {
-        await dealersRef.doc(id).delete();
+        const snapshot = await dealersRef.where("_id", "==", id).get();
+        if (!snapshot.empty) {
+            const doc = snapshot.docs[0];
+            await doc.ref.delete();
+        } else {
+            console.log(`No dealer found with _id: ${id}`);
+        }
     },
 
     async deleteAllDealers() {
         const snapshot = await dealersRef.get();
-        const batch = fireStore.batch();
+        const batch = db.batch();
         snapshot.docs.forEach((doc) => {
             batch.delete(doc.ref);
         });

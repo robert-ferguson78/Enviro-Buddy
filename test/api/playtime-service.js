@@ -4,9 +4,21 @@ import { serviceUrl } from "../fixtures.js";
 export const playtimeService = {
   playtimeUrl: serviceUrl,
 
+  // async createUser(user) {
+  //   const res = await axios.post(`${this.playtimeUrl}/api/users`, user);
+  //   return res.data;
+  // },
+
   async createUser(user) {
-    const res = await axios.post(`${this.playtimeUrl}/api/users`, user);
-    return res.data;
+    const userWithoutId = { ...user };
+    delete userWithoutId._id;
+    try {
+      const res = await axios.post(`${this.playtimeUrl}/api/users`, user);
+      return res.data;
+    } catch (error) {
+      console.error(error.response.data);
+      throw error;
+    }
   },
 
   async getUser(id) {
@@ -73,4 +85,17 @@ export const playtimeService = {
     const res = await axios.delete(`${this.playtimeUrl}/api/dealers/${id}`);
     return res.data;
   },
+
+  async clearAuth() {
+    axios.defaults.headers.common["Authorization"] = "";
+  },
+
+  async authenticate(user) {
+    const response = await axios.post(`${this.playtimeUrl}/api/users/authenticate`, user);
+    // eslint-disable-next-line prefer-template
+    axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
+    // axios.defaults.headers.common["Authorization"] = response.data.token;
+    return response.data;
+  },
+
 };

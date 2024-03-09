@@ -29,6 +29,10 @@ export const countyFirestoreStore = {
     },
 
     async getCountyById(id) {
+        if (typeof id !== "string" || id.trim() === "") {
+            console.error(`Invalid id: ${id}`);
+            return null;
+        }
         const doc = await countiesRef.doc(id).get();
         const county = doc.exists ? { _id: doc.id, ...doc.data() } : null;
         if (county) {
@@ -87,13 +91,19 @@ export const countyFirestoreStore = {
         return doc.exists ? doc.data().userid : null;
     },
 
-    async deleteCountyById(id) {
-        await countiesRef.doc(id).delete();
+    async deleteCountyById(_id) {
+    const snapshot = await countiesRef.get();
+        snapshot.forEach(async (doc) => {
+            const data = doc.data();
+            if (data._id === _id) {
+                await countiesRef.doc(doc.id).delete();
+            }
+        });
     },
-    
+        
     async deleteAllCounties() {
         const snapshot = await countiesRef.get();
-        const batch = fireStore.batch();
+        const batch = db.batch();
         snapshot.docs.forEach((doc) => {
             batch.delete(doc.ref);
         });

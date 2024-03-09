@@ -1,262 +1,139 @@
 {
   "users": [
     {
-      "name": "robert ferguson",
-      "brandName": "BMW",
-      "email": "robert@test.com",
+      "_id": "718e6394-0fb7-4158-91e6-ded746943ec7",
+      "brandName": "citroen",
+      "email": "citroen@test.ie",
+      "name": "Stephen Lock",
       "password": "secret123",
-      "_id": "33f72502-bf72-46b0-994f-002f7024b1f9",
       "type": "brand"
     },
     {
-      "firstName": "robert",
-      "lastName": "admin",
-      "email": "admin@test.com",
-      "password": "secret123",
-      "_id": "33f72502-bf72-46b0-229d-76239024b298",
-      "type": "admin"
-    },
-    {
-      "firstName": "marge",
-      "lastName": "simpson",
-      "email": "maggie@simpson.com",
-      "password": "secret",
-      "_id": "b84e36ea-a446-47bf-97eb-aeb464a13d4f",
+      "_id": "cf239abc-9181-4f5a-945a-2b9d6f97de2f",
+      "email": "ewvrwv@jkbk.com",
+      "firstName": "ewvrwe",
+      "lastName": "vew",
+      "password": "jyghk",
       "type": "user"
     },
     {
-      "name": "mary callan",
-      "brandName": "Audi",
-      "email": "audi@test.ie",
+      "_id": "5dd2d511-0a78-4794-ab79-80b5d6ad291f",
+      "email": "jhb2kh@ij.com",
+      "firstName": "ewvrwe",
+      "lastName": "vew",
+      "password": "ytughk",
+      "type": "user"
+    },
+    {
+      "_id": "64ba5a83-a34b-425c-b8ca-58d21c572d1f",
+      "brandName": "audi",
+      "email": "audi",
+      "name": "Mark Skully",
       "password": "secret123",
-      "_id": "b593d3af-75a9-483a-8717-f565e72556ca",
       "type": "brand"
     },
     {
-      "name": "Marty",
-      "brandName": "Volvo",
-      "email": "volvo@test.com",
+      "_id": "9828e89a-fe33-4f3b-93b5-88ad74a86a97",
+      "email": "admin@test.com",
+      "firstName": "Robert",
+      "lastName": "Ferguson",
       "password": "secret123",
-      "_id": "0a7c71a9-a9f5-4999-a518-bcedfa4845ac",
-      "type": "brand"
+      "type": "admin"
     },
     {
-      "name": "Sean Mulligan",
-      "brandName": "Fiat",
-      "email": "fiat@test.com",
-      "password": "secret123",
-      "_id": "291f3aaf-ca5f-4fa7-b0f8-9268e02663a3",
-      "type": "brand"
-    },
-    {
-      "name": "Paul Murphy",
-      "brandName": "citroen",
-      "email": "citroen@test.com",
-      "password": "secret123",
-      "_id": "f4b8c04b-a37e-4008-9923-364538433d6a",
-      "type": "brand"
+      "_id": "36ab7a64-ee17-45ff-b9e5-fb64b83c418b",
+      "email": "ewvrwv@jkbk.com",
+      "firstName": "ewvrwe",
+      "lastName": "vew",
+      "password": "jyghk",
+      "type": "user"
     }
   ],
   "counties": [
     {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
+      "_id": "f2021066-744a-4d85-9a91-a9bfa046dcfe",
+      "county": "armagh",
+      "userid": "42fb5fd6-6864-4acf-95eb-b0f4a17e2800"
+    },
+    {
+      "_id": "74deeccd-7c4d-4bde-8c14-e8ce509e198d",
+      "county": "antrim",
+      "userid": "42fb5fd6-6864-4acf-95eb-b0f4a17e2800"
+    },
+    {
+      "_id": "9af7b880-48a3-424e-aaac-e8af517ed6c6",
+      "county": "cork",
+      "userid": "42fb5fd6-6864-4acf-95eb-b0f4a17e2800"
+    },
+    {
+      "_id": "bd09f4e8-4513-4c5d-a948-73e88e1baf51",
+      "county": "armagh",
+      "userid": "edc6234a-5e15-472a-b325-d062bc04c646"
+    },
+    {
+      "_id": "d51db5ce-830e-42d6-ad60-989cb6336ebd",
+      "county": "antrim",
+      "userid": "edc6234a-5e15-472a-b325-d062bc04c646"
+    },
+    {
+      "_id": "57e032e3-e72f-484b-a210-846c0e95c2c5",
+      "county": "kilkenny",
+      "userid": "42fb5fd6-6864-4acf-95eb-b0f4a17e2800"
+    },
+    {
+      "_id": "a92b73df-5281-4a18-b418-ec5ef8b6dd90",
       "county": "cavan",
-      "_id": "4f83b161-4b1a-4ebf-9129-1386ae1d3f98"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "antrim",
-      "_id": "dd502cd7-9392-401f-853a-fe27a0e164fa"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "armagh",
-      "_id": "a1719d34-2ac0-488b-a80b-9f94a6fea832"
-    },
-    {
-      "userid": "b84e36ea-a446-47bf-97eb-aeb464a13d4f",
-      "county": "galway",
-      "_id": "35949652-b2e5-41af-9d8d-4ae1ee632c24"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "derry",
-      "_id": "5584d79f-c91b-4246-a3e8-e2dece0ed95f"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "dublin",
-      "_id": "8409ea22-3614-49f2-afa0-29cce3c2ca0f"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "down",
-      "_id": "4f516293-df7c-4b1c-a840-6cacc14de62e"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "limerick",
-      "_id": "38144796-e840-46d8-842c-b71d503ea0d4"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "mayo",
-      "_id": "f2a84c41-7be8-4ad5-a2e8-cbcc482f7f6c"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "offaly",
-      "_id": "7ce32e28-bee9-42e1-a698-7a3fce97f5b8"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "galway",
-      "_id": "0d5665b5-979f-407e-816b-2a8405146927"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "laois",
-      "_id": "185a9176-a419-499b-b1be-56cb5acb0089"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "longford",
-      "_id": "ec8213fb-3d36-4667-8258-b7ef87cac7c3"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "tyrone",
-      "_id": "603c7c4c-e00b-439f-8654-e28f692b5dfd"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "louth",
-      "_id": "df97efc1-f9cc-4eef-9b6e-46c14bb074ef"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "louth",
-      "_id": "5bfea455-53c2-4040-81b0-94a2f4ac0a51"
-    },
-    {
-      "userid": "b593d3af-75a9-483a-8717-f565e72556ca",
-      "county": "antrim",
-      "_id": "2eb496e4-d224-4d3b-9a2a-09136f4a3fb8"
-    },
-    {
-      "userid": "b593d3af-75a9-483a-8717-f565e72556ca",
-      "county": "armagh",
-      "_id": "8cdf3b74-dd2f-44f4-8ff6-ed32581cb4c2"
-    },
-    {
-      "userid": "b593d3af-75a9-483a-8717-f565e72556ca",
-      "county": "cavan",
-      "_id": "3fdfce8e-712e-46a8-a083-a9639c613117"
-    },
-    {
-      "userid": "33f72502-bf72-46b0-994f-002f7024b1f9",
-      "county": "waterford",
-      "_id": "2adac3e1-fa44-4b1a-984f-5df207a9f550"
-    },
-    {
-      "userid": "0a7c71a9-a9f5-4999-a518-bcedfa4845ac",
-      "county": "antrim",
-      "_id": "084ea55b-3c14-4015-a1f0-c5dff56af0f3"
-    },
-    {
-      "userid": "0a7c71a9-a9f5-4999-a518-bcedfa4845ac",
-      "county": "armagh",
-      "_id": "91219fa1-3046-49e1-8eee-1285e754f581"
+      "userid": "edc6234a-5e15-472a-b325-d062bc04c646"
     }
   ],
   "dealers": [
     {
-      "name": "J.J. Griffith Limited1",
-      "address": "J.J. Griffith Limited, Newport Road, Castlebar, Mayo, Ireland",
-      "phone": "094 903 5582",
-      "email": "sales@griffiths.ie",
-      "website": "https://www.griffithsmotorgroup.ie",
-      "latitude": 53.8576546,
-      "longitude": -9.3046982,
-      "_id": "f9919a55-03f4-488e-8e23-d3842ace1f88",
-      "countyId": "4f83b161-4b1a-4ebf-9129-1386ae1d3f98"
+      "address": "uygh",
+      "countyId": "3acb3b61-8b90-4be3-af61-117bb8885f8e",
+      "email": "ygug@h.com",
+      "latitude": 53.0837132,
+      "longitude": -7.8233675,
+      "name": "test 1 antrim",
+      "phone": "87987",
+      "userid": "42fb5fd6-6864-4acf-95eb-b0f4a17e2800",
+      "website": "utyfufg866",
+      "_id": "9ea41920-6287-47a5-b4c2-12714772ed75"
     },
     {
-      "name": "John Corbett Motor Village",
-      "address": "J.J. Griffith Limited, Newport Road, Castlebar, Mayo, Ireland",
-      "phone": "0504 21903",
-      "email": "jcorbett@motorvillage.ie",
-      "website": "https://motorvillage.ie",
-      "latitude": 52.6468471,
-      "longitude": -7.7945704,
-      "_id": "9cb12d09-7147-4df0-9aea-4d31dd2fa432",
-      "countyId": "4f83b161-4b1a-4ebf-9129-1386ae1d3f98"
+      "address": "address 2",
+      "countyId": "3acb3b61-8b90-4be3-af61-117bb8885f8e",
+      "email": "tst2@kjgh.com",
+      "latitude": 53.5515254,
+      "longitude": -6.8733521,
+      "name": "test dealer citreon 2",
+      "phone": "0897476",
+      "userid": "edc6234a-5e15-472a-b325-d062bc04c646",
+      "website": "google",
+      "_id": "2dbb9738-e558-41fb-99cb-823d61d75d31"
     },
     {
-      "name": "dara2",
-      "address": "gjvuguyigh",
-      "phone": "67890",
-      "email": "jbhk@jhk.com",
-      "website": "ytfguyhkj",
-      "latitude": 87679,
-      "longitude": -876709,
-      "_id": "9fe7b192-a637-4590-8862-69fc7ef3bf73",
-      "countyId": "4f83b161-4b1a-4ebf-9129-1386ae1d3f98"
+      "address": "grwwgrw",
+      "countyId": "3acb3b61-8b90-4be3-af61-117bb8885f8e",
+      "email": "grg@jhg.com",
+      "latitude": 53.5515254,
+      "longitude": -6.6842906,
+      "name": "test 2 admin cork",
+      "phone": "442",
+      "userid": "42fb5fd6-6864-4acf-95eb-b0f4a17e2800",
+      "website": "yahoo",
+      "_id": "4ca936be-96ad-4c18-92f2-f73928ceb4ab"
     },
     {
-      "name": "ddd",
-      "address": "rger",
-      "phone": "34657",
-      "email": "gbdb@gtb.com",
-      "website": "gfrewgre",
-      "latitude": 54.030288,
-      "longitude": -7.7387259,
-      "_id": "b1cd441d-b3db-4ed9-aac7-31a4a16755b0",
-      "countyId": "dd502cd7-9392-401f-853a-fe27a0e164fa"
-    },
-    {
-      "name": "test audi",
-      "address": "ubjbh",
-      "phone": "57689",
-      "email": "jhb@jvb.com",
-      "website": "ytfvuyb",
-      "latitude": 54.190992,
-      "longitude": -8.3663199,
-      "_id": "ff3d2878-3b6e-44f8-bfdf-af85c8b3f0b5",
-      "countyId": "2eb496e4-d224-4d3b-9a2a-09136f4a3fb8"
-    },
-    {
-      "name": "ddddcc",
-      "address": "rrrr",
-      "phone": "56789",
-      "email": "ghj@jhgh.com",
-      "website": "fghn",
-      "latitude": 53.992988,
-      "longitude": -6.6430679,
-      "_id": "23b82c5f-35c8-4d11-9ccc-bcaaa4f1c1ab",
-      "countyId": "2adac3e1-fa44-4b1a-984f-5df207a9f550"
-    },
-    {
-      "name": "efrwe",
-      "address": "wgrwv",
-      "phone": "wrvrv",
-      "email": "jhb@kjb.com",
-      "website": "4",
-      "latitude": 52.997225,
-      "longitude": -6.2754444,
-      "_id": "750708f5-fdd7-49a1-b786-a4584cb3c253",
-      "countyId": "084ea55b-3c14-4015-a1f0-c5dff56af0f3"
-    },
-    {
-      "name": "g5e",
-      "address": "eh",
-      "phone": "ge",
-      "email": "kjbn@jh.com",
-      "website": "rgre",
-      "latitude": 52.954102,
-      "longitude": -6.4122009,
-      "_id": "4d5a78c3-2a27-4ff7-8d47-bbf71dbfd1d0",
-      "countyId": "91219fa1-3046-49e1-8eee-1285e754f581"
+      "address": "ukyigih",
+      "countyId": "3acb3b61-8b90-4be3-af61-117bb8885f8e",
+      "email": "test1@test.com",
+      "latitude": 53.5884205,
+      "longitude": -6.6842906,
+      "name": "deale citreon1",
+      "phone": "09862534",
+      "userid": "edc6234a-5e15-472a-b325-d062bc04c646",
+      "website": "yahoo",
+      "_id": "66204d0f-e76c-42d3-a53f-d12d2e99865a"
     }
   ],
   "carTypes": [

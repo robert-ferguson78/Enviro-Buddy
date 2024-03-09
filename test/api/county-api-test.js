@@ -2,7 +2,6 @@ import { EventEmitter } from "events";
 import { assert } from "chai";
 import { playtimeService } from "./playtime-service.js";
 import { assertSubset } from "../test-utils.js";
-
 import { maggie, sligo, testCounties } from "../fixtures.js";
 
 EventEmitter.setMaxListeners(25);

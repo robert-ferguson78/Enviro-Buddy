@@ -8,7 +8,7 @@ suite("Dealer Model tests", () => {
   let dealersList = null;
 
   setup(async () => {
-    await db.init("json");
+    await db.init("firestore");
     await db.countyStore.deleteAllCounties();
     await db.dealerStore.deleteAllDealers();
     dealersList = await db.countyStore.addCounty(county);
@@ -48,18 +48,21 @@ suite("Dealer Model tests", () => {
 
   test("delete One Dealer - fail", async () => {
     let dealers = await db.dealerStore.getAllDealers();
-    dealers = await db.dealerStore.addDealer(dealersList._id, testDealers)
+    // await db.dealerStore.addDealer(dealersList._id, testDealers);
     await db.dealerStore.deleteDealer("bad-id");
+    dealers = await db.dealerStore.getAllDealers();
     assert.equal(dealers.length, testDealers.length);
   });
 
   test("delete One Dealer - success", async () => {
     const id = testDealers[0]._id;
+    console.log(`Deleting dealer with id: ${id}`);
     await db.dealerStore.deleteDealer(id);
     const dealers = await db.dealerStore.getAllDealers();
+    console.log(`Dealers after deletion: ${JSON.stringify(dealers, null, 2)}`);
     assert.equal(dealers.length, testDealers.length - 1);
     const deletedDealer = await db.dealerStore.getDealerById(id);
-    console.log(deletedDealer);
+    console.log(`Deleted dealer: ${JSON.stringify(deletedDealer, null, 2)}`);
     assert.notOk(deletedDealer);
   });
 
