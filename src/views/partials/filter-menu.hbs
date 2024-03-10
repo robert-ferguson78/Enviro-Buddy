@@ -88,64 +88,89 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // Find all tabs
-    const highlightTabs = document.querySelectorAll('.tabs ul li');
-    
-    // Add click event listener to each tab
-    highlightTabs.forEach(tab => {
-      tab.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // Remove is-active class from all tabs
-        highlightTabs.forEach(t => t.classList.remove('is-active'));
-        
-        // Add is-active class to clicked tab
-        this.classList.add('is-active');
-        
-        // Hide all tab content
-        const tabContents = document.querySelectorAll('.tab-content');
-        tabContents.forEach(content => content.style.display = 'none');
-        
-        // Show current tab's content
-        const target = document.getElementById(this.dataset.target);
-        if (target) {
-          target.style.display = 'block';
-        }
-      });
+
+    // Get the list items and content divs
+    const brandTab = document.getElementById('brand-tab');
+    const searchByBrand = document.getElementById('search-by-brand');
+    const countyTab = document.getElementById('county-tab');
+    const searchByCounty = document.getElementById('search-by-county');
+    const carTypeTab = document.getElementById('cartype-tab');
+    const searchByCarType = document.getElementById('search-by-cartype');
+
+    // Function to hide all content divs and remove 'is-active' class from all tabs
+    function resetTabs() {
+    [searchByBrand, searchByCounty, searchByCarType].forEach(div => div.style.display = 'none');
+    [brandTab, countyTab, carTypeTab].forEach(tab => tab.classList.remove('is-active'));
+    }
+
+    // Add click event listeners to the list items
+    brandTab.addEventListener('click', () => {
+    resetTabs();
+    searchByBrand.style.display = 'block';
+    brandTab.classList.add('is-active');
     });
 
-  // Add change event listener to carBodyType, brandName and countyName select element
-  document.querySelector('select[name="carBodyType"]').addEventListener('change', function() {
-      var form = this.closest('form');
-      var selectedBodyType = this.value;
-      form.action = "/envirobuddy/carbodytype/";
-  });
+    countyTab.addEventListener('click', () => {
+    resetTabs();
+    searchByCounty.style.display = 'block';
+    countyTab.classList.add('is-active');
+    });
 
-  document.querySelector('select[name="brandName"]').addEventListener('change', function() {
-      var form = this.closest('form');
-      var selectedBrandName = this.value;
-      form.action = "/envirobuddy/carbrand/";
-  });
+    carTypeTab.addEventListener('click', () => {
+    resetTabs();
+    searchByCarType.style.display = 'block';
+    carTypeTab.classList.add('is-active');
+    });
 
-  document.querySelector('select[name="countyName"]').addEventListener('change', function() {
-      var form = this.closest('form');
-      var selectedCounty = this.value;
-      form.action = "/envirobuddy/carcounty/";
-  });
+    // Add change event listener to carBodyType, brandName and countyName select element
+    document.querySelector('select[name="carBodyType"]').addEventListener('change', function() {
+        var form = this.closest('form');
+        var selectedBodyType = this.value;
+        form.action = "/envirobuddy/carbodytype/";
+    });
 
-  const url = window.location.href;
+    document.querySelector('select[name="brandName"]').addEventListener('change', function() {
+        var form = this.closest('form');
+        var selectedBrandName = this.value;
+        form.action = "/envirobuddy/carbrand/";
+    });
 
-   // Find all tabs
-  const tabs = document.querySelectorAll('#brand-tab, #county-tab, #cartype-tab');
-  tabs.forEach(tab => tab.classList.remove('is-active'));
+    document.querySelector('select[name="countyName"]').addEventListener('change', function() {
+        var form = this.closest('form');
+        var selectedCounty = this.value;
+        form.action = "/envirobuddy/carcounty/";
+    });
 
-  // Add is-active class to the appropriate tab based on the URL
-  if (url.includes('/envirobuddy/carbrand/')) {
-      document.getElementById('brand-tab').classList.add('is-active');
-  } else if (url.includes('/envirobuddy/carcounty/')) {
-      document.getElementById('county-tab').classList.add('is-active');
-  } else if (url.includes('/envirobuddy/carbodytype/')) {
-      document.getElementById('cartype-tab').classList.add('is-active');
-  }
+    const url = window.location.href;
+
+    // Find all tabs
+    const tabs = document.querySelectorAll('#brand-tab, #county-tab, #cartype-tab');
+    tabs.forEach(tab => tab.classList.remove('is-active'));
+
+    // Add is-active class to the appropriate tab based on the URL
+    if (url.includes('/envirobuddy/carbrand/')) {
+        resetTabs()
+        document.getElementById('brand-tab').classList.add('is-active');
+        searchByBrand.style.display = 'block'; // Set the display property of the search-by-county div to 'block'
+    } else if (url.includes('/envirobuddy/carcounty/')) {
+        resetTabs()
+        document.getElementById('county-tab').classList.add('is-active');
+        searchByCounty.style.display = 'block'; // Set the display property of the search-by-county div to 'block'
+    } else if (url.includes('/envirobuddy/carbodytype/')) {
+        resetTabs()
+        document.getElementById('cartype-tab').classList.add('is-active');
+        searchByCarType.style.display = 'block'; // Set the display property of the search-by-county div to 'block'
+    }
+
+    // Select all option elements
+    const options = document.querySelectorAll('option');
+
+    // Capitalize the text of each option
+    options.forEach(option => {
+        const words = option.textContent.split(' ');
+        const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+        const capitalizedText = capitalizedWords.join(' ');
+        option.textContent = capitalizedText;
+    });
 });
 </script>
