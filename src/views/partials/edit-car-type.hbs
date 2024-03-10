@@ -49,14 +49,17 @@
 
 <script>
 window.onload = function() {
+  // Get form, image input, and preview elements
   const form = document.getElementById('update-form');
   const carTypesId = form.dataset.cartypesId;
   const imageInput = form.elements['image'];
   const preview = document.getElementById('preview');
 
+  // Add event listener for image input change
   imageInput.addEventListener('change', function(e) {
     const file = e.target.files[0];
     if (file) {
+      // Read the file and set the preview src
       const reader = new FileReader();
       reader.onload = function(e) {
         preview.src = e.target.result;
@@ -65,14 +68,16 @@ window.onload = function() {
     }
   });
 
+// Add event listener for form submission
 form.addEventListener('submit', async function(e) {
   e.preventDefault();
 
+  // Get car type ID from form action
   const id = new URL(e.target.action).pathname.split('/').pop();
   const file = imageInput.files[0];
   const formData = new FormData();
 
-  // add other details from form along with image
+  // Add other details from form along with image
   formData.append('carName', form.elements['carName'].value);
   formData.append('carRange', form.elements['carRange'].value);
   formData.append('carType', form.elements['carType'].value);
@@ -82,16 +87,19 @@ form.addEventListener('submit', async function(e) {
     formData.append('image', file);
   }
 
+  // Send POST request to edit car type endpoint
   const response = await fetch(`/editcartype/${carTypesId}`, {
     method: 'POST',
     body: formData
   });
 
+  // Handle response
   if (!response.ok) {
     console.error('Upload failed:', await response.text());
     return;
   }
 
+  // Update preview with uploaded image URL
   const data = await response.json();
 
   // Only update the image preview and redirect if the image has been changed

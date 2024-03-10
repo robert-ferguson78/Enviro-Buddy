@@ -2,6 +2,8 @@ import { UserSpec, BrandUserSpec, UserCredentialsSpec } from "../models/joi-sche
 import { db } from "../models/db.js";
 
 export const accountsController = {
+  // This function handles the index route, checking if a user is authenticated 
+  // and redirecting to the main page
   index: {
     auth: {
       mode: "try"
@@ -20,18 +22,21 @@ export const accountsController = {
       return h.redirect("/envirobuddy");
     },
   },
+  // This function handles the route to show the signup page for regular users
   showSignup: {
     auth: false,
     handler: function (request, h) {
       return h.view("signup-view", { title: "Sign up for Enviro-Buddy" });
     },
   },
+  // This function handles the route to show the signup page for brand users
   showBrandSignup: {
     auth: false,
     handler: function (request, h) {
       return h.view("signup-brand-view", { title: "Sign up for Enviro-Buddy" });
     },
   },
+  // This function handles the signup process for regular users
   signup: {
     auth: false,
     validate: {
@@ -48,6 +53,7 @@ export const accountsController = {
       return h.redirect("/");
     },
   },
+  // This function handles the signup process for brand users
   brandSignup: {
     auth: false,
     validate: {
@@ -65,12 +71,14 @@ export const accountsController = {
       return h.redirect("/");
     },
   },
+  // This function handles the route to show the login page
   showLogin: {
     auth: false,
     handler: function (request, h) {
       return h.view("login-view", { title: "Login to Enviro-Buddy" });
     },
   },
+  // This function handles the login process, checking user credentials and redirecting based on user type
   login: {
     auth: false,
     validate: {
@@ -100,6 +108,7 @@ export const accountsController = {
       return h.redirect("/envirobuddy");
       },
   },
+  // This function handles the logout process, clearing the user session and redirecting to the main page
   logout: {
     handler: function (request, h) {
       console.log("logout handler called");
@@ -109,6 +118,7 @@ export const accountsController = {
     },
   },
 
+  // This function validates a user session by checking if the user exists in the database
   async validate(request, session) {
     const user = await db.userStore.getUserById(session.id);
     if (!user) {

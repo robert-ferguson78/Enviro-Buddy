@@ -8,6 +8,7 @@ if (result.error) {
   console.log(result.error.message);
 }
 
+// This function creates a JWT token for a given user
 export function createToken(user) {
   const payload = {
     userId: user._id,
@@ -20,6 +21,7 @@ export function createToken(user) {
   return jwt.sign(payload, process.env.COOKIE_PASSWORD, options);
 }
 
+// This function decodes a JWT token and extracts user information
 export function decodeToken(token) {
   const userInfo = {};
   try {
@@ -36,6 +38,7 @@ export function decodeToken(token) {
   return userInfo;
 }
 
+// This function validates a decoded JWT token by checking if the user exists in the database
 export async function validate(decoded, request) {
   const user = await db.userStore.getUserById(decoded.userId);
   if (!user) {

@@ -91,6 +91,7 @@
     // Find all tabs
     const highlightTabs = document.querySelectorAll('.tabs ul li');
     
+    // Add click event listener to each tab
     highlightTabs.forEach(tab => {
       tab.addEventListener('click', function(e) {
         e.preventDefault();
@@ -113,6 +114,7 @@
       });
     });
 
+  // Add change event listener to carBodyType, brandName and countyName select element
   document.querySelector('select[name="carBodyType"]').addEventListener('change', function() {
       var form = this.closest('form');
       var selectedBodyType = this.value;
@@ -133,9 +135,11 @@
 
   const url = window.location.href;
 
-    const tabs = document.querySelectorAll('#brand-tab, #county-tab, #cartype-tab');
-    tabs.forEach(tab => tab.classList.remove('is-active'));
+   // Find all tabs
+  const tabs = document.querySelectorAll('#brand-tab, #county-tab, #cartype-tab');
+  tabs.forEach(tab => tab.classList.remove('is-active'));
 
+  // Add is-active class to the appropriate tab based on the URL
   if (url.includes('/envirobuddy/carbrand/')) {
       document.getElementById('brand-tab').classList.add('is-active');
   } else if (url.includes('/envirobuddy/carcounty/')) {

@@ -2,19 +2,20 @@ import { CountySpec, DealerSpec } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
 
 export const countyController = {
+  // This function retrieves all counties for the logged in user if they are a brand, sorts them alphabetically, and renders the county dashboard view
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      console.log("loggedInUser:", loggedInUser);
+      // console.log("loggedInUser:", loggedInUser);
       let counties;
       let showBrandOption = false;
-      console.log("showBrandOptions:", showBrandOption);
+      // console.log("showBrandOptions:", showBrandOption);
       if (loggedInUser && loggedInUser.type === "brand") {
-        console.log("one");
-        console.log("userId is: ", loggedInUser._id);
+        // console.log("one");
+        // console.log("userId is: ", loggedInUser._id);
         const userCounties = await db.countyStore.getCountiesByUserId(loggedInUser._id);
-        console.log("two");
-        console.log("logged in user: ", loggedInUser._id);
+        // console.log("two");
+       // console.log("logged in user: ", loggedInUser._id);
         counties = userCounties.sort((a, b) => a.county.localeCompare(b.county));
         showBrandOption = true;
       } else {
@@ -31,7 +32,7 @@ export const countyController = {
       return h.view("list-brand-counties-view", viewData);
     },
   },
-
+  // This function retrieves all counties for the logged in user if they are an admin, sorts them alphabetically, and renders the county dashboard view
   adminIndex: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
@@ -39,13 +40,13 @@ export const countyController = {
       let showAdminOption = false;
       if (loggedInUser && loggedInUser.type === "admin") {
         const { id: userId } = request.params; // get the user id from the route using object destructuring
-        console.log("userId:", userId); // log the userId
+        // console.log("userId:", userId); // log the userId
         const userCounties = await db.countyStore.getCountiesByUserId(userId);
-        console.log("logged in admin: ", loggedInUser._id);
+        // console.log("logged in admin: ", loggedInUser._id);
         counties = userCounties.sort((a, b) => a.county.localeCompare(b.county));
-        console.log("userCounties:", userCounties); // log the result of getUserCounties(
+        // console.log("userCounties:", userCounties); // log the result of getUserCounties(
         showAdminOption = true;
-        console.log("one");
+        // console.log("one");
       } else {
         return h.redirect("/"); // redirect to home page if user is not an admin
       }
@@ -56,12 +57,12 @@ export const countyController = {
         showAdminOption: showAdminOption,
         messages: request.yar.flash("info")
       };
-      console.log(viewData); // log the viewData object
+      // console.log(viewData); // log the viewData object
       
       return h.view("list-admin-counties-view", viewData);
     },
   },
-
+  // This function adds a new county for the logged in user if it does not already exist, and redirects to the county dashboard view
   addCounty: {
     validate: {
       payload: CountySpec,
@@ -77,14 +78,14 @@ export const countyController = {
           userid: loggedInUser._id,
           county: request.payload.county,
         };
-        console.log("newCounty:", newCounty);
+        // console.log("newCounty:", newCounty);
     
         // Check if a county with the same userid and county already exists
         const existingCounty = await db.countyStore.getCheckForCounty(newCounty);
-        console.log("addCounty:", existingCounty);
+        // console.log("addCounty:", existingCounty);
         if (!existingCounty) {
           const createdCounty = await db.countyStore.addCounty(newCounty);
-          console.log("addCounty:", createdCounty);
+          // console.log("addCounty:", createdCounty);
         }
         if (existingCounty) {
           request.yar.flash("info", "Duplicate county entry"); 
@@ -101,7 +102,7 @@ export const countyController = {
       }
     },
   },
-
+  // This function deletes a specific county by ID and redirects to the county dashboard view
   deleteCounty: {
     handler: async function (request, h) {
         // console.log("delete" + request.params.id);
@@ -112,7 +113,7 @@ export const countyController = {
       return h.redirect("/counties");
     },
   },
-
+  // This function retrieves all dealers for a specific county by ID for the logged in user if they are a brand or an admin, and renders the county view
   allCountiesDealers: {
     handler: async function (request, h) {
       let userId;
@@ -149,7 +150,7 @@ export const countyController = {
       return h.view("county-view", viewData);
     },
   },
-  
+  // This function retrieves all counties for the logged in user if they are an admin, sorts them alphabetically, and renders the all counties view
   allCounties: {
     handler: async function (request, h) {
       const user = request.auth.credentials;
@@ -167,7 +168,7 @@ export const countyController = {
       return h.view("all-counties-view", viewData);
     },
   },
-
+  // This function adds a new dealer for a specific county by ID for the logged in user, and redirects to the county view
   addDealer: {
     validate: {
       payload: DealerSpec,
@@ -189,12 +190,12 @@ export const countyController = {
         latitude: Number(request.payload.latitude),
         longitude: Number(request.payload.longitude),
       };
-      console.log(newDealer);
+      // console.log(newDealer);
       await db.dealerStore.addDealer(county._id, newDealer);
       return h.redirect(`/county/${county._id}`);
     },
   },
-
+  // This function deletes a specific dealer by ID and redirects to the county view
   deleteDealer: {
     handler: async function (request, h) {
       const user = request.auth.credentials;

@@ -1,3 +1,4 @@
+// Test file to push data in Firestore for debugging setup
 import { doc, setDoc } from "firebase-admin/firestore";
 import { db } from "./connect.js";
 

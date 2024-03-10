@@ -2,6 +2,7 @@ import { db } from "../models/db.js";
 import { getAnalyticsByBrand } from "../utils/analytics.js";
 
 export const adminController = {
+    // function to get all users
     index: {
         handler: async function (request, h) {
             const loggedInUser = request.auth.credentials;
@@ -10,6 +11,7 @@ export const adminController = {
                 return h.redirect("/");
             }
 
+            // Filter the users by type
             const allUsers = await db.userStore.getAllUsers();
             const brandUsers = allUsers.filter(user => user.type === "brand");
             const normalUsers = allUsers.filter(user => user.type === "user");
@@ -26,6 +28,7 @@ export const adminController = {
             return h.view("admin-view", viewData);
         },
     },
+    // Function to remove a user
     removeUser: {
         handler: async function (request, h) {
             const loggedInUser = request.auth.credentials;

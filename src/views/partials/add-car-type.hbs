@@ -58,13 +58,16 @@
 
 <script>
 window.onload = function() {
+  // Get form, image input, and preview elements
   const form = document.getElementById('upload-form');
   const imageInput = form.elements['image'];
   const preview = document.getElementById('preview');
 
+  // Add event listener for image input change
   imageInput.addEventListener('change', function(e) {
     const file = e.target.files[0];
     if (file) {
+      // Read the file and set the preview src
       const reader = new FileReader();
       reader.onload = function(e) {
         preview.src = e.target.result;
@@ -73,18 +76,21 @@ window.onload = function() {
     }
   });
 
+  // Add event listener for form submission
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
 
+    // Get user ID from form action
     const userId = new URL(e.target.action).pathname.split('/').pop();
     const file = imageInput.files[0];
     const formData = new FormData();
     formData.append('image', file);
-    // add other details from form along with image
+    // Add other details from form along with image
     formData.append('carName', form.elements['carName'].value);
     formData.append('carRange', form.elements['carRange'].value);
     formData.append('carType', form.elements['carType'].value);
 
+    // Send POST request to upload endpoint
     const response = await fetch(`/upload/${userId}`, {
       method: 'POST',
       body: formData
@@ -95,6 +101,7 @@ window.onload = function() {
       return;
     }
 
+    // Update preview with uploaded image UR
     const data = await response.json();
     preview.src = data.imageUrl;
 

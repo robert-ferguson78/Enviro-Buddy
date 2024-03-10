@@ -1,8 +1,10 @@
+// Import the Joi library for schema validation
 import Joi from "joi";
 
+// Define a schema for a valid ID, which can be either a string or an object
 export const IdSpec = Joi.alternatives().try(Joi.string(), Joi.object()).description("a valid ID");
 
-// spec for users credentials
+// Define a schema for user credentials, which includes an email and a password
 export const UserCredentialsSpec = Joi.object()
   .keys({
     email: Joi.string().example("admin@test.com").required(),
@@ -10,7 +12,7 @@ export const UserCredentialsSpec = Joi.object()
   })
   .label("UserCredentials");
 
-// spec for users
+// Define a schema for users, which extends the user credentials schema with optional first name, last name, brand name, type, and name
 export const UserSpec = UserCredentialsSpec.keys({
   firstName: Joi.string().example("Homer").optional(),
   lastName: Joi.string().example("Simpson").optional(),
@@ -19,14 +21,16 @@ export const UserSpec = UserCredentialsSpec.keys({
   name: Joi.string().example("name").optional(),
 }).label("UserDetails");
 
-// adding Id and V for swagger
+// Define a schema for users with additional ID and version fields for Swagger documentation
 export const UserSpecPlus = UserSpec.keys({
   _id: IdSpec,
   __v: Joi.number(),
 }).label("UserDetailsPlus");
 
+// Define a schema for an array of users
 export const UserArray = Joi.array().items(UserSpecPlus).label("UserArray");
 
+// Define a schema for brand users, which includes a name, brand name, email, and password
 export const BrandUserSpec = {
   name: Joi.string().required(),
   brandName: Joi.string().required(),
@@ -34,6 +38,7 @@ export const BrandUserSpec = {
   password: Joi.string().required(),
 };
 
+// Define a schema for dealers, which includes a name, address, phone, email, website, latitude, and longitude
 export const DealerSpec = Joi.object() .keys({
   name: Joi.string().required(),
   address: Joi.string().required(),
@@ -44,22 +49,25 @@ export const DealerSpec = Joi.object() .keys({
   longitude: Joi.number().required(),
 });
 
-// adding Id and V for swagger
+// Define a schema for dealers with additional ID and version fields for Swagger documentation
 export const DealerSpecPlus = DealerSpec.keys({
   _id: IdSpec,
   __v: Joi.number(),
 }).label("DealerDetailsPlus");
 
+// Define a schema for counties, which includes a county name
 export const CountySpec = {
   county: Joi.string().required(),
 };
 
+// Define a schema for car types, which includes a car name, car range, and car type
 export const CarTypeSpec = {
   carName: Joi.string().required(),
   carRange: Joi.string().required(),
   carType: Joi.string().required(),
 };
 
+// Define a schema for editing car types, which extends the car type schema with an image
 export const EditCarTypeSpec = {
   carName: Joi.string().required(),
   carRange: Joi.string().required(),
@@ -67,6 +75,7 @@ export const EditCarTypeSpec = {
   image: Joi.any().required(),
 };
 
+// Define a schema for JWT authentication, which includes a success flag and a token
 export const JwtAuth = Joi.object()
   .keys({
     success: Joi.boolean().example("true").required(),

@@ -18,7 +18,8 @@
 //   response.send("Hello from Firebase!");
 // });
 
-const functions = require("firebase-functions");
+import * as functions from "firebase-functions";
+
 const { getAnalyticsByBrand } = require("../src/utils/analytics.js");
 
 exports.updateAnalyticsOnCountyAddOrDelete = functions.firestore

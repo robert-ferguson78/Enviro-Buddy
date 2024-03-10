@@ -5,6 +5,7 @@ import { validationError } from "./logger.js";
 import { createToken } from "./jwt-utils.js";
 
 export const userApi = {
+  // This function retrieves all users from the database
   find: {
     auth: false,
     handler: async function(request, h) {
@@ -21,6 +22,7 @@ export const userApi = {
     response: { schema: UserArray, failAction: validationError },
   },
 
+  // This function retrieves a specific user from the database using their ID
   findOne: {
     auth: false,
     handler: async function (request, h) {
@@ -41,6 +43,7 @@ export const userApi = {
     response: { schema: UserSpecPlus, failAction: validationError },
   },
 
+  // This function creates a new user in the database
   create: {
     auth: false,
     handler: async function (request, h) {
@@ -65,6 +68,7 @@ export const userApi = {
     response: { schema: UserSpecPlus, failAction: validationError },
   },
 
+  // This function deletes all users from the database
   deleteAll: {
     auth: false,
     handler: async function (request, h) {
@@ -80,6 +84,7 @@ export const userApi = {
     notes: "All userApi removed from envirobuddy",
   },
 
+  // This function authenticates a user using their email and password, and returns a JWT token if successful
   authenticate: {
     auth: false,
     handler: async function (request, h) {

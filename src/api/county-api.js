@@ -3,8 +3,9 @@ import { CountySpec } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
 
 export const countyApi = {
+  // Find all counties
   find: {
-    auth: false,
+    auth: false, // No authentication required
     handler: async function (request, h) {
       try {
         const counties = await db.countyStore.getAllCounties();
@@ -15,6 +16,7 @@ export const countyApi = {
     },
   },
 
+  // Find a county by id
   findOne: {
     auth: false,
     async handler(request) {
@@ -30,6 +32,7 @@ export const countyApi = {
     },
   },
 
+  // Create a new county
   create: {
     auth: false,
     handler: async function (request, h) {
@@ -46,6 +49,7 @@ export const countyApi = {
     },
   },
 
+  // Delete a county by id
   deleteOne: {
     auth: false,
     handler: async function (request, h) {
@@ -62,6 +66,7 @@ export const countyApi = {
     },
   },
 
+  // Delete all counties
   deleteAll: {
     auth: false,
     handler: async function (request, h) {

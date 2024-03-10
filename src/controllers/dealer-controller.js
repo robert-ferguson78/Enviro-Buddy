@@ -5,6 +5,8 @@ const countiesRef = db.collection("counties");
 const dealersRef = db.collection("dealers");
 
 export const dealerController = {
+  // This function retrieves a specific county and dealer by their IDs, prepares the 
+  // view data, and renders the dealer view
   index: {
     handler: async function (request, h) {
       const countyDoc = await countiesRef.doc(request.params.id).get();
@@ -22,7 +24,8 @@ export const dealerController = {
       return h.view("dealer-view", viewData);
     },
   },
-
+  // This function validates the request payload using the DealerSpec, updates a specific dealer by their ID 
+  // with the new data, and redirects to the county view or all counties view depending on the user type
   update: {
     validate: {
       payload: DealerSpec,
@@ -43,6 +46,7 @@ export const dealerController = {
         latitude: request.payload.latitude,
         longitude: request.payload.longitude
       };
+      // Updates the dealer document in Firestore with the ID from the request parameters using the newDealer data
       await dealersRef.doc(request.params.dealerid).update(newDealer);
 
       if (user.type === "admin") {

@@ -51,17 +51,17 @@ export const webRoutes = [
   
   { method: "POST", 
     path: "/editcartype/{id}",
-    handler: carTypeController.updateCarType.handler,
+    handler: carTypeController.updateCarType.handler, // Handler function for updating a car type
     options: {
       payload: {
         output: "stream",
         parse: true,
-        allow: "multipart/form-data",
+        allow: "multipart/form-data", // Allow multipart form data
         multipart: true
       },
       validate: {
-        payload: Joi.object({
-          image: Joi.any(),
+        payload: Joi.object({ // Validation for the payload
+          image: Joi.any(), // Image is required and can be any type
           carName: CarTypeSpec.carName,
           carRange: CarTypeSpec.carRange,
           carType: CarTypeSpec.carType
@@ -72,17 +72,17 @@ export const webRoutes = [
 
   { method: "POST", 
     path: "/upload/{userId}",
-    handler: awsController.upload.handler,
+    handler: awsController.upload.handler, // Handler function for uploading a car type
     options: {
       payload: {
         output: "stream",
         parse: true,
-        allow: "multipart/form-data",
+        allow: "multipart/form-data", // Allow multipart form data
         multipart: true
       },
       validate: {
-        payload: Joi.object({
-          image: Joi.any().required(),
+        payload: Joi.object({ // Validation for the payload
+          image: Joi.any().required(), // Image is required and can be any type
           carName: CarTypeSpec.carName,
           carRange: CarTypeSpec.carRange,
           carType: CarTypeSpec.carType
@@ -90,8 +90,9 @@ export const webRoutes = [
       },
     },
   },
- { method: "DELETE", path: "/delete", 
-    handler: awsController.deleteImage.handler,
+  { method: "DELETE", 
+    path: "/delete", 
+    handler: awsController.deleteImage.handler, // Handler function for deleting an image
     options: {
       auth: false
     }
@@ -100,6 +101,7 @@ export const webRoutes = [
   { method: "GET", path: "/admindashboard", config: adminController.index },
   { method: "GET", path: "/removeuser/{id}", config: adminController.removeUser },
 
+  // Add pblic folder for CSS and favicon
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
 
 ];
