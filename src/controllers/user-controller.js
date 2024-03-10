@@ -97,9 +97,9 @@ export const userController = {
                 const viewData = {
                     dealerInfo: dealerInfo, // Array of dealer information
                     counties: counties, // Array of all counties
-                    carBodyTypes: uniqueCarBodyTypes, // Array of unique car body types
-                    uniqueCountyNames: uniqueCountyNames, // Array of unique county names
-                    brandNames: brandNames // Array of brand names
+                    carBodyTypes: uniqueCarBodyTypes.sort(), // Array of unique car body types
+                    uniqueCountyNames: uniqueCountyNames.sort(), // Array of unique county names
+                    brandNames: brandNames.sort() // Array of brand names
                 };
     
             return h.view("envirobuddy-view", viewData);
@@ -182,9 +182,9 @@ export const userController = {
             const viewData = {
                 dealerInfo: filteredDealerInfo,
                 counties: counties,
-                carBodyTypes: uniqueCarBodyTypes,
-                uniqueCountyNames: uniqueCountyNames,
-                brandNames: brandNames
+                carBodyTypes: uniqueCarBodyTypes.sort(),
+                uniqueCountyNames: uniqueCountyNames.sort(),
+                brandNames: brandNames.sort()
             };
     
             return h.view("envirobuddy-view", viewData);
@@ -266,9 +266,9 @@ export const userController = {
             const viewData = {
                 dealerInfo: filteredDealerInfo,
                 counties: counties,
-                carBodyTypes: uniqueCarBodyTypes,
-                uniqueCountyNames: uniqueCountyNames,
-                brandNames: brandNames
+                carBodyTypes: uniqueCarBodyTypes.sort(),
+                uniqueCountyNames: uniqueCountyNames.sort(),
+                brandNames: brandNames.sort()
             };
                 // console.log("View Data:", viewData);
     
@@ -355,9 +355,9 @@ export const userController = {
             const viewData = {
                 dealerInfo: filteredDealerInfo,
                 counties: counties,
-                carBodyTypes: uniqueCarBodyTypes,
-                uniqueCountyNames: uniqueCountyNames,
-                brandNames: brandNames
+                carBodyTypes: uniqueCarBodyTypes.sort(),
+                uniqueCountyNames: uniqueCountyNames.sort(),
+                brandNames: brandNames.sort()
             };
     
             return h.view("envirobuddy-view", viewData);
