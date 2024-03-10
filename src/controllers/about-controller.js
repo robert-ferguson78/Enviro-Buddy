@@ -8,7 +8,7 @@ export const aboutController = {
           title: "About Enviro-Buddy",
           user: request.auth.credentials,
         };
-        console.log("about handler called");
+          // console.log("about handler called");
           // console.log(request.auth.credentials);
         return h.view("about-view", viewData);
       },
