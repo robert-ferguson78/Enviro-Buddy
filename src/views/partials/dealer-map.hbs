@@ -5,9 +5,26 @@
   </div>
 {{/if}}
 
+
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script>
+// set up deafault size
+const size = 20;
+// set up defaulyt icon options
+let LeafIcon = L.Icon.extend({
+    options: {
+        iconSize: [45, 45],
+        iconAnchor: [size/2, size*2],
+        popupAnchor: [11.25, -30]
+    }
+});
+
+let station = new LeafIcon({iconUrl: 'https://cdn.glitch.global/80ce3e4b-d8a6-4fd5-8cd5-7803d57b6847/map-pin-solid-shadow.svg'});
+
   const map = L.map('map').setView([53.517073, -7.5840399], 7);
+  // Disables double click zoom
+  map.doubleClickZoom.disable();
+
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '© OpenStreetMap'
@@ -15,8 +32,14 @@
 
   // creating a marker for each placemark and adding it to the map
   let marker, circle, zoomed; 
+
+    L.icon = function (options) {
+    return new L.Icon(options);
+  };
+
   {{#each dealerInfo}}
-      marker = L.marker([{{latitude}}, {{longitude}}], {title: "{{name}}"});
+      marker = L.marker([{{latitude}}, {{longitude}}], {title: "{{name}}", icon: station});
+      // marker = L.marker([{{latitude}}, {{longitude}}], {title: "{{name}}"});
       // adding a popup to the marker that displays the placemark title and image if it exists
       marker.bindPopup("<span class='popup-stats-ctn title'><strong>{{name}}</strong></span>" 
                         + "<div class='popup-stats-ctn'><span>"
