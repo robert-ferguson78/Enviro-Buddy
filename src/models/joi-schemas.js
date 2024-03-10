@@ -27,6 +27,13 @@ export const UserSpecPlus = UserSpec.keys({
   __v: Joi.number(),
 }).label("UserDetailsPlus");
 
+export const UserSpecUpdate = {
+  firstName: Joi.string().optional(),
+  lastName: Joi.string().optional(),
+  email: Joi.string().email().optional(),
+  password: Joi.string().required(),
+};
+
 // Define a schema for an array of users
 export const UserArray = Joi.array().items(UserSpecPlus).label("UserArray");
 

@@ -1,4 +1,4 @@
-import { UserSpec, BrandUserSpec, UserCredentialsSpec } from "../models/joi-schemas.js";
+import { UserSpec, UserSpecUpdate, BrandUserSpec, UserCredentialsSpec } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
 
 export const accountsController = {
@@ -51,6 +51,42 @@ export const accountsController = {
       // pass "user" as the user type
       await db.userStore.addUser(user, "user");
       return h.redirect("/");
+    },
+  },
+  // function to show the profile view
+  profile: {
+    handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;
+      console.log("showing profile view...")
+      const viewData = {
+        title: "Enviro-Buddy County Dashboard",
+        user: loggedInUser,
+        messages: request.yar.flash("info")
+      };
+      return h.view("profile-view", viewData);
+    },
+  },
+  // This function handles user profile updates
+  updateProfile: {
+    validate: {
+      payload: UserSpecUpdate,
+      options: { abortEarly: false },
+      failAction: function (request, h, error) {
+        return h.view("profile-view", { title: "Profile Page", errors: error.details }).takeover().code(400);
+      },
+    },
+    handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;
+      const userId = loggedInUser._id;
+      const newUserData = request.payload; 
+      console.log("newUserData: ", newUserData);
+      try {
+        await db.userStore.updateUser(userId, newUserData);
+      } catch (error) {
+        console.error("Error updating user: ", error);
+      }
+      request.yar.flash("info", "Profile updaetd successfully");
+      return h.redirect("/profile");
     },
   },
   // This function handles the signup process for brand users

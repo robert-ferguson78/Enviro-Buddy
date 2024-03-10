@@ -28,3 +28,11 @@
 select, select option {
     text-transform:capitalize;
 }
+ul.message {
+    display: block;
+    text-align: center;
+    margin-top:25px;
+    padding: 20px 30px;
+    background-color: #000000;
+    color: #ffffff;
+  }

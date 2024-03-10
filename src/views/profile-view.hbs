@@ -1,0 +1,35 @@
+{{> menu active="profile"}}
+
+<section class="section">
+  <h1 class="title">Sign up</h1>
+  <form action="/updateuser/{{user._id}}" method="POST">
+    <label class="label">Name</label>
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <input class="input" type="text" placeholder="{{user._id}}" value="{{user.firstName}}" name="firstName">
+        </div>
+        <div class="field">
+          <input class="input" type="text" placeholder="Enter last name" value="{{user.lastName}}" name="lastName">
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Email (Can not be updated)</label> <input class="input" type="text" placeholder="Enter email" value="{{user.email}}" name="email" disabled>
+    </div>
+    <div class="field">
+      <label class="label">Password</label> <input class="input" type="password" placeholder="Enter Password" value="{{user.password}}" name="password">
+    </div>
+    <div class="field is-grouped">
+      <button class="button is-link">Submit</button>
+    </div>
+  </form>
+
+  {{#if messages}}
+    <ul class="message">
+      {{#each messages}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  {{/if}}
+</section>

@@ -53,6 +53,21 @@ export const userFirestoreStore = {
         return { ...data };
     },
 
+    // Method to update a user
+    async updateUser(_id, newData) {
+        // Get a reference to the document with the given ID
+        const userRef = usersRef.doc(_id);
+
+        // Update the document with the new data
+        await userRef.update(newData);
+
+        // Get the updated document
+        const updatedDoc = await userRef.get();
+
+        // Return the updated data
+        return updatedDoc.data();
+    },
+
     // Method to get a user by its ID
     async getUserById(_id) {
         // Get a snapshot of the documents where '_id' is equal to the given ID
