@@ -57,7 +57,7 @@ export const accountsController = {
   profile: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      console.log("showing profile view...")
+        // console.log("showing profile view...")
       const viewData = {
         title: "Enviro-Buddy County Dashboard",
         user: loggedInUser,
@@ -79,7 +79,7 @@ export const accountsController = {
       const loggedInUser = request.auth.credentials;
       const userId = loggedInUser._id;
       const newUserData = request.payload; 
-      console.log("newUserData: ", newUserData);
+        // console.log("newUserData: ", newUserData);
       try {
         await db.userStore.updateUser(userId, newUserData);
       } catch (error) {
@@ -101,7 +101,7 @@ export const accountsController = {
     },
     handler: async function (request, h) {
       const user = request.payload;
-      console.log("user: ", user);
+        // console.log("user: ", user);
       // pass "brand" as the user type
       await db.userStore.addUser(user, "brand");
       return h.redirect("/");
@@ -147,9 +147,9 @@ export const accountsController = {
   // This function handles the logout process, clearing the user session and redirecting to the main page
   logout: {
     handler: function (request, h) {
-      console.log("logout handler called");
+      // console.log("logout handler called");
       request.cookieAuth.clear();
-      console.log("cookie cleared");
+      // console.log("cookie cleared");
       return h.redirect("/");
     },
   },
