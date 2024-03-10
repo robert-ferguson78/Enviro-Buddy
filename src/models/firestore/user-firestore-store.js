@@ -55,8 +55,30 @@ export const userFirestoreStore = {
 
     // Method to update a user
     async updateUser(_id, newData) {
+        // console.log("update user fucntion _id:", _id);
         // Get a reference to the document with the given ID
         const userRef = usersRef.doc(_id);
+            // console.log("userRef: ", userRef);
+
+        // Update the document with the new data
+        await userRef.update(newData);
+
+        // Get the updated document
+        const updatedDoc = await userRef.get();
+
+        // Return the updated data
+        return updatedDoc.data();
+    },
+
+    // Method to update a user
+    async adminUpdateUser(_id, newData) {
+        // Extract the user ID from the newData object
+            // console.log("newdata: ", newData);
+            // console.log("User ID to update:", _id);
+
+        // Get a reference to the document with the given ID
+        const userRef = usersRef.doc(_id);
+            // console.log("userRef: ", userRef);
 
         // Update the document with the new data
         await userRef.update(newData);

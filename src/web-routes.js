@@ -101,6 +101,8 @@ export const webRoutes = [
   },
 
   { method: "GET", path: "/admindashboard", config: adminController.index },
+  { method: "GET", path: "/user/profile/{id}", config: adminController.profile },
+  { method: "POST", path: "/user/updateuser/{id}", config: adminController.updateProfile },
   { method: "GET", path: "/removeuser/{id}", config: adminController.removeUser },
 
   // Add pblic folder for CSS and favicon
